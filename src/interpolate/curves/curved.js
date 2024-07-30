@@ -1,4 +1,4 @@
-import { fitCubicBezierToPoints } from '../../bezier'
+import { fitCubicBezierToPoints } from '../../utils/bezier'
 import { interpolatePointOnSurface } from '../pointOnSurface/bilinear'
 import {
   interpolateStraightLineOnXAxis,

@@ -1,4 +1,4 @@
-import { COORDINATE } from '../../../const'
+import { COORDINATE } from '../../const'
 
 // -----------------------------------------------------------------------------
 // Utils

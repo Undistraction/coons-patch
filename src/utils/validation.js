@@ -1,7 +1,6 @@
-import { INTERPOLATION_STRATEGY_ID, LINE_STRATEGY_ID } from '../const'
 import { mapObj } from './functional'
 import { roundTo5 } from './math'
-import { isArray, isInt, isNil, isPlainObj, isUndefined } from './types'
+import { isNil, isPlainObj } from './types'
 
 // -----------------------------------------------------------------------------
 // Utils
@@ -85,54 +84,6 @@ export const validateBoundingCurves = (boundingCurves) => {
   validateCornerPoints(boundingCurves)
 }
 
-export const validateGrid = (grid) => {
-  const { rows, columns, interpolationStrategy, lineStrategy, precision } = grid
-
-  if (isNil(columns)) {
-    throw new Error('You must supply grid.columns(Array or Int)')
-  }
-
-  if (!isArray(columns) && !isInt(columns)) {
-    throw new Error('grid.columns must be an Array of Ints or Int')
-  }
-
-  if (isNil(rows)) {
-    throw new Error('You must supply grid.rows(Array or Int)')
-  }
-
-  if (!isArray(rows) && !isInt(rows)) {
-    throw new Error(
-      'grid.rows must be an Int, an Array of Ints, or an Array of objects'
-    )
-  }
-
-  if (!isUndefined(interpolationStrategy)) {
-    const possibleValues = Object.values(INTERPOLATION_STRATEGY_ID)
-    if (!possibleValues.includes(interpolationStrategy)) {
-      throw new Error(
-        `Interpolation strategy '${interpolationStrategy}' is not recognised. Must be one of '${possibleValues}'`
-      )
-    }
-  }
-
-  if (!isUndefined(lineStrategy)) {
-    const possibleValues = Object.values(LINE_STRATEGY_ID)
-    if (!possibleValues.includes(lineStrategy)) {
-      throw new Error(
-        `Line strategy '${lineStrategy}' is not recognised. Must be one of '${possibleValues}'`
-      )
-    }
-  }
-
-  if (!isUndefined(precision)) {
-    if (!isInt(precision) || precision < 1) {
-      throw new Error(
-        `Precision must be a positive integer greater than 0, but was '${precision}'`
-      )
-    }
-  }
-}
-
 export const validateGetPointArguments = (u, v) => {
   if (u < 0 || u > 1) {
     throw new Error(`u value must be between 0 and 1, but was '${u}'`)
@@ -140,28 +91,5 @@ export const validateGetPointArguments = (u, v) => {
 
   if (v < 0 || v > 1) {
     throw new Error(`v value must be between 0 and 1, but was '${v}'`)
-  }
-}
-
-export const validateGetSquareArguments = (x, y, columns, rows) => {
-  const columnCount = columns.length
-  const rowCount = rows.length
-
-  if (x < 0 || y < 0) {
-    throw new Error(
-      `Coordinates must not be negative. You supplied x:'${x}' x y:'${y}'`
-    )
-  }
-
-  if (x >= columnCount) {
-    throw new Error(
-      `Grid is '${columnCount}' columns wide but coordinates are zero-based, and you passed x:'${x}'`
-    )
-  }
-
-  if (y >= rowCount) {
-    throw new Error(
-      `Grid is '${rowCount}' rows high but coordinates are zero-based, and you passed y:'${y}'`
-    )
   }
 }

@@ -1,7 +1,7 @@
 import memoize from 'fast-memoize'
-import { times, timesReduce } from '../../functional'
-import { getDistanceBetweenPoints, roundTo10 } from '../../math'
-import { validateT } from '../../validation'
+import { times, timesReduce } from '../../utils/functional'
+import { getDistanceBetweenPoints, roundTo10 } from '../../utils/math'
+import { validateT } from '../../utils/validation'
 import { interpolatePointOnCurveLinear } from './linear'
 
 // -----------------------------------------------------------------------------

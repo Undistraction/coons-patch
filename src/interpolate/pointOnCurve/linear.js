@@ -1,5 +1,5 @@
-import { roundTo10 } from '../../math'
-import { validateT } from '../../validation'
+import { roundTo10 } from '../../utils/math'
+import { validateT } from '../../utils/validation'
 
 // -----------------------------------------------------------------------------
 // Utils
