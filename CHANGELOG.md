@@ -1,3 +1,13 @@
+## [1.5.0](https://github.com/undistraction/coons-patch/compare/v1.4.0...v1.5.0) (2024-07-30)
+
+### ⚠ BREAKING CHANGES
+
+* CHANGE
+
+### Features
+
+* Extract warp-grid ([dd46e1d](https://github.com/undistraction/coons-patch/commit/dd46e1da2f08df7afd704a1383332276f635803a))
+
 ## [1.4.0](https://github.com/undistraction/coons-patch/compare/v1.3.0...v1.4.0) (2024-07-29)
 
 ### Features
