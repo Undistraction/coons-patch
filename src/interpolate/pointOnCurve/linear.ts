@@ -1,3 +1,4 @@
+import { Curve, Point } from '../../types'
 import { roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'
 
@@ -5,11 +6,11 @@ import { validateT } from '../../utils/validation'
 // Utils
 // -----------------------------------------------------------------------------
 
-const lerp = (point1, point2, t) => {
-  return (1 - t) * point1 + t * point2
+const lerp = (value1: number, value2: number, t: number) => {
+  return (1 - t) * value1 + t * value2
 }
 
-const lerpPoint = (point1, point2, t) => {
+const lerpPoint = (point1: Point, point2: Point, t: number): Point => {
   return { x: lerp(point1.x, point2.x, t), y: lerp(point1.y, point2.y, t) }
 }
 
@@ -21,9 +22,9 @@ const lerpPoint = (point1, point2, t) => {
 //   endPoint[coordinateName] * tCubed
 // )
 const interpolate = (
-  t,
-  { controlPoint1, controlPoint2, startPoint, endPoint }
-) => {
+  t: number,
+  { controlPoint1, controlPoint2, startPoint, endPoint }: Curve
+): Point => {
   const point1 = lerpPoint(startPoint, controlPoint1, t)
   const point2 = lerpPoint(controlPoint1, controlPoint2, t)
   const point3 = lerpPoint(controlPoint2, endPoint, t)
@@ -36,7 +37,10 @@ const interpolate = (
 // Exports
 // -----------------------------------------------------------------------------
 
-export const interpolatePointOnCurveLinear = (t, curve) => {
+export const interpolatePointOnCurveLinear = (
+  t: number,
+  curve: Curve
+): Point => {
   // Round the ratio to 10 decimal places to avoid rounding issues where the
   // number is fractionally over 1 or below 0
   const tRounded = roundTo10(t)

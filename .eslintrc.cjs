@@ -11,20 +11,34 @@ module.exports = {
     'jest/globals': true,
   },
 
-  parserOptions: {
-    ecmaVersion: 2024,
-    sourceType: 'module',
-  },
-
   settings: {
-    react: {
-      version: '18',
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      // You will also need to install and configure the TypeScript resolver
+      // See also https://github.com/import-js/eslint-import-resolver-typescript#configuration
+      node: true,
+      typescript: {
+        alwaysTryTypes: true,
+      },
     },
   },
 
-  extends: ['eslint:recommended', 'plugin:import/recommended'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourcetype: 'module',
+  },
 
-  plugins: ['import'],
+  extends: [
+    'eslint:recommended',
+    `plugin:@typescript-eslint/recommended`,
+    'plugin:import/recommended',
+    `plugin:import/typescript`,
+  ],
+
+  plugins: ['import', '@typescript-eslint'],
 
   ignorePatterns: ['**/coverage/*', `/node_modules/*`, `/dist/`],
 

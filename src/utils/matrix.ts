@@ -5,7 +5,7 @@
  * That work can be found here: https://pomax.github.io/bezierinfo/#curvefitting
  * ---------------------------------------------------------------------------*/
 
-import matrix from 'matrix-js'
+import matrix, { Matrix } from 'matrix-js'
 import { times } from './functional'
 import { binomial } from './math'
 
@@ -13,7 +13,9 @@ import { binomial } from './math'
 // Exports
 // -----------------------------------------------------------------------------
 
-export const getRatioMatrix = (ratios) => {
+export const getRatioMatrix = (
+  ratios: number[]
+): { tMatrix: Matrix; tMatrixTransposed: Matrix } => {
   const ratioLength = ratios.length
   const data = times((i) => ratios.map((v) => v ** i), ratioLength)
   const tMatrix = matrix(data)
@@ -21,7 +23,7 @@ export const getRatioMatrix = (ratios) => {
   return { tMatrix, tMatrixTransposed }
 }
 
-export const getBasisMatrix = (numberOfPoints) => {
+export const getBasisMatrix = (numberOfPoints: number): Matrix => {
   let basisMatrix = matrix(matrix.gen(0).size(numberOfPoints, numberOfPoints))
 
   for (let i = 0; i < numberOfPoints; i++) {

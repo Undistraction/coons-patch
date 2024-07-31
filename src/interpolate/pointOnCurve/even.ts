@@ -1,4 +1,5 @@
 import memoize from 'fast-memoize'
+import { Curve, Point, Points } from '../../types'
 import { times, timesReduce } from '../../utils/functional'
 import { getDistanceBetweenPoints, roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'
@@ -8,7 +9,7 @@ import { interpolatePointOnCurveLinear } from './linear'
 // Utils
 // -----------------------------------------------------------------------------
 
-const getApproximatePointsOnCurve = (curve, precision) => {
+const getApproximatePointsOnCurve = (curve: Curve, precision: number) => {
   return times((idx) => {
     const ratio = idx / precision
     return interpolatePointOnCurveLinear(ratio, curve)
@@ -16,7 +17,7 @@ const getApproximatePointsOnCurve = (curve, precision) => {
 }
 
 // Generate a LUT (Look Up Table) of the cumulative arc length
-const getLut = (points) =>
+const getLut = (points: Points): number[] =>
   timesReduce(
     (acc, idx) => {
       const point = points[idx]
@@ -30,7 +31,12 @@ const getLut = (points) =>
     points.length - 1
   )
 
-const findClosestPointOnCurve = (lut, curve, targetLength, precision) => {
+const findClosestPointOnCurve = (
+  lut: number[],
+  curve: Curve,
+  targetLength: number,
+  precision: number
+): Point => {
   for (let i = 1; i < lut.length; i++) {
     const point = lut[i]
     if (point >= targetLength) {
@@ -42,6 +48,7 @@ const findClosestPointOnCurve = (lut, curve, targetLength, precision) => {
       return interpolatePointOnCurveLinear(t, curve)
     }
   }
+  throw new Error('Could not find point on curve')
 }
 
 // We only want to do this once per curve as it is very expensive so we memoize
@@ -58,9 +65,9 @@ export const interpolatePointOnCurveEvenlySpaced =
   (
     // Get an approximation using an arbitrary number of points. Increase for
     // more accuracy at cost of performance
-    { precision } = {}
+    { precision }: { precision: number }
   ) =>
-  (t, curve) => {
+  (t: number, curve: Curve): Point => {
     // Round the ratio to 10 decimal places to avoid rounding issues where the
     // number is fractionally over 1 or below 0
     const tRounded = roundTo10(t)

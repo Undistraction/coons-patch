@@ -13,7 +13,7 @@ export default defineConfig(() => {
       minify: false,
       sourcemap: true,
       lib: {
-        entry: resolve(__dirname, 'src/index.js'),
+        entry: resolve(__dirname, 'src/index.ts'),
         name: 'coons-patch',
         // the phtmlroper extensions will be added
         fileName: 'coons-patch',

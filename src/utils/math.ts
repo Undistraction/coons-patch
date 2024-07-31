@@ -1,19 +1,25 @@
+import { Point } from '../types'
+
+// -----------------------------------------------------------------------------
+// Const
+// -----------------------------------------------------------------------------
+
 const binomialCoefficients = [[1], [1, 1]]
 
 // -----------------------------------------------------------------------------
 // Utils
 // -----------------------------------------------------------------------------
 
-const roundToN = (n, value) => Number(value.toFixed(n))
+const roundToN = (n: number, value: number): number => Number(value.toFixed(n))
 
 // -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
 
-export const roundTo10 = (value) => roundToN(10, value)
-export const roundTo5 = (value) => roundToN(5, value)
+export const roundTo10 = (value: number) => roundToN(10, value)
+export const roundTo5 = (value: number) => roundToN(5, value)
 
-export const binomial = (n, k) => {
+export const binomial = (n: number, k: number): number => {
   if (n === 0) {
     return 1
   }
@@ -33,5 +39,8 @@ export const binomial = (n, k) => {
   return lut[n][k]
 }
 
-export const getDistanceBetweenPoints = (point1, point2) =>
+export const getDistanceBetweenPoints = (
+  point1: Point,
+  point2: Point
+): number =>
   Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2))

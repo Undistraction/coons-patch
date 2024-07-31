@@ -1,3 +1,4 @@
+import { BoundingCurves, Curve, InterpolatePointOnCurve } from '../../types'
 import { interpolatePointOnSurface } from '../pointOnSurface/bilinear'
 
 // -----------------------------------------------------------------------------
@@ -5,13 +6,13 @@ import { interpolatePointOnSurface } from '../pointOnSurface/bilinear'
 // -----------------------------------------------------------------------------
 
 export const interpolateStraightLineU = (
-  boundingCurves,
-  uStart,
-  uSize,
-  uEnd,
-  vStart,
-  interpolatePointOnCurve
-) => {
+  boundingCurves: BoundingCurves,
+  uStart: number,
+  uSize: number,
+  uEnd: number,
+  vStart: number,
+  interpolatePointOnCurve: InterpolatePointOnCurve
+): Curve => {
   const startPoint = interpolatePointOnSurface(
     boundingCurves,
     vStart,
@@ -36,13 +37,13 @@ export const interpolateStraightLineU = (
 }
 
 export const interpolateStraightLineV = (
-  boundingCurves,
-  uStart,
-  uSize,
-  uEnd,
-  vStart,
-  interpolatePointOnCurve
-) => {
+  boundingCurves: BoundingCurves,
+  uStart: number,
+  uSize: number,
+  uEnd: number,
+  vStart: number,
+  interpolatePointOnCurve: InterpolatePointOnCurve
+): Curve => {
   const startPoint = interpolatePointOnSurface(
     boundingCurves,
     uStart,

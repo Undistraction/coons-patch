@@ -4,6 +4,16 @@ import {
 } from './interpolate/curves/straight'
 import { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/even'
 import { interpolatePointOnSurface } from './interpolate/pointOnSurface/bilinear'
+import {
+  BoundingCurves,
+  InterpolateLineU,
+  InterpolateLineV,
+  InterpolatePointOnCurve,
+  Points,
+  StepsCurves,
+  UnprocessedSteps,
+  UVCurves,
+} from './types'
 import { getStepData, getTSize } from './utils/steps'
 import {
   validateGetSurfaceCurvesArguments,
@@ -19,8 +29,40 @@ import {
 
 const PRECISION_DEFAULT = 20
 
+const interpolatePointOnCurveDefault = interpolatePointOnCurveEvenlySpaced({
+  precision: PRECISION_DEFAULT,
+})
+
 // -----------------------------------------------------------------------------
-// Interpolation functions
+// Types
+// -----------------------------------------------------------------------------
+
+type GetSurfacePointConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+}
+
+type GetSurfaceIntersectionPointsConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+}
+
+type GetSurfaceCurvesUConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+  interpolateLineU?: InterpolateLineU
+}
+
+type GetSurfaceCurvesVConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+  interpolateLineV?: InterpolateLineV
+}
+
+type GetSurfaceCurvesConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+  interpolateLineU?: InterpolateLineU
+  interpolateLineV?: InterpolateLineV
+}
+
+// -----------------------------------------------------------------------------
+// Re-export Interpolation functions
 // -----------------------------------------------------------------------------
 
 export {
@@ -36,7 +78,7 @@ export { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/
 export { interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/linear'
 
 // -----------------------------------------------------------------------------
-// Main API
+// Export Main API
 // -----------------------------------------------------------------------------
 
 /**
@@ -56,14 +98,12 @@ export { interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/linear
  * @throws {Error} If the arguments are invalid.
  */
 export const getSurfacePoint = (
-  boundingCurves,
-  u,
-  v,
+  boundingCurves: BoundingCurves,
+  u: number,
+  v: number,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
-      precision: PRECISION_DEFAULT,
-    }),
-  } = {}
+    interpolatePointOnCurve = interpolatePointOnCurveDefault,
+  }: GetSurfacePointConfig = {}
 ) => {
   validateGetSurfacePointArguments(
     boundingCurves,
@@ -98,15 +138,13 @@ export const getSurfacePoint = (
  * @throws {Error} If the arguments are invalid.
  */
 export const getSurfaceIntersectionPoints = (
-  boundingCurves,
-  columns,
-  rows,
+  boundingCurves: BoundingCurves,
+  columns: UnprocessedSteps,
+  rows: UnprocessedSteps,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
-      precision: PRECISION_DEFAULT,
-    }),
-  } = {}
-) => {
+    interpolatePointOnCurve = interpolatePointOnCurveDefault,
+  }: GetSurfaceIntersectionPointsConfig = {}
+): Points => {
   validateGetSurfaceIntersectionPointsArguments(
     boundingCurves,
     columns,
@@ -174,16 +212,14 @@ export const getSurfaceIntersectionPoints = (
  * @throws {Error} If the arguments are invalid.
  */
 export const getSurfaceCurvesU = (
-  boundingCurves,
-  columns,
-  rows,
+  boundingCurves: BoundingCurves,
+  columns: UnprocessedSteps,
+  rows: UnprocessedSteps,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
-      precision: PRECISION_DEFAULT,
-    }),
+    interpolatePointOnCurve = interpolatePointOnCurveDefault,
     interpolateLineU = interpolateStraightLineU,
-  } = {}
-) => {
+  }: GetSurfaceCurvesUConfig = {}
+): StepsCurves => {
   validategetSurfaceCurvesUArguments(
     boundingCurves,
     columns,
@@ -267,16 +303,14 @@ export const getSurfaceCurvesU = (
  * @throws {Error} If the arguments are invalid.
  */
 export const getSurfaceCurvesV = (
-  boundingCurves,
-  columns,
-  rows,
+  boundingCurves: BoundingCurves,
+  columns: UnprocessedSteps,
+  rows: UnprocessedSteps,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
-      precision: PRECISION_DEFAULT,
-    }),
+    interpolatePointOnCurve = interpolatePointOnCurveDefault,
     interpolateLineV = interpolateStraightLineV,
-  } = {}
-) => {
+  }: GetSurfaceCurvesVConfig = {}
+): StepsCurves => {
   validategetSurfaceCurvesVArguments(
     boundingCurves,
     columns,
@@ -362,17 +396,15 @@ export const getSurfaceCurvesV = (
  * @throws {Error} If the arguments are invalid.
  */
 export const getSurfaceCurves = (
-  boundingCurves,
-  columns,
-  rows,
+  boundingCurves: BoundingCurves,
+  columns: UnprocessedSteps,
+  rows: UnprocessedSteps,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
-      precision: PRECISION_DEFAULT,
-    }),
+    interpolatePointOnCurve = interpolatePointOnCurveDefault,
     interpolateLineU = interpolateStraightLineU,
     interpolateLineV = interpolateStraightLineV,
-  } = {}
-) => {
+  }: GetSurfaceCurvesConfig = {}
+): UVCurves => {
   validateGetSurfaceCurvesArguments(
     boundingCurves,
     columns,
