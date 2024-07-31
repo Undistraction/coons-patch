@@ -1,9 +1,15 @@
 import path from 'path'
-import getGrid from '../dist/coons-patch.js'
+import {
+  getSurfaceCurves,
+  getSurfaceCurvesU,
+  getSurfaceCurvesV,
+  getSurfaceIntersectionPoints,
+  getSurfacePoint,
+} from '../dist/coons-patch.js'
 import fixtures from './fixtures.js'
 import { __dirname, writeFileAsync } from './helpers.js'
 
-console.log('Generating data for fixtures', getGrid)
+console.log('Generating data for fixtures')
 
 // -----------------------------------------------------------------------------
 // Utils
@@ -15,55 +21,51 @@ fixtures.forEach(async ({ name, input, skipSnapshot }) => {
   if (skipSnapshot) {
     console.log(`Skipping snapsot for '${name}'`)
     return
+  } else {
+    console.log(`Generating data for '${name}'`)
   }
 
   console.log('-----------------------------')
+  console.log('getSurfacePoint', input.api.getSurfacePoint.args)
   console.log('-----------------------------')
-  console.log(`Data for '${name}'`)
-  console.log('-----------------------------')
-  console.log('-----------------------------')
-  const patch = getGrid(input.bounds, input.grid)
+  const point = getSurfacePoint(...input.api.getSurfacePoint.args)
+
+  print(point)
 
   console.log('-----------------------------')
-  console.log('api.getGridCellBounds')
+  console.log('getSurfaceIntersectionPoints')
   console.log('-----------------------------')
-  const getGridCellBounds = patch.getGridCellBounds(2, 2)
-  print(getGridCellBounds)
+  const intersectionPoints = getSurfaceIntersectionPoints(
+    ...input.api.getSurfaceIntersectionPoints.args
+  )
+
+  print(intersectionPoints)
 
   console.log('-----------------------------')
-  console.log('api.getIntersections')
+  console.log('getSurfaceCurvesU')
   console.log('-----------------------------')
-  const getIntersections = patch.getIntersections()
-  print(getIntersections)
+  const curvesU = getSurfaceCurvesU(...input.api.getSurfaceCurvesU.args)
+  print(curvesU)
 
   console.log('-----------------------------')
-  console.log('api.getPoint')
+  console.log('getSurfaceCurvesV')
   console.log('-----------------------------')
-  const getPoint = patch.getPoint(0.5, 0.25)
-  print(getPoint)
+  const curvesV = getSurfaceCurvesV(...input.api.getSurfaceCurvesV.args)
+  print(curvesV)
 
   console.log('-----------------------------')
-  console.log('api.getLines')
+  console.log('getSurfaceCurves')
   console.log('-----------------------------')
-  const getLines = patch.getLines()
-  print(getLines)
-
-  console.log('-----------------------------')
-  console.log('api.getAllGridCellBounds')
-  console.log('-----------------------------')
-  const getAllGridCellBounds = patch.getAllGridCellBounds()
-  print(getAllGridCellBounds)
+  const curves = getSurfaceCurves(...input.api.getSurfaceCurves.args)
+  print(curves)
 
   const snapshot = JSON.stringify(
     {
-      model: patch.model,
-      api: {
-        getGridCellBounds,
-        getIntersections,
-        getPoint,
-        getLines,
-        getAllGridCellBounds,
-      },
+      point,
+      intersectionPoints,
+      curvesU,
+      curvesV,
+      curves,
     },
     null,
     2

@@ -1,0 +1,314 @@
+{
+  "point": {
+    "x": 20.174815736217084,
+    "y": 50.15502250526892
+  },
+  "intersectionPoints": [
+    {
+      "x": 0,
+      "y": 0
+    },
+    {
+      "x": 100,
+      "y": 0
+    },
+    {
+      "x": -7.5,
+      "y": 50
+    },
+    {
+      "x": 107.5,
+      "y": 50
+    },
+    {
+      "x": 0,
+      "y": 100
+    },
+    {
+      "x": 100,
+      "y": 100
+    }
+  ],
+  "curvesU": [
+    [
+      {
+        "startPoint": {
+          "x": 0,
+          "y": 0
+        },
+        "endPoint": {
+          "x": 0,
+          "y": 100
+        },
+        "controlPoint1": {
+          "x": 0,
+          "y": 0
+        },
+        "controlPoint2": {
+          "x": 0,
+          "y": 100
+        }
+      }
+    ],
+    [
+      {
+        "startPoint": {
+          "x": 50,
+          "y": -7.5
+        },
+        "endPoint": {
+          "x": 50,
+          "y": 107.5
+        },
+        "controlPoint1": {
+          "x": 50,
+          "y": -7.5
+        },
+        "controlPoint2": {
+          "x": 50,
+          "y": 107.5
+        }
+      }
+    ],
+    [
+      {
+        "startPoint": {
+          "x": 100,
+          "y": 0
+        },
+        "endPoint": {
+          "x": 100,
+          "y": 100
+        },
+        "controlPoint1": {
+          "x": 100,
+          "y": 0
+        },
+        "controlPoint2": {
+          "x": 100,
+          "y": 100
+        }
+      }
+    ]
+  ],
+  "curvesV": [
+    [
+      {
+        "startPoint": {
+          "x": 0,
+          "y": 0
+        },
+        "endPoint": {
+          "x": 50,
+          "y": -7.5
+        },
+        "controlPoint1": {
+          "x": 0,
+          "y": 0
+        },
+        "controlPoint2": {
+          "x": 50,
+          "y": -7.5
+        }
+      },
+      {
+        "startPoint": {
+          "x": 50,
+          "y": -7.5
+        },
+        "endPoint": {
+          "x": 100,
+          "y": 0
+        },
+        "controlPoint1": {
+          "x": 50,
+          "y": -7.5
+        },
+        "controlPoint2": {
+          "x": 100,
+          "y": 0
+        }
+      }
+    ],
+    [
+      {
+        "startPoint": {
+          "x": 0,
+          "y": 100
+        },
+        "endPoint": {
+          "x": 50,
+          "y": 107.5
+        },
+        "controlPoint1": {
+          "x": 0,
+          "y": 100
+        },
+        "controlPoint2": {
+          "x": 50,
+          "y": 107.5
+        }
+      },
+      {
+        "startPoint": {
+          "x": 50,
+          "y": 107.5
+        },
+        "endPoint": {
+          "x": 100,
+          "y": 100
+        },
+        "controlPoint1": {
+          "x": 50,
+          "y": 107.5
+        },
+        "controlPoint2": {
+          "x": 100,
+          "y": 100
+        }
+      }
+    ]
+  ],
+  "curves": {
+    "u": [
+      [
+        {
+          "startPoint": {
+            "x": 0,
+            "y": 0
+          },
+          "endPoint": {
+            "x": 0,
+            "y": 100
+          },
+          "controlPoint1": {
+            "x": 0,
+            "y": 0
+          },
+          "controlPoint2": {
+            "x": 0,
+            "y": 100
+          }
+        }
+      ],
+      [
+        {
+          "startPoint": {
+            "x": 50,
+            "y": -7.5
+          },
+          "endPoint": {
+            "x": 50,
+            "y": 107.5
+          },
+          "controlPoint1": {
+            "x": 50,
+            "y": -7.5
+          },
+          "controlPoint2": {
+            "x": 50,
+            "y": 107.5
+          }
+        }
+      ],
+      [
+        {
+          "startPoint": {
+            "x": 100,
+            "y": 0
+          },
+          "endPoint": {
+            "x": 100,
+            "y": 100
+          },
+          "controlPoint1": {
+            "x": 100,
+            "y": 0
+          },
+          "controlPoint2": {
+            "x": 100,
+            "y": 100
+          }
+        }
+      ]
+    ],
+    "v": [
+      [
+        {
+          "startPoint": {
+            "x": 0,
+            "y": 0
+          },
+          "endPoint": {
+            "x": 50,
+            "y": -7.5
+          },
+          "controlPoint1": {
+            "x": 0,
+            "y": 0
+          },
+          "controlPoint2": {
+            "x": 50,
+            "y": -7.5
+          }
+        },
+        {
+          "startPoint": {
+            "x": 50,
+            "y": -7.5
+          },
+          "endPoint": {
+            "x": 100,
+            "y": 0
+          },
+          "controlPoint1": {
+            "x": 50,
+            "y": -7.5
+          },
+          "controlPoint2": {
+            "x": 100,
+            "y": 0
+          }
+        }
+      ],
+      [
+        {
+          "startPoint": {
+            "x": 0,
+            "y": 100
+          },
+          "endPoint": {
+            "x": 50,
+            "y": 107.5
+          },
+          "controlPoint1": {
+            "x": 0,
+            "y": 100
+          },
+          "controlPoint2": {
+            "x": 50,
+            "y": 107.5
+          }
+        },
+        {
+          "startPoint": {
+            "x": 50,
+            "y": 107.5
+          },
+          "endPoint": {
+            "x": 100,
+            "y": 100
+          },
+          "controlPoint1": {
+            "x": 50,
+            "y": 107.5
+          },
+          "controlPoint2": {
+            "x": 100,
+            "y": 100
+          }
+        }
+      ]
+    ]
+  }
+}

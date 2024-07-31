@@ -3,9 +3,9 @@
 // -----------------------------------------------------------------------------
 
 import { times } from './functional'
-import { isInt } from './types'
+import { isInt, isPlainObj } from './types'
 
-const addAll = (list) => list.reduce((total, { value }) => total + value, 0)
+const addAll = (list) => list.reduce((total, step) => total + step.value, 0)
 
 const getCounts = (columns, rows) => ({
   columnsTotalCount: columns.length,
@@ -19,10 +19,21 @@ const getTotalValues = (columns, rows) => ({
 
 const expandToSteps = (stepCountOrArray) => {
   if (isInt(stepCountOrArray)) {
-    return times(stepCountOrArray, () => stepCountOrArray)
+    return times(() => stepCountOrArray, stepCountOrArray)
   }
   return stepCountOrArray
 }
+
+const convertToObjects = (steps) =>
+  steps.map((step) => {
+    if (isPlainObj(step)) {
+      return step
+    } else {
+      return {
+        value: step,
+      }
+    }
+  })
 
 // -----------------------------------------------------------------------------
 // Exports
@@ -34,10 +45,17 @@ export const getTSize = (steps, idx, totalValue) => {
   return stepValue / totalValue
 }
 
-export const getStepData = (...args) => {
-  const [columns, rows] = args.map(expandToSteps)
+export const processSteps = (steps) => {
+  const arrayOfSteps = expandToSteps(steps)
+  return convertToObjects(arrayOfSteps)
+}
+
+export const getStepData = (columns, rows) => {
+  const [processedColumns, processedRows] = [columns, rows].map(processSteps)
   return {
-    ...getCounts(columns, rows),
-    ...getTotalValues(columns, rows),
+    ...getCounts(processedColumns, processedRows),
+    ...getTotalValues(processedColumns, processedRows),
+    processedColumns,
+    processedRows,
   }
 }

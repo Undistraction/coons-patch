@@ -1,5 +1,10 @@
-import { getSurfaceCurvesV, interpolatePointOnCurveEvenlySpaced } from '../src'
-import { boundsValid } from './fixtures'
+import {
+  getSurfaceCurvesU,
+  getSurfaceCurvesV,
+  interpolatePointOnCurveEvenlySpaced,
+} from '../src'
+import fixtures, { boundingCurvesValid } from './fixtures'
+import { loadFixtureData } from './helpers'
 import testValidationOfBoundingCurveArgs from './shared/testValidationOfBoundingCurveArgs'
 import testValidationOfColumnsAndRowsArgs from './shared/testValidationOfColumnsAndRowsArgs'
 
@@ -13,14 +18,14 @@ describe(`getSurfaceCurvesV`, () => {
       getSurfaceCurvesV(boundingCurves, 3, 3)
     )
     testValidationOfColumnsAndRowsArgs((...args) =>
-      getSurfaceCurvesV(boundsValid, ...args)
+      getSurfaceCurvesV(boundingCurvesValid, ...args)
     )
   })
 
   describe(`interpolatePointOnCurve`, () => {
     it(`should throw if interpolatePointOnCurve is not a function`, () => {
       expect(() =>
-        getSurfaceCurvesV(boundsValid, 1, 1, {
+        getSurfaceCurvesV(boundingCurvesValid, 1, 1, {
           interpolatePointOnCurve: 123,
         })
       ).toThrow(`interpolatePointOnCurve must be a function`)
@@ -30,7 +35,7 @@ describe(`getSurfaceCurvesV`, () => {
   describe(`interpolateLineV`, () => {
     it(`should throw if interpolateLinesU is not a function`, () => {
       expect(() =>
-        getSurfaceCurvesV(boundsValid, 1, 1, {
+        getSurfaceCurvesV(boundingCurvesValid, 1, 1, {
           interpolatePointOnCurve: interpolatePointOnCurveEvenlySpaced,
           interpolateLineV: 123,
         })
@@ -40,7 +45,21 @@ describe(`getSurfaceCurvesV`, () => {
 
   describe(`success`, () => {
     it(`doesn't throw with minimal params`, () => {
-      expect(() => getSurfaceCurvesV(boundsValid, 1, 1)).not.toThrow()
+      expect(() => getSurfaceCurvesV(boundingCurvesValid, 1, 1)).not.toThrow()
+    })
+
+    describe.each(fixtures)(`For fixture: '$name'`, ({ name, input }) => {
+      let output
+
+      beforeAll(async () => {
+        output = await loadFixtureData(name)
+      })
+
+      it(`returns the correct data`, () => {
+        expect(getSurfaceCurvesU(...input.api.getSurfaceCurvesU.args)).toEqual(
+          output.curvesU
+        )
+      })
     })
   })
 })

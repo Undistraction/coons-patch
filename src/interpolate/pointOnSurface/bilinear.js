@@ -43,7 +43,8 @@ export const interpolatePointOnSurface = (
   { top, bottom, left, right },
   u,
   v,
-  interpolatePointOnCurve
+  interpolatePointOnCurve,
+  config
 ) => {
   // Due to potential minute rounding errors we clamp these values to avoid
   // issues with the interpolators which expect a range of 0–1.
@@ -51,10 +52,10 @@ export const interpolatePointOnSurface = (
   const vResolved = clampT(v)
 
   const boundaryPoints = {
-    pointOnTopBoundary: interpolatePointOnCurve(uResolved, top),
-    pointOnBottomBoundary: interpolatePointOnCurve(uResolved, bottom),
-    pointOnLeftBoundary: interpolatePointOnCurve(vResolved, left),
-    pointOnRightBoundary: interpolatePointOnCurve(vResolved, right),
+    pointOnTopBoundary: interpolatePointOnCurve(uResolved, top, config),
+    pointOnBottomBoundary: interpolatePointOnCurve(uResolved, bottom, config),
+    pointOnLeftBoundary: interpolatePointOnCurve(vResolved, left, config),
+    pointOnRightBoundary: interpolatePointOnCurve(vResolved, right, config),
   }
 
   const cornerPoints = {

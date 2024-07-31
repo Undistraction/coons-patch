@@ -14,6 +14,12 @@ import {
 } from './utils/validation'
 
 // -----------------------------------------------------------------------------
+// Const
+// -----------------------------------------------------------------------------
+
+const PRECISION_DEFAULT = 20
+
+// -----------------------------------------------------------------------------
 // Interpolation functions
 // -----------------------------------------------------------------------------
 
@@ -53,7 +59,11 @@ export const getSurfacePoint = (
   boundingCurves,
   u,
   v,
-  { interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced } = {}
+  {
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
+      precision: PRECISION_DEFAULT,
+    }),
+  } = {}
 ) => {
   validateGetSurfacePointArguments(
     boundingCurves,
@@ -91,7 +101,11 @@ export const getSurfaceIntersectionPoints = (
   boundingCurves,
   columns,
   rows,
-  { interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced } = {}
+  {
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
+      precision: PRECISION_DEFAULT,
+    }),
+  } = {}
 ) => {
   validateGetSurfaceIntersectionPointsArguments(
     boundingCurves,
@@ -99,7 +113,10 @@ export const getSurfaceIntersectionPoints = (
     rows,
     interpolatePointOnCurve
   )
+
   const {
+    processedColumns,
+    processedRows,
     columnsTotalCount,
     rowsTotalCount,
     columnsTotalValue,
@@ -123,12 +140,12 @@ export const getSurfaceIntersectionPoints = (
       intersections.push(point)
 
       if (columnIdx !== columnsTotalCount) {
-        uStart += getTSize(columns, columnIdx, columnsTotalValue)
+        uStart += getTSize(processedColumns, columnIdx, columnsTotalValue)
       }
     }
 
     if (rowIdx !== rowsTotalCount) {
-      vStart += getTSize(rows, rowIdx, rowsTotalValue)
+      vStart += getTSize(processedRows, rowIdx, rowsTotalValue)
     }
   }
 
@@ -161,7 +178,9 @@ export const getSurfaceCurvesU = (
   columns,
   rows,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
+      precision: PRECISION_DEFAULT,
+    }),
     interpolateLineU = interpolateStraightLineU,
   } = {}
 ) => {
@@ -174,6 +193,8 @@ export const getSurfaceCurvesU = (
   )
 
   const {
+    processedColumns,
+    processedRows,
     columnsTotalCount,
     rowsTotalCount,
     columnsTotalValue,
@@ -193,7 +214,7 @@ export const getSurfaceCurvesU = (
     let uStart = 0
 
     for (let columnIdx = 0; columnIdx < columnsTotalCount; columnIdx++) {
-      const column = columns[columnIdx]
+      const column = processedColumns[columnIdx]
       const columnValue = column?.value
       const uSize = columnValue / columnsTotalValue
       const uEnd = uStart + uSize
@@ -217,7 +238,7 @@ export const getSurfaceCurvesU = (
     curves.push(lineSections)
 
     if (rowIdx !== rowsTotalCount) {
-      vStart += getTSize(rows, rowIdx, rowsTotalValue)
+      vStart += getTSize(processedRows, rowIdx, rowsTotalValue)
     }
   }
 
@@ -250,7 +271,9 @@ export const getSurfaceCurvesV = (
   columns,
   rows,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
+      precision: PRECISION_DEFAULT,
+    }),
     interpolateLineV = interpolateStraightLineV,
   } = {}
 ) => {
@@ -263,6 +286,8 @@ export const getSurfaceCurvesV = (
   )
 
   const {
+    processedColumns,
+    processedRows,
     columnsTotalCount,
     rowsTotalCount,
     columnsTotalValue,
@@ -282,7 +307,7 @@ export const getSurfaceCurvesV = (
     let vStart = 0
 
     for (let rowIdx = 0; rowIdx < rowsTotalCount; rowIdx++) {
-      const row = rows[rowIdx]
+      const row = processedRows[rowIdx]
       const rowValue = row?.value
       const vSize = rowValue / rowsTotalValue
       const vEnd = vStart + vSize
@@ -307,7 +332,7 @@ export const getSurfaceCurvesV = (
 
     // Calculate the position of the next column
     if (columnIdx !== columnsTotalCount) {
-      uStart += getTSize(columns, columnIdx, columnsTotalValue)
+      uStart += getTSize(processedColumns, columnIdx, columnsTotalValue)
     }
   }
 
@@ -341,7 +366,9 @@ export const getSurfaceCurves = (
   columns,
   rows,
   {
-    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
+      precision: PRECISION_DEFAULT,
+    }),
     interpolateLineU = interpolateStraightLineU,
     interpolateLineV = interpolateStraightLineV,
   } = {}

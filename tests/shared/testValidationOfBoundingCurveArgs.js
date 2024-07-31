@@ -1,5 +1,5 @@
 import { CURVES } from '../const'
-import { boundsValid } from '../fixtures'
+import { boundingCurvesValid } from '../fixtures'
 
 // -----------------------------------------------------------------------------
 // Exports
@@ -17,9 +17,9 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
 
   it(`should throw if the coordinates of top.startPoint and left.startPoint are not the same`, () => {
     const bounds = {
-      ...boundsValid,
+      ...boundingCurvesValid,
       top: {
-        ...boundsValid.top,
+        ...boundingCurvesValid.top,
         startPoint: { x: -1, y: 0 },
       },
     }
@@ -30,9 +30,9 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
 
   it(`should throw if the coordinates of top.endPoint and right.startPoint are not the same`, () => {
     const bounds = {
-      ...boundsValid,
+      ...boundingCurvesValid,
       top: {
-        ...boundsValid.top,
+        ...boundingCurvesValid.top,
         endPoint: { x: -1, y: 0 },
       },
     }
@@ -43,9 +43,9 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
 
   it(`should throw if the coordinates of bottom.startPoint and left.endPoint are not the same`, () => {
     const bounds = {
-      ...boundsValid,
+      ...boundingCurvesValid,
       bottom: {
-        ...boundsValid.bottom,
+        ...boundingCurvesValid.bottom,
         startPoint: { x: -1, y: 0 },
       },
     }
@@ -56,9 +56,9 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
 
   it(`should throw if the coordinates of bottom.endPoint and right.endPoint are not the same`, () => {
     const bounds = {
-      ...boundsValid,
+      ...boundingCurvesValid,
       bottom: {
-        ...boundsValid.bottom,
+        ...boundingCurvesValid.bottom,
         endPoint: { x: -1, y: 0 },
       },
     }
@@ -70,7 +70,7 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
   describe.each(CURVES)(`For '%s' curve validates points`, (curve) => {
     it(`should throw if curve is not an object`, () => {
       const bounds = {
-        ...boundsValid,
+        ...boundingCurvesValid,
         [curve]: 11,
       }
       expect(() => functionUnderTest(bounds)).toThrow(
@@ -80,7 +80,7 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
 
     it('should throw if startPoint is not a valid point', () => {
       const bounds = {
-        ...boundsValid,
+        ...boundingCurvesValid,
         [curve]: { startPoint: 11, endPoint: { x: 0, y: 0 } },
       }
       expect(() => functionUnderTest(bounds)).toThrow(
@@ -90,7 +90,7 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
 
     it('should throw if endPoint is not a valid point', () => {
       const bounds = {
-        ...boundsValid,
+        ...boundingCurvesValid,
         [curve]: { endPoint: 11, startPoint: { x: 0, y: 0 } },
       }
       expect(() => functionUnderTest(bounds)).toThrow(

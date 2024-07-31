@@ -7,6 +7,7 @@ module.exports = {
     browser: true,
     jest: true,
     node: true,
+    es6: true,
     'jest/globals': true,
   },
 

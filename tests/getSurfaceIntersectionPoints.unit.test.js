@@ -1,5 +1,6 @@
 import { getSurfaceIntersectionPoints } from '../src'
-import { boundsValid } from './fixtures'
+import fixtures, { boundingCurvesValid } from './fixtures'
+import { loadFixtureData } from './helpers'
 import testValidationOfBoundingCurveArgs from './shared/testValidationOfBoundingCurveArgs'
 import testValidationOfColumnsAndRowsArgs from './shared/testValidationOfColumnsAndRowsArgs'
 
@@ -13,15 +14,31 @@ describe(`getSurfaceIntersectionPoints`, () => {
       getSurfaceIntersectionPoints(boundingCurves, 3, 3)
     )
     testValidationOfColumnsAndRowsArgs((...args) =>
-      getSurfaceIntersectionPoints(boundsValid, ...args)
+      getSurfaceIntersectionPoints(boundingCurvesValid, ...args)
     )
   })
 
   describe(`success`, () => {
     it(`doesn't throw with minimal params`, () => {
       expect(() =>
-        getSurfaceIntersectionPoints(boundsValid, 1, 1)
+        getSurfaceIntersectionPoints(boundingCurvesValid, 1, 1)
       ).not.toThrow()
+    })
+
+    describe.each(fixtures)(`For fixture: '$name'`, ({ name, input }) => {
+      let output
+
+      beforeAll(async () => {
+        output = await loadFixtureData(name)
+      })
+
+      it(`returns the correct data`, () => {
+        expect(
+          getSurfaceIntersectionPoints(
+            ...input.api.getSurfaceIntersectionPoints.args
+          )
+        ).toEqual(output.intersectionPoints)
+      })
     })
   })
 })
