@@ -4,7 +4,7 @@ import { interpolatePointOnSurface } from '../pointOnSurface/bilinear'
 // Exports
 // -----------------------------------------------------------------------------
 
-export const interpolateStraightLineOnXAxis = (
+export const interpolateStraightLineU = (
   boundingCurves,
   uStart,
   uSize,
@@ -35,7 +35,7 @@ export const interpolateStraightLineOnXAxis = (
   }
 }
 
-export const interpolateStraightLineOnYAxis = (
+export const interpolateStraightLineV = (
   boundingCurves,
   uStart,
   uSize,

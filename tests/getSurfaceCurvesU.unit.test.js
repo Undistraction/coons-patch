@@ -1,7 +1,4 @@
-import {
-  getSurfaceCurvesXAxis,
-  interpolatePointOnCurveEvenlySpaced,
-} from '../src'
+import { getSurfaceCurvesU, interpolatePointOnCurveEvenlySpaced } from '../src'
 import { boundsValid } from './fixtures'
 import testValidationOfBoundingCurveArgs from './shared/testValidationOfBoundingCurveArgs'
 import testValidationOfColumnsAndRowsArgs from './shared/testValidationOfColumnsAndRowsArgs'
@@ -10,40 +7,40 @@ import testValidationOfColumnsAndRowsArgs from './shared/testValidationOfColumns
 // Tests
 // -----------------------------------------------------------------------------
 
-describe(`getSurfaceCurvesXAxis`, () => {
+describe(`getSurfaceCurvesU`, () => {
   describe(`validations`, () => {
     testValidationOfBoundingCurveArgs((boundingCurves) =>
-      getSurfaceCurvesXAxis(boundingCurves, 3, 3)
+      getSurfaceCurvesU(boundingCurves, 3, 3)
     )
     testValidationOfColumnsAndRowsArgs((...args) =>
-      getSurfaceCurvesXAxis(boundsValid, ...args)
+      getSurfaceCurvesU(boundsValid, ...args)
     )
 
     describe(`interpolatePointOnCurve`, () => {
       it(`should throw if interpolatePointOnCurve is not a function`, () => {
         expect(() =>
-          getSurfaceCurvesXAxis(boundsValid, 1, 1, {
+          getSurfaceCurvesU(boundsValid, 1, 1, {
             interpolatePointOnCurve: 123,
           })
         ).toThrow(`interpolatePointOnCurve must be a function`)
       })
     })
 
-    describe(`interpolateLineOnXAxis`, () => {
-      it(`should throw if interpolateLineOnXAxis is not a function`, () => {
+    describe(`interpolateLineU`, () => {
+      it(`should throw if interpolateLineU is not a function`, () => {
         expect(() =>
-          getSurfaceCurvesXAxis(boundsValid, 1, 1, {
+          getSurfaceCurvesU(boundsValid, 1, 1, {
             interpolatePointOnCurve: interpolatePointOnCurveEvenlySpaced,
-            interpolateLineOnXAxis: 123,
+            interpolateLineU: 123,
           })
-        ).toThrow(`interpolateLineOnXAxis must be a function`)
+        ).toThrow(`interpolateLineU must be a function`)
       })
     })
   })
 
   describe(`success`, () => {
     it(`doesn't throw with minimal params`, () => {
-      expect(() => getSurfaceCurvesXAxis(boundsValid, 1, 1)).not.toThrow()
+      expect(() => getSurfaceCurvesU(boundsValid, 1, 1)).not.toThrow()
     })
   })
 })

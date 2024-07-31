@@ -186,40 +186,40 @@ export const validateGetSurfaceCurvesArguments = (
   columns,
   rows,
   interpolatePointOnCurve,
-  interpolateLineOnXAxis,
-  interpolateLineOnYAxis
+  interpolateLineU,
+  interpolateLineV
 ) => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
-  validateFunction(interpolateLineOnXAxis, 'interpolateLineOnXAxis')
-  validateFunction(interpolateLineOnYAxis, 'interpolateLineOnYAxis')
+  validateFunction(interpolateLineU, 'interpolateLineU')
+  validateFunction(interpolateLineV, 'interpolateLineV')
 }
 
-export const validateGetSurfaceCurvesXAxisArguments = (
+export const validategetSurfaceCurvesUArguments = (
   boundingCurves,
   columns,
   rows,
   interpolatePointOnCurve,
-  interpolateLineOnXAxis
+  interpolateLineU
 ) => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
-  validateFunction(interpolateLineOnXAxis, 'interpolateLineOnXAxis')
+  validateFunction(interpolateLineU, 'interpolateLineU')
 }
 
-export const validateGetSurfaceCurvesYAxisArguments = (
+export const validategetSurfaceCurvesVArguments = (
   boundingCurves,
   columns,
   rows,
   interpolatePointOnCurve,
-  interpolateLineOnYAxis
+  interpolateLineV
 ) => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
-  validateFunction(interpolateLineOnYAxis, 'interpolateLineOnYAxis')
+  validateFunction(interpolateLineV, 'interpolateLineV')
 }
 
 export const validateGetSurfaceIntersectionPointsArguments = (

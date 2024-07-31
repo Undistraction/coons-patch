@@ -1,9 +1,6 @@
 import { fitCubicBezierToPoints } from '../../utils/bezier'
 import { interpolatePointOnSurface } from '../pointOnSurface/bilinear'
-import {
-  interpolateStraightLineOnXAxis,
-  interpolateStraightLineOnYAxis,
-} from './straight'
+import { interpolateStraightLineU, interpolateStraightLineV } from './straight'
 
 // -----------------------------------------------------------------------------
 // Const
@@ -12,7 +9,7 @@ import {
 const T_MIDPOINT_1 = 0.25
 const T_MIDPOINT_2 = 0.75
 
-export const interpolateCurveOnXAxis = (
+export const interpolateCurveU = (
   boundingCurves,
   vStart,
   vSize,
@@ -20,7 +17,7 @@ export const interpolateCurveOnXAxis = (
   uStart,
   interpolatePointOnCurve
 ) => {
-  const { startPoint, endPoint } = interpolateStraightLineOnXAxis(
+  const { startPoint, endPoint } = interpolateStraightLineU(
     boundingCurves,
     vStart,
     vSize,
@@ -51,7 +48,7 @@ export const interpolateCurveOnXAxis = (
   return curve
 }
 
-export const interpolateCurveOnYAxis = (
+export const interpolateCurveV = (
   boundingCurves,
   uStart,
   uSize,
@@ -59,7 +56,7 @@ export const interpolateCurveOnYAxis = (
   vStart,
   interpolatePointOnCurve
 ) => {
-  const { startPoint, endPoint } = interpolateStraightLineOnYAxis(
+  const { startPoint, endPoint } = interpolateStraightLineV(
     boundingCurves,
     uStart,
     uSize,

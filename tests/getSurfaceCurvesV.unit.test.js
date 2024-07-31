@@ -1,7 +1,4 @@
-import {
-  getSurfaceCurvesYAxis,
-  interpolatePointOnCurveEvenlySpaced,
-} from '../src'
+import { getSurfaceCurvesV, interpolatePointOnCurveEvenlySpaced } from '../src'
 import { boundsValid } from './fixtures'
 import testValidationOfBoundingCurveArgs from './shared/testValidationOfBoundingCurveArgs'
 import testValidationOfColumnsAndRowsArgs from './shared/testValidationOfColumnsAndRowsArgs'
@@ -10,40 +7,40 @@ import testValidationOfColumnsAndRowsArgs from './shared/testValidationOfColumns
 // Tests
 // -----------------------------------------------------------------------------
 
-describe(`getSurfaceCurvesYAxis`, () => {
+describe(`getSurfaceCurvesV`, () => {
   describe(`validations`, () => {
     testValidationOfBoundingCurveArgs((boundingCurves) =>
-      getSurfaceCurvesYAxis(boundingCurves, 3, 3)
+      getSurfaceCurvesV(boundingCurves, 3, 3)
     )
     testValidationOfColumnsAndRowsArgs((...args) =>
-      getSurfaceCurvesYAxis(boundsValid, ...args)
+      getSurfaceCurvesV(boundsValid, ...args)
     )
   })
 
   describe(`interpolatePointOnCurve`, () => {
     it(`should throw if interpolatePointOnCurve is not a function`, () => {
       expect(() =>
-        getSurfaceCurvesYAxis(boundsValid, 1, 1, {
+        getSurfaceCurvesV(boundsValid, 1, 1, {
           interpolatePointOnCurve: 123,
         })
       ).toThrow(`interpolatePointOnCurve must be a function`)
     })
   })
 
-  describe(`interpolateLineOnYAxis`, () => {
+  describe(`interpolateLineV`, () => {
     it(`should throw if interpolateLinesU is not a function`, () => {
       expect(() =>
-        getSurfaceCurvesYAxis(boundsValid, 1, 1, {
+        getSurfaceCurvesV(boundsValid, 1, 1, {
           interpolatePointOnCurve: interpolatePointOnCurveEvenlySpaced,
-          interpolateLineOnYAxis: 123,
+          interpolateLineV: 123,
         })
-      ).toThrow(`interpolateLineOnYAxis must be a function`)
+      ).toThrow(`interpolateLineV must be a function`)
     })
   })
 
   describe(`success`, () => {
     it(`doesn't throw with minimal params`, () => {
-      expect(() => getSurfaceCurvesYAxis(boundsValid, 1, 1)).not.toThrow()
+      expect(() => getSurfaceCurvesV(boundsValid, 1, 1)).not.toThrow()
     })
   })
 })

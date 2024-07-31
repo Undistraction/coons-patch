@@ -1,14 +1,14 @@
 import {
-  interpolateStraightLineOnXAxis,
-  interpolateStraightLineOnYAxis,
+  interpolateStraightLineU,
+  interpolateStraightLineV,
 } from './interpolate/curves/straight'
 import { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/even'
 import { interpolatePointOnSurface } from './interpolate/pointOnSurface/bilinear'
 import { getStepData, getTSize } from './utils/steps'
 import {
   validateGetSurfaceCurvesArguments,
-  validateGetSurfaceCurvesXAxisArguments,
-  validateGetSurfaceCurvesYAxisArguments,
+  validategetSurfaceCurvesUArguments,
+  validategetSurfaceCurvesVArguments,
   validateGetSurfaceIntersectionPointsArguments,
   validateGetSurfacePointArguments,
 } from './utils/validation'
@@ -18,12 +18,12 @@ import {
 // -----------------------------------------------------------------------------
 
 export {
-  interpolateCurveOnXAxis,
-  interpolateCurveOnYAxis,
+  interpolateCurveU,
+  interpolateCurveV,
 } from './interpolate/curves/curved'
 export {
-  interpolateStraightLineOnXAxis,
-  interpolateStraightLineOnYAxis,
+  interpolateStraightLineU,
+  interpolateStraightLineV,
 } from './interpolate/curves/straight'
 
 export { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/even'
@@ -136,7 +136,7 @@ export const getSurfaceIntersectionPoints = (
 }
 
 /**
- * Generates surface curves along the X-axis based on the provided bounding
+ * Generates surface curves along the U-axis based on the provided bounding
  * curves, columns, and rows.
  *
  * @param {Object} boundingCurves - An object containing curves that define the
@@ -150,27 +150,27 @@ export const getSurfaceIntersectionPoints = (
  * @param {Function}
  * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
  * interpolate points on the curves.
- * @param {Function} [interpolateLineOnXAxis=interpolateStraightLineOnXAxis] - A
- * function to interpolate lines along the X-axis.
+ * @param {Function} [interpolateLineU=interpolateStraightLineU] - A
+ * function to interpolate lines along the U-axis.
  * @returns {Array<Array<Object>>} A 2D array of curves representing the surface
- * along the X-axis.
+ * along the U-axis.
  * @throws {Error} If the arguments are invalid.
  */
-export const getSurfaceCurvesXAxis = (
+export const getSurfaceCurvesU = (
   boundingCurves,
   columns,
   rows,
   {
     interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
-    interpolateLineOnXAxis = interpolateStraightLineOnXAxis,
+    interpolateLineU = interpolateStraightLineU,
   } = {}
 ) => {
-  validateGetSurfaceCurvesXAxisArguments(
+  validategetSurfaceCurvesUArguments(
     boundingCurves,
     columns,
     rows,
     interpolatePointOnCurve,
-    interpolateLineOnXAxis
+    interpolateLineU
   )
 
   const {
@@ -199,7 +199,7 @@ export const getSurfaceCurvesXAxis = (
       const uEnd = uStart + uSize
 
       if (!column.isGutter) {
-        const curve = interpolateLineOnXAxis(
+        const curve = interpolateLineU(
           boundingCurves,
           uStart,
           uSize,
@@ -225,7 +225,7 @@ export const getSurfaceCurvesXAxis = (
 }
 
 /**
- * Generates surface curves along the Y-axis based on the provided bounding
+ * Generates surface curves along the V-axis based on the provided bounding
  * curves, columns, and rows.
  *
  * @param {Object} boundingCurves - An object containing curves that define the
@@ -239,27 +239,27 @@ export const getSurfaceCurvesXAxis = (
  * @param {Function}
  * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
  * interpolate points on the curves.
- * @param {Function} [interpolateLineOnYAxis=interpolateStraightLineOnYAxis] - A
- * function to interpolate lines along the Y-axis.
+ * @param {Function} [interpolateLineV=interpolateStraightLineV] - A
+ * function to interpolate lines along the V-axis.
  * @returns {Array<Array<Object>>} A 2D array of curves representing the surface
- * along the Y-axis.
+ * along the V-axis.
  * @throws {Error} If the arguments are invalid.
  */
-export const getSurfaceCurvesYAxis = (
+export const getSurfaceCurvesV = (
   boundingCurves,
   columns,
   rows,
   {
     interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
-    interpolateLineOnYAxis = interpolateStraightLineOnYAxis,
+    interpolateLineV = interpolateStraightLineV,
   } = {}
 ) => {
-  validateGetSurfaceCurvesYAxisArguments(
+  validategetSurfaceCurvesVArguments(
     boundingCurves,
     columns,
     rows,
     interpolatePointOnCurve,
-    interpolateLineOnYAxis
+    interpolateLineV
   )
 
   const {
@@ -288,7 +288,7 @@ export const getSurfaceCurvesYAxis = (
       const vEnd = vStart + vSize
 
       if (!row.isGutter) {
-        const curve = interpolateLineOnYAxis(
+        const curve = interpolateLineV(
           boundingCurves,
           vStart,
           vSize,
@@ -315,7 +315,7 @@ export const getSurfaceCurvesYAxis = (
 }
 
 /**
- * Generates surface curves along both the X-axis and Y-axis based on the
+ * Generates surface curves along both the U-axis and V-axis based on the
  * provided bounding curves, columns, and rows.
  *
  * @param {Object} boundingCurves - An object containing curves that define the
@@ -328,12 +328,12 @@ export const getSurfaceCurvesYAxis = (
  * @param {Function}
  * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
  * interpolate points on the curves.
- * @param {Function} [interpolateLineOnXAxis=interpolateStraightLineOnXAxis] - A
- * function to interpolate lines along the X-axis.
- * @param {Function} [interpolateLineOnYAxis=interpolateStraightLineOnYAxis] - A
- * function to interpolate lines along the Y-axis.
+ * @param {Function} [interpolateLineU=interpolateStraightLineU] - A
+ * function to interpolate lines along the U-axis.
+ * @param {Function} [interpolateLineV=interpolateStraightLineV] - A
+ * function to interpolate lines along the V-axis.
  * @returns {Object} An object containing 2D arrays of curves representing the
- * surface along both the X-axis and Y-axis.
+ * surface along both the U-axis and V-axis.
  * @throws {Error} If the arguments are invalid.
  */
 export const getSurfaceCurves = (
@@ -342,8 +342,8 @@ export const getSurfaceCurves = (
   rows,
   {
     interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
-    interpolateLineOnXAxis = interpolateStraightLineOnXAxis,
-    interpolateLineOnYAxis = interpolateStraightLineOnYAxis,
+    interpolateLineU = interpolateStraightLineU,
+    interpolateLineV = interpolateStraightLineV,
   } = {}
 ) => {
   validateGetSurfaceCurvesArguments(
@@ -351,17 +351,17 @@ export const getSurfaceCurves = (
     columns,
     rows,
     interpolatePointOnCurve,
-    interpolateLineOnXAxis,
-    interpolateLineOnYAxis
+    interpolateLineU,
+    interpolateLineV
   )
   return {
-    xAxis: getSurfaceCurvesXAxis(boundingCurves, columns, rows, {
+    u: getSurfaceCurvesU(boundingCurves, columns, rows, {
       interpolatePointOnCurve,
-      interpolateLineOnXAxis,
+      interpolateLineU,
     }),
-    yAxis: getSurfaceCurvesYAxis(boundingCurves, columns, rows, {
+    v: getSurfaceCurvesV(boundingCurves, columns, rows, {
       interpolatePointOnCurve,
-      interpolateLineOnYAxis,
+      interpolateLineV,
     }),
   }
 }

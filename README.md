@@ -56,11 +56,11 @@ The API can be broken into functions that return points and functions that retur
 
 ### Curves
 
-- `getSurfaceCurvesXAxis` Generates surface curves along the X-axis based on the
+- `getSurfaceCurvesU` Generates surface curves along U-axis based on the
   provided bounding curves, columns, and rows.
-- `getSurfaceCurvesYAxis` Generates surface curves along the Y-axis based on the
+- `getSurfaceCurvesV` Generates surface curves along the V-axis based on the
   provided bounding curves, columns, and rows.
-- `getSurfaceCurves` Generates surface curves along both the X-axis and Y-axis
+- `getSurfaceCurves` Generates surface curves along both the U-axis and V-axis
   based on the provided bounding curves, columns, and rows.
 
 When curves are calculated, they are calculated based on the the grid size, with a separate curve returned for each step of the column or row. This means that a single curve from top to bottom or left to right is made up of multiple sub-curves, one for each column or row. This ensures a much greater accuracy and allows new patches to be created for individual cells because each cell is itself surrounded by four bounding curves.
@@ -76,12 +76,12 @@ All function take an additonal argument for `interpolatePointOnCurve` which is u
 - `interpolatePointOnCurveEven` is the default strategy, and is designed to work around problems with `interpolationPointOnCurveLinear`. It provides much more accurate interpolation by generating a Look up Table (LuT) for each curve. Its accuracy can be adjusted using an additional `precison` parameter that can be passed to the function to increase or decrease its accuracy.The default is `20`. Its increased accuracy comes with a performance penalty, though this is minimised by using memoization.
 - `interpolatePointOnCurveLinear` is a simpler and more performant strategy, however it results in uneven distribution of points along the curve. It can be an interesting effect, but is probably not what you want.
 
-### `interpolateLineOnXAxis` and `interpolateLineOnYAxis`
+### `interpolateLineU` and `interpolateLineV`
 
 These functions dictate how the lines/curves are interpolated. The curves that are returned will always be cubic Bezier curves, but the methods of interpolation result have very different results.
 
-- `interpolateStraightLinesU` and `interpolateStraightLineV` will make all lines along the their respective axes straight lines. It does this by collapsing the control points to the end points. This is significantly more performant than the alternative. This is the default.
-- `interpolateCurvesOnXAxis` and `interpolateCurvesOnYAxis` will make all lines along the their respective axes curves. This is signifcantly more memory intensive.
+- `interpolateStraightLineU` and `interpolateStraightLineV` will make all lines along the their respective axes straight lines. It does this by collapsing the control points to the end points. This is significantly more performant than the alternative. This is the default.
+- `interpolateCurveU` and `interpolateCurveV` will make all lines along the their respective axes curves. This is signifcantly more memory intensive.
 
 ## Install package
 
