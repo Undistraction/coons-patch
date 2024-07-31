@@ -25,3 +25,5 @@ export const isString = (value) =>
 
 export const isPlainObj = (value) =>
   !isNull(value) && isType('object', value) && value.constructor === Object
+
+export const isFunction = (value) => isType('function', value)

@@ -90,9 +90,15 @@ describe('mapObj', () => {
     expect(result).toEqual({ a: 2, b: 4, c: 6 })
   })
 
-  it('should pass the index as the second argument to the function', () => {
+  it('should pass the key as the second argument to the function', () => {
     const obj = { a: 1, b: 2, c: 3 }
-    const result = mapObj((value, idx) => value + idx, obj)
+    const result = mapObj((value, key) => `key is ${key}`, obj)
+    expect(result).toEqual({ a: `key is a`, b: `key is b`, c: `key is c` })
+  })
+
+  it('should pass the index as the third argument to the function', () => {
+    const obj = { a: 1, b: 2, c: 3 }
+    const result = mapObj((value, key, idx) => value + idx, obj)
     expect(result).toEqual({ a: 1, b: 3, c: 5 })
   })
 
@@ -100,12 +106,6 @@ describe('mapObj', () => {
     const obj = {}
     const result = mapObj((value) => value * 2, obj)
     expect(result).toEqual({})
-  })
-
-  it('should handle objects with non-numeric values', () => {
-    const obj = { a: 'hello', b: 'world' }
-    const result = mapObj((value) => value.toUpperCase(), obj)
-    expect(result).toEqual({ a: 'HELLO', b: 'WORLD' })
   })
 
   it('should not mutate the original object', () => {

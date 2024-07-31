@@ -1,5 +1,6 @@
 import {
   isArray,
+  isFunction,
   isInt,
   isNil,
   isNull,
@@ -192,6 +193,27 @@ describe(`types`, () => {
       expect(isPlainObj([])).toBeFalse()
       expect(isPlainObj(/abc/)).toBeFalse()
       expect(isPlainObj(() => {})).toBeFalse()
+    })
+  })
+
+  describe('isFunction', () => {
+    test('returns true if argument is a function', () => {
+      expect(isFunction(() => {})).toBeTrue()
+    })
+
+    test('returns false if argument is not a function', () => {
+      expect(isFunction()).toBeFalse()
+      expect(isFunction(null)).toBeFalse()
+      expect(isFunction(undefined)).toBeFalse()
+      expect(isFunction()).toBeFalse()
+      expect(isFunction(NaN)).toBeFalse()
+      expect(isFunction(true)).toBeFalse()
+      expect(isFunction(false)).toBeFalse()
+      expect(isFunction(``)).toBeFalse()
+      expect(isFunction(123)).toBeFalse()
+      expect(isFunction([])).toBeFalse()
+      expect(isFunction({})).toBeFalse()
+      expect(isFunction(/abc/)).toBeFalse()
     })
   })
 })

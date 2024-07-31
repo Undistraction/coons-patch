@@ -1,6 +1,6 @@
 import { mapObj } from './functional'
 import { roundTo5 } from './math'
-import { isNil, isPlainObj } from './types'
+import { isArray, isFunction, isInt, isNumber, isPlainObj } from './types'
 
 // -----------------------------------------------------------------------------
 // Utils
@@ -17,6 +17,24 @@ const getPointsAreSame = (point1, point2) => {
   )
 }
 
+const isValidPoint = (point) =>
+  isPlainObj(point) && isNumber(point.x) && isNumber(point.y)
+
+const validateCurve = (curve, name) => {
+  if (!isPlainObj(curve)) {
+    throw new Error(`Curve '${name}' must be an object`)
+  }
+}
+
+const validateStartAndEndPoints = ({ startPoint, endPoint }, name) => {
+  if (!isValidPoint(startPoint)) {
+    throw new Error(`Bounding curve '${name}' startPoint must be a valid point`)
+  }
+  if (!isValidPoint(endPoint)) {
+    throw new Error(`Bounding curve '${name}' endPoint must be a valid point`)
+  }
+}
+
 // -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
@@ -27,7 +45,7 @@ export const validateT = (t) => {
   }
 }
 
-export const validateCornerPoints = (boundingCurves) => {
+const validateCornerPoints = (boundingCurves) => {
   if (
     !getPointsAreSame(
       boundingCurves.top.startPoint,
@@ -72,19 +90,33 @@ export const validateCornerPoints = (boundingCurves) => {
   }
 }
 
-export const validateBoundingCurves = (boundingCurves) => {
-  if (isNil(boundingCurves)) {
-    throw new Error('You must supply boundingCurves(Object)')
-  }
+const validateCurves = (boundingCurves) => {
+  mapObj((curve, name) => {
+    validateCurve(curve, name)
+    validateStartAndEndPoints(curve, name)
+  }, boundingCurves)
+}
 
+const validateBoundingCurves = (boundingCurves) => {
   if (!isPlainObj(boundingCurves)) {
-    throw new Error('boundingCurves must be an object')
+    throw new Error(
+      `boundingCurves must be an object, but it was '${boundingCurves}'`
+    )
   }
 
+  validateCurves(boundingCurves)
   validateCornerPoints(boundingCurves)
 }
 
-export const validateGetPointArguments = (u, v) => {
+const validateUV = (u, v) => {
+  if (!isNumber(u)) {
+    throw new Error(`u value must be a number, but was '${u}'`)
+  }
+
+  if (!isNumber(v)) {
+    throw new Error(`v value must be a number, but was '${v}'`)
+  }
+
   if (u < 0 || u > 1) {
     throw new Error(`u value must be between 0 and 1, but was '${u}'`)
   }
@@ -92,4 +124,109 @@ export const validateGetPointArguments = (u, v) => {
   if (v < 0 || v > 1) {
     throw new Error(`v value must be between 0 and 1, but was '${v}'`)
   }
+}
+
+const validateColumnsAndRows = (columns, rows) => {
+  if (!isInt(columns)) {
+    if (isArray(columns)) {
+      columns.map((column) => {
+        if (!isInt(column) && !isPlainObj(column)) {
+          throw new Error(
+            `A column must be an integer or an object, but it was '${column}'`
+          )
+        }
+      }, columns)
+    } else {
+      throw new Error(
+        `columns must be an integer or an array, but it was '${columns}'`
+      )
+    }
+  }
+
+  if (!isInt(rows)) {
+    if (isArray(rows)) {
+      rows.map((row) => {
+        if (!isInt(row) && !isPlainObj(row)) {
+          throw new Error(
+            `A row must be an integer or an object, but it was '${row}'`
+          )
+        }
+      }, rows)
+    } else {
+      throw new Error(
+        `rows must be an integer or an array, but it was '${rows}'`
+      )
+    }
+  }
+}
+
+const validateFunction = (func, name) => {
+  if (!isFunction(func)) {
+    throw new Error(`${name} must be a function`)
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Arguments
+// -----------------------------------------------------------------------------
+
+export const validateGetSurfacePointArguments = (
+  boundingCurves,
+  u,
+  v,
+  interpolatePointOnCurve
+) => {
+  validateBoundingCurves(boundingCurves)
+  validateUV(u, v)
+  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
+}
+
+export const validateGetSurfaceCurvesArguments = (
+  boundingCurves,
+  columns,
+  rows,
+  interpolatePointOnCurve,
+  interpolateLineOnXAxis,
+  interpolateLineOnYAxis
+) => {
+  validateBoundingCurves(boundingCurves)
+  validateColumnsAndRows(columns, rows)
+  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
+  validateFunction(interpolateLineOnXAxis, 'interpolateLineOnXAxis')
+  validateFunction(interpolateLineOnYAxis, 'interpolateLineOnYAxis')
+}
+
+export const validateGetSurfaceCurvesXAxisArguments = (
+  boundingCurves,
+  columns,
+  rows,
+  interpolatePointOnCurve,
+  interpolateLineOnXAxis
+) => {
+  validateBoundingCurves(boundingCurves)
+  validateColumnsAndRows(columns, rows)
+  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
+  validateFunction(interpolateLineOnXAxis, 'interpolateLineOnXAxis')
+}
+
+export const validateGetSurfaceCurvesYAxisArguments = (
+  boundingCurves,
+  columns,
+  rows,
+  interpolatePointOnCurve,
+  interpolateLineOnYAxis
+) => {
+  validateBoundingCurves(boundingCurves)
+  validateColumnsAndRows(columns, rows)
+  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
+  validateFunction(interpolateLineOnYAxis, 'interpolateLineOnYAxis')
+}
+
+export const validateGetSurfaceIntersectionPointsArguments = (
+  boundingCurves,
+  columns,
+  rows
+) => {
+  validateBoundingCurves(boundingCurves)
+  validateColumnsAndRows(columns, rows)
 }

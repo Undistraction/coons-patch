@@ -23,7 +23,7 @@ export const mapObj = (f, o) => {
     const value = o[key]
     return {
       ...acc,
-      [key]: f(value, idx),
+      [key]: f(value, key, idx),
     }
   }, {})
 }

@@ -4,40 +4,18 @@ import {
 } from './interpolate/curves/straight'
 import { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/even'
 import { interpolatePointOnSurface } from './interpolate/pointOnSurface/bilinear'
-import { validateGetPointArguments } from './utils/validation'
+import { getStepData, getTSize } from './utils/steps'
+import {
+  validateGetSurfaceCurvesArguments,
+  validateGetSurfaceCurvesXAxisArguments,
+  validateGetSurfaceCurvesYAxisArguments,
+  validateGetSurfaceIntersectionPointsArguments,
+  validateGetSurfacePointArguments,
+} from './utils/validation'
 
 // -----------------------------------------------------------------------------
-// Utils
+// Interpolation functions
 // -----------------------------------------------------------------------------
-
-const addAll = (list) => list.reduce((total, { value }) => total + value, 0)
-
-const getCounts = (columns, rows) => ({
-  columnsTotalCount: columns.length,
-  rowsTotalCount: rows.length,
-})
-
-const getTotalValues = (columns, rows) => ({
-  columnsTotalValue: addAll(columns),
-  rowsTotalValue: addAll(rows),
-})
-
-const getTSize = (steps, idx, totalValue) => {
-  const step = steps[idx]
-  const stepValue = step.value || step
-  return stepValue / totalValue
-}
-
-const getStepData = (columns, rows) => ({
-  ...getCounts(columns, rows),
-  ...getTotalValues(columns, rows),
-})
-
-// -----------------------------------------------------------------------------
-// Exports
-// -----------------------------------------------------------------------------
-
-// Re-export interpolation functions
 
 export {
   interpolateCurveOnXAxis,
@@ -47,18 +25,42 @@ export {
   interpolateStraightLineOnXAxis,
   interpolateStraightLineOnYAxis,
 } from './interpolate/curves/straight'
+
 export { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/even'
 export { interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/linear'
 
+// -----------------------------------------------------------------------------
 // Main API
+// -----------------------------------------------------------------------------
 
+/**
+ * Computes a point on a surface defined by bounding curves at parameters u and
+ * v.
+ *
+ * @param {Object} boundingCurves - An object containing curves that define the
+ * surface boundaries.
+ * @param {number} u - The parameter along the first dimension (typically
+ * between 0 and 1).
+ * @param {number} v - The parameter along the second dimension (typically
+ * between 0 and 1).
+ * @param {Function}
+ * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
+ * interpolate points on the curves.
+ * @returns {Object} The interpolated point on the surface.
+ * @throws {Error} If the arguments are invalid.
+ */
 export const getSurfacePoint = (
   boundingCurves,
   u,
   v,
-  interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced
+  { interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced } = {}
 ) => {
-  validateGetPointArguments(u, v)
+  validateGetSurfacePointArguments(
+    boundingCurves,
+    u,
+    v,
+    interpolatePointOnCurve
+  )
   return interpolatePointOnSurface(
     boundingCurves,
     u,
@@ -67,13 +69,110 @@ export const getSurfacePoint = (
   )
 }
 
+/**
+ * Generates intersection points on the surface based on the provided bounding
+ * curves, columns, and rows.
+ *
+ * @param {Object} boundingCurves - An object containing curves that define the
+ * surface boundaries.
+ * @param {number | Array<number> | Array<Object>} columns - Either a number, an
+ * array of numbers, or an array of column definitions, each containing a value
+ * and an optional isGutter flag.
+ * @param {number | Array<number> | Array<Object>} rows - Either a number, an
+ * array of numbers, or an array of row definitions.
+ * @param {Function}
+ * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
+ * interpolate points on the curves.
+ * @returns {Array<Object>} An array of points representing the intersections on
+ * the surface.
+ * @throws {Error} If the arguments are invalid.
+ */
+export const getSurfaceIntersectionPoints = (
+  boundingCurves,
+  columns,
+  rows,
+  { interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced } = {}
+) => {
+  validateGetSurfaceIntersectionPointsArguments(
+    boundingCurves,
+    columns,
+    rows,
+    interpolatePointOnCurve
+  )
+  const {
+    columnsTotalCount,
+    rowsTotalCount,
+    columnsTotalValue,
+    rowsTotalValue,
+  } = getStepData(columns, rows)
+
+  const intersections = []
+  let vStart = 0
+
+  for (let rowIdx = 0; rowIdx <= rowsTotalCount; rowIdx++) {
+    let uStart = 0
+
+    for (let columnIdx = 0; columnIdx <= columnsTotalCount; columnIdx++) {
+      const point = interpolatePointOnSurface(
+        boundingCurves,
+        uStart,
+        vStart,
+        interpolatePointOnCurve
+      )
+
+      intersections.push(point)
+
+      if (columnIdx !== columnsTotalCount) {
+        uStart += getTSize(columns, columnIdx, columnsTotalValue)
+      }
+    }
+
+    if (rowIdx !== rowsTotalCount) {
+      vStart += getTSize(rows, rowIdx, rowsTotalValue)
+    }
+  }
+
+  return intersections
+}
+
+/**
+ * Generates surface curves along the X-axis based on the provided bounding
+ * curves, columns, and rows.
+ *
+ * @param {Object} boundingCurves - An object containing curves that define the
+ * surface boundaries.
+ * @param {number | Array<number> | Array<Object>} columns - Either a number, an
+ * array of numbers, or an array of column definitions, each containing a value
+ * and an optional isGutter flag.
+ * @param {number | Array<number> | Array<Object>} rows - Either a number, an
+ * array of numbers, or an array of row definitions, each containing a value
+ * and an optional isGutter flag.
+ * @param {Function}
+ * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
+ * interpolate points on the curves.
+ * @param {Function} [interpolateLineOnXAxis=interpolateStraightLineOnXAxis] - A
+ * function to interpolate lines along the X-axis.
+ * @returns {Array<Array<Object>>} A 2D array of curves representing the surface
+ * along the X-axis.
+ * @throws {Error} If the arguments are invalid.
+ */
 export const getSurfaceCurvesXAxis = (
   boundingCurves,
   columns,
   rows,
-  interpolateLineOnXAxis = interpolateStraightLineOnXAxis,
-  interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced
+  {
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
+    interpolateLineOnXAxis = interpolateStraightLineOnXAxis,
+  } = {}
 ) => {
+  validateGetSurfaceCurvesXAxisArguments(
+    boundingCurves,
+    columns,
+    rows,
+    interpolatePointOnCurve,
+    interpolateLineOnXAxis
+  )
+
   const {
     columnsTotalCount,
     rowsTotalCount,
@@ -125,13 +224,44 @@ export const getSurfaceCurvesXAxis = (
   return curves
 }
 
+/**
+ * Generates surface curves along the Y-axis based on the provided bounding
+ * curves, columns, and rows.
+ *
+ * @param {Object} boundingCurves - An object containing curves that define the
+ * surface boundaries.
+ * @param {number | Array<number> | Array<Object>} columns - Either a number, an
+ * array of numbers, or an array of column definitions, each containing a value
+ * and an optional isGutter flag.
+ * @param {number | Array<number> | Array<Object>} rows - Either a number, an
+ * array of numbers, or an array of row definitions, each containing a value
+ * and an optional isGutter flag.
+ * @param {Function}
+ * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
+ * interpolate points on the curves.
+ * @param {Function} [interpolateLineOnYAxis=interpolateStraightLineOnYAxis] - A
+ * function to interpolate lines along the Y-axis.
+ * @returns {Array<Array<Object>>} A 2D array of curves representing the surface
+ * along the Y-axis.
+ * @throws {Error} If the arguments are invalid.
+ */
 export const getSurfaceCurvesYAxis = (
   boundingCurves,
   columns,
   rows,
-  interpolateLineOnYAxis = interpolateStraightLineOnYAxis,
-  interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced
+  {
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
+    interpolateLineOnYAxis = interpolateStraightLineOnYAxis,
+  } = {}
 ) => {
+  validateGetSurfaceCurvesYAxisArguments(
+    boundingCurves,
+    columns,
+    rows,
+    interpolatePointOnCurve,
+    interpolateLineOnYAxis
+  )
+
   const {
     columnsTotalCount,
     rowsTotalCount,
@@ -184,70 +314,54 @@ export const getSurfaceCurvesYAxis = (
   return curves
 }
 
+/**
+ * Generates surface curves along both the X-axis and Y-axis based on the
+ * provided bounding curves, columns, and rows.
+ *
+ * @param {Object} boundingCurves - An object containing curves that define the
+ * surface boundaries.
+ * @param {number | Array<number> | Array<Object>} columns - Either a number, an
+ * array of numbers, or an array of column definitions, each containing a value
+ * and an optional isGutter flag.
+ * @param {number | Array<number> | Array<Object>} rows - Either a number, an
+ * array of numbers, or an array of row definitions.
+ * @param {Function}
+ * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
+ * interpolate points on the curves.
+ * @param {Function} [interpolateLineOnXAxis=interpolateStraightLineOnXAxis] - A
+ * function to interpolate lines along the X-axis.
+ * @param {Function} [interpolateLineOnYAxis=interpolateStraightLineOnYAxis] - A
+ * function to interpolate lines along the Y-axis.
+ * @returns {Object} An object containing 2D arrays of curves representing the
+ * surface along both the X-axis and Y-axis.
+ * @throws {Error} If the arguments are invalid.
+ */
 export const getSurfaceCurves = (
   boundingCurves,
   columns,
   rows,
-  interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
-  interpolateLineOnXAxis = interpolateStraightLineOnXAxis,
-  interpolateLineOnYAxis = interpolateStraightLineOnYAxis
+  {
+    interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced,
+    interpolateLineOnXAxis = interpolateStraightLineOnXAxis,
+    interpolateLineOnYAxis = interpolateStraightLineOnYAxis,
+  } = {}
 ) => {
+  validateGetSurfaceCurvesArguments(
+    boundingCurves,
+    columns,
+    rows,
+    interpolatePointOnCurve,
+    interpolateLineOnXAxis,
+    interpolateLineOnYAxis
+  )
   return {
-    xAxis: getSurfaceCurvesXAxis(
-      boundingCurves,
-      columns,
-      rows,
+    xAxis: getSurfaceCurvesXAxis(boundingCurves, columns, rows, {
+      interpolatePointOnCurve,
       interpolateLineOnXAxis,
-      interpolatePointOnCurve
-    ),
-    yAxis: getSurfaceCurvesYAxis(
-      boundingCurves,
-      columns,
-      rows,
+    }),
+    yAxis: getSurfaceCurvesYAxis(boundingCurves, columns, rows, {
+      interpolatePointOnCurve,
       interpolateLineOnYAxis,
-      interpolatePointOnCurve
-    ),
+    }),
   }
-}
-
-export const getSurfaceIntersectionPoints = (
-  boundingCurves,
-  columns,
-  rows,
-  interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced
-) => {
-  const {
-    columnsTotalCount,
-    rowsTotalCount,
-    columnsTotalValue,
-    rowsTotalValue,
-  } = getStepData(columns, rows)
-
-  const intersections = []
-  let vStart = 0
-
-  for (let rowIdx = 0; rowIdx <= rowsTotalCount; rowIdx++) {
-    let uStart = 0
-
-    for (let columnIdx = 0; columnIdx <= columnsTotalCount; columnIdx++) {
-      const point = interpolatePointOnSurface(
-        boundingCurves,
-        uStart,
-        vStart,
-        interpolatePointOnCurve
-      )
-
-      intersections.push(point)
-
-      if (columnIdx !== columnsTotalCount) {
-        uStart += getTSize(columns, columnIdx, columnsTotalValue)
-      }
-    }
-
-    if (rowIdx !== rowsTotalCount) {
-      vStart += getTSize(rows, rowIdx, rowsTotalValue)
-    }
-  }
-
-  return intersections
 }
