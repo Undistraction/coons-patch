@@ -10,7 +10,7 @@ import {
   InterpolateLineV,
   InterpolatePointOnCurve,
   Points,
-  StepsCurves,
+  StepCurves,
   UnprocessedSteps,
   UVCurves,
 } from './types'
@@ -219,7 +219,7 @@ export const getSurfaceCurvesU = (
     interpolatePointOnCurve = interpolatePointOnCurveDefault,
     interpolateLineU = interpolateStraightLineU,
   }: GetSurfaceCurvesUConfig = {}
-): StepsCurves => {
+): StepCurves[] => {
   validategetSurfaceCurvesUArguments(
     boundingCurves,
     columns,
@@ -310,7 +310,7 @@ export const getSurfaceCurvesV = (
     interpolatePointOnCurve = interpolatePointOnCurveDefault,
     interpolateLineV = interpolateStraightLineV,
   }: GetSurfaceCurvesVConfig = {}
-): StepsCurves => {
+): StepCurves[] => {
   validategetSurfaceCurvesVArguments(
     boundingCurves,
     columns,

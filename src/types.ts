@@ -1,3 +1,23 @@
+// -----------------------------------------------------------------------------
+// Enums
+// -----------------------------------------------------------------------------
+
+export enum Coordinate {
+  X = 'x',
+  Y = 'y',
+}
+
+// -----------------------------------------------------------------------------
+// Interfaces
+// -----------------------------------------------------------------------------
+
+export interface Column extends Step {}
+export interface Row extends Step {}
+
+// -----------------------------------------------------------------------------
+// Types
+// -----------------------------------------------------------------------------
+
 export type Point = {
   x: number
   y: number
@@ -31,18 +51,13 @@ export type UnprocessedSteps = number | (number | Step)[]
 
 export type ExpandedSteps = (number | Step)[]
 
-export interface Column extends Step {}
-export interface Row extends Step {}
-
 export type Steps = Step[]
 
 export type StepCurves = Curve[]
 
-export type StepsCurves = StepCurves[]
-
 export type UVCurves = {
-  u: StepsCurves
-  v: StepsCurves
+  u: StepCurves[]
+  v: StepCurves[]
 }
 
 export type BoundaryPoints = {
@@ -78,8 +93,3 @@ export type InterpolateLineV = (
   vStart: number,
   interpolatePointOnCurve: InterpolatePointOnCurve
 ) => Curve
-
-export enum Coordinate {
-  X = 'x',
-  Y = 'y',
-}

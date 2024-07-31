@@ -5,7 +5,7 @@ import {
   getSurfaceCurvesV,
   getSurfaceIntersectionPoints,
   getSurfacePoint,
-} from '../dist/coons-patch.js'
+} from '../src/index.js'
 import fixtures from './fixtures.js'
 import { __dirname, writeFileAsync } from './helpers.js'
 

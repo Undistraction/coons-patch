@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// These are very general-purpose functions, so any is appropriate here.
+
 // -----------------------------------------------------------------------------
 // Utils
 // -----------------------------------------------------------------------------
@@ -26,8 +29,9 @@ export const isNil = (value: any): value is null | undefined =>
 export const isString = (value: any): value is string =>
   isType('string', value) || value instanceof String
 
-export const isPlainObj = (value: any): value is {} =>
+export const isPlainObj = (value: any): value is object =>
   !isNull(value) && isType('object', value) && value.constructor === Object
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const isFunction = (value: any): value is Function =>
   isType('function', value)

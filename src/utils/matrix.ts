@@ -32,10 +32,10 @@ export const getBasisMatrix = (numberOfPoints: number): Matrix => {
     basisMatrix = matrix(ret)
   }
 
-  for (var c = 0, r; c < numberOfPoints; c++) {
+  for (let c = 0, r; c < numberOfPoints; c++) {
     for (r = c + 1; r < numberOfPoints; r++) {
-      var sign = (r + c) % 2 === 0 ? 1 : -1
-      var value = binomial(r, c) * basisMatrix(r, r)
+      const sign = (r + c) % 2 === 0 ? 1 : -1
+      const value = binomial(r, c) * basisMatrix(r, r)
       basisMatrix = matrix(basisMatrix.set(r, c).to(sign * value))
     }
   }

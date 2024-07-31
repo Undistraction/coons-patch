@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// These are very general-purpose functions, so any is appropriate here.
+
 // -----------------------------------------------------------------------------
 // Types
 // -----------------------------------------------------------------------------
@@ -9,7 +12,7 @@ type ObjectWithStringKeys = { [key: string]: any }
 // -----------------------------------------------------------------------------
 
 export const times = (f: (i: number) => any, n: number): any[] => {
-  let result = []
+  const result = []
   for (let i = 0; i < n; i++) {
     result.push(f(i))
   }

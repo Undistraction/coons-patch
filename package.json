@@ -34,12 +34,13 @@
     "test-snapshot": "node ./tests/snapshotData",
     "lint": "pnpm run lint-prettier && pnpm run lint-eslint",
     "lint-prettier": "prettier . --write",
-    "lint-eslint": "eslint './**/*.{js,jsx,cjs}'",
+    "lint-eslint": "eslint './**/*.{ts, js, jcjs}'",
     "build": "vite build",
     "build-watch": "vite build --watch",
     "release": "semantic-release --no-ci --dry-run --debug",
     "link": "pnpm link --global",
-    "unlink": "pnpm unlink --global"
+    "unlink": "pnpm unlink --global",
+    "tsc": "tsc ./src/index.ts"
   },
   "keywords": [
     "coons patch",

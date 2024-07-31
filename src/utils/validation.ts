@@ -31,7 +31,7 @@ const getPointsAreSame = (point1: Point, point2: Point): boolean => {
 const isValidPoint = (point: Point): point is Point =>
   isPlainObj(point) && isNumber(point.x) && isNumber(point.y)
 
-const validateCurve = (curve: Curve, name: string) => {
+const validateCurve = (curve: Curve, name: string): void => {
   if (!isPlainObj(curve)) {
     throw new Error(`Curve '${name}' must be an object`)
   }
@@ -40,7 +40,7 @@ const validateCurve = (curve: Curve, name: string) => {
 const validateStartAndEndPoints = (
   { startPoint, endPoint }: { startPoint: Point; endPoint: Point },
   name: string
-) => {
+): void => {
   if (!isValidPoint(startPoint)) {
     throw new Error(`Bounding curve '${name}' startPoint must be a valid point`)
   }
@@ -53,13 +53,13 @@ const validateStartAndEndPoints = (
 // Exports
 // -----------------------------------------------------------------------------
 
-export const validateT = (t: number) => {
+export const validateT = (t: number): void => {
   if (t < 0 || t > 1) {
     throw new Error(`t value must be between 0 and 1, but was '${t}'`)
   }
 }
 
-const validateCornerPoints = (boundingCurves: BoundingCurves) => {
+const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
   if (
     !getPointsAreSame(
       boundingCurves.top.startPoint,
@@ -104,14 +104,14 @@ const validateCornerPoints = (boundingCurves: BoundingCurves) => {
   }
 }
 
-const validateCurves = (boundingCurves: BoundingCurves) => {
+const validateCurves = (boundingCurves: BoundingCurves): void => {
   mapObj((curve, name) => {
     validateCurve(curve, name)
     validateStartAndEndPoints(curve, name)
   }, boundingCurves)
 }
 
-const validateBoundingCurves = (boundingCurves: BoundingCurves) => {
+const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
   if (!isPlainObj(boundingCurves)) {
     throw new Error(
       `boundingCurves must be an object, but it was '${boundingCurves}'`
@@ -122,7 +122,7 @@ const validateBoundingCurves = (boundingCurves: BoundingCurves) => {
   validateCornerPoints(boundingCurves)
 }
 
-const validateUV = (u: number, v: number) => {
+const validateUV = (u: number, v: number): void => {
   if (!isNumber(u)) {
     throw new Error(`u value must be a number, but was '${u}'`)
   }
@@ -143,7 +143,7 @@ const validateUV = (u: number, v: number) => {
 const validateColumnsAndRows = (
   columns: UnprocessedSteps,
   rows: UnprocessedSteps
-) => {
+): void => {
   if (!isInt(columns)) {
     if (isArray(columns)) {
       columns.map((column) => {
@@ -177,7 +177,8 @@ const validateColumnsAndRows = (
   }
 }
 
-const validateFunction = (func: Function, name: string) => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+const validateFunction = (func: Function, name: string): void => {
   if (!isFunction(func)) {
     throw new Error(`${name} must be a function`)
   }
@@ -192,7 +193,7 @@ export const validateGetSurfacePointArguments = (
   u: number,
   v: number,
   interpolatePointOnCurve: InterpolatePointOnCurve
-) => {
+): void => {
   validateBoundingCurves(boundingCurves)
   validateUV(u, v)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
@@ -203,7 +204,7 @@ export const validateGetSurfaceIntersectionPointsArguments = (
   columns: UnprocessedSteps,
   rows: UnprocessedSteps,
   interpolatePointOnCurve: InterpolatePointOnCurve
-) => {
+): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
@@ -216,7 +217,7 @@ export const validateGetSurfaceCurvesArguments = (
   interpolatePointOnCurve: InterpolatePointOnCurve,
   interpolateLineU: InterpolateLineU,
   interpolateLineV: InterpolateLineV
-) => {
+): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
@@ -230,7 +231,7 @@ export const validategetSurfaceCurvesUArguments = (
   rows: UnprocessedSteps,
   interpolatePointOnCurve: InterpolatePointOnCurve,
   interpolateLineU: InterpolateLineU
-) => {
+): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
@@ -243,7 +244,7 @@ export const validategetSurfaceCurvesVArguments = (
   rows: UnprocessedSteps,
   interpolatePointOnCurve: InterpolatePointOnCurve,
   interpolateLineV: InterpolateLineV
-) => {
+): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
   validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')

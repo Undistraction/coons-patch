@@ -11,6 +11,7 @@
     "strict": true,
     "skipLibCheck": true,
     "useUnknownInCatchVariables": false,
-    "typeRoots": ["./src/@types", "./node_modules/@types"]
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
+    "declaration": true
   }
 }
