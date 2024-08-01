@@ -2,7 +2,7 @@
   "name": "coons-patch",
   "version": "1.6.0",
   "packageManager": "pnpm@9.6.0",
-  "description": "Create a Coons patch for a four-sided shape and manipulate the grid",
+  "description": "Create a Coons patch and access points and curves on its surface",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
