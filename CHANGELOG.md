@@ -1,8 +1,14 @@
+## [1.8.2](https://github.com/undistraction/coons-patch/compare/v1.8.1...v1.8.2) (2024-08-01)
+
+### Bug Fixes
+
+* Remove second suffix from mjs exports ([7b4b484](https://github.com/undistraction/coons-patch/commit/7b4b484c80b1dddf2c93387d9dd43bd056524aa2))
+
 ## [1.8.1](https://github.com/undistraction/coons-patch/compare/v1.8.0...v1.8.1) (2024-08-01)
 
 ### Bug Fixes
 
-* Build export suffixes ([456d12a](https://github.com/undistraction/coons-patch/commit/456d12a6170ce8028321c14eb10d15859af6d877))
+- Build export suffixes ([456d12a](https://github.com/undistraction/coons-patch/commit/456d12a6170ce8028321c14eb10d15859af6d877))
 
 ## [1.8.0](https://github.com/undistraction/coons-patch/compare/v1.7.1...v1.8.0) (2024-08-01)
 
