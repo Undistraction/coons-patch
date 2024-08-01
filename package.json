@@ -37,7 +37,7 @@
     "lint": "pnpm run lint-prettier && pnpm run lint-eslint",
     "lint-prettier": "prettier . --write",
     "lint-eslint": "eslint './**/*.{ts, js, jcjs}'",
-    "build": "vite build && pnpm run docs && ls -A",
+    "build": "vite build && pnpm run docs",
     "build-watch": "vite build --watch",
     "docs": "typedoc",
     "docs-open": "open ./docs/index.html",
