@@ -2,6 +2,78 @@
 
 A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a kind of four-sided surface and this package provides a small API for getting information about the surface: points on the surface and lines running across the surface. This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) which supplies an extended API build on-top of this package for creating warped grids, and provides an API for modeling complex grids, and to visualise and play with a coons patch, please see the interactive demo [here](https://warp-grid-editor.undistraction.com/).
 
+[Documenation](coons-patch-docs.undistraction.com).
+
+## Install package
+
+```bash
+npm add coons-patch
+# or
+yarn add coons-patch
+# or
+pnpm add coons-patch
+```
+
+## Quick-start
+
+```javaScript
+import {
+  getSurfacePoint,
+  getSurface,
+  getSurfaceCurvesU,
+  getSurfaceCurvesV,
+  getSurfaceCurves,
+  interpolatePointOnCurveLinear,
+  interpolateCurveU,
+  interpolateCurveV
+} from 'coons-patch'
+
+const boundingCurves = {
+  top: {
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 100, y: 0 },
+    controlPoint1: { x: 10, y: -10 },
+    controlPoint2: { x: 90, y: -10 },
+  },
+  bottom: {
+    startPoint: { x: 0, y: 100 },
+    endPoint: { x: 100, y: 100 },
+    controlPoint1: { x: -10, y: 110 },
+    controlPoint2: { x: 110, y: 110 },
+  },
+  left: {
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 0, y: 100 },
+    controlPoint1: { x: -10, y: -10 },
+    controlPoint2: { x: -10, y: 110 },
+  },
+  right: {
+    startPoint: { x: 100, y: 0 },
+    endPoint: { x: 100, y: 100 },
+    controlPoint1: { x: 110, y: -10 },
+    controlPoint2: { x: 110, y: 110 },
+  },
+}
+
+const point = getSurfacePath(boundingCurves, 0.1. 0.6)
+const points = getSurfaceIntersectionPoints(boundingCurves, 6, 4)
+const curvesU = getSurfaceCurvesU(boundingCurves, 6, 4)
+const curvesV = getSurfaceCurvesU(boundingCurves, 6, 4)
+const curves = getSurfaceCurvesU(boundingCurves, 6, 4)
+
+// To change the way that points are interpolated on lines to a linear strategy:
+const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
+  interpolatePointOnCurve: interpolatePointOnCurveLinear
+})
+
+// To change the way that lines are interpolated to use curves
+const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
+  interpolateLineU: interpolateCurveU
+})
+
+
+```
+
 This package only models a coons-patch and provides data about its model, however it does so in such a way that it can be easily rendered to the screen using SVG, canvas, or anything else you like.
 
 To use any of the API you must provide a set of four **bounding curves** (`top`, `left`, `bottom` and `right`) in the form of four cubic Bezier curves. A cubic Bezier curve describes a line or curve using a start point (`startPoint`), an end point (`endPoint`) and two other control points(`controlPoint1` and `controlPoint2`). Each point has an `x` and `y` coordinate.
@@ -81,76 +153,6 @@ These functions dictate how the lines/curves are interpolated. The curves that a
 
 - `interpolateStraightLineU` and `interpolateStraightLineV` will make all lines along the their respective axes straight lines. It does this by collapsing the control points to the end points. This is significantly more performant than the alternative. This is the default.
 - `interpolateCurveU` and `interpolateCurveV` will make all lines along the their respective axes curves. This is signifcantly more memory intensive.
-
-## Install package
-
-```bash
-npm add coons-patch
-# or
-yarn add coons-patch
-# or
-pnpm add coons-patch
-```
-
-## Quick-start
-
-```javaScript
-import {
-  getSurfacePoint,
-  getSurface,
-  getSurfaceCurvesU,
-  getSurfaceCurvesV,
-  getSurfaceCurves,
-  interpolatePointOnCurveLinear,
-  interpolateCurveU,
-  interpolateCurveV
-} from 'coons-patch'
-
-const boundingCurves = {
-  top: {
-    startPoint: { x: 0, y: 0 },
-    endPoint: { x: 100, y: 0 },
-    controlPoint1: { x: 10, y: -10 },
-    controlPoint2: { x: 90, y: -10 },
-  },
-  bottom: {
-    startPoint: { x: 0, y: 100 },
-    endPoint: { x: 100, y: 100 },
-    controlPoint1: { x: -10, y: 110 },
-    controlPoint2: { x: 110, y: 110 },
-  },
-  left: {
-    startPoint: { x: 0, y: 0 },
-    endPoint: { x: 0, y: 100 },
-    controlPoint1: { x: -10, y: -10 },
-    controlPoint2: { x: -10, y: 110 },
-  },
-  right: {
-    startPoint: { x: 100, y: 0 },
-    endPoint: { x: 100, y: 100 },
-    controlPoint1: { x: 110, y: -10 },
-    controlPoint2: { x: 110, y: 110 },
-  },
-}
-
-const point = getSurfacePath(boundingCurves, 0.1. 0.6)
-const points = getSurfaceIntersectionPoints(boundingCurves, 6, 4)
-const curvesU = getSurfaceCurvesU(boundingCurves, 6, 4)
-const curvesV = getSurfaceCurvesU(boundingCurves, 6, 4)
-const curves = getSurfaceCurvesU(boundingCurves, 6, 4)
-
-// To change the way that points are interpolated on lines to a linear strategy:
-const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
-  interpolatePointOnCurve: interpolatePointOnCurveLinear
-})
-
-// To change the way that lines are interpolated to use curves
-const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
-  interpolateLineU: interpolateCurveU
-})
-
-
-```
 
 # Project
 
