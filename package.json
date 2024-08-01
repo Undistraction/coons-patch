@@ -7,7 +7,8 @@
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.common.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "source": "./src/index.ts"
     }
   },
   "files": [
