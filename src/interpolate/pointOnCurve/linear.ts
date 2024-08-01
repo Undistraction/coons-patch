@@ -38,6 +38,8 @@ const interpolate = (
 // -----------------------------------------------------------------------------
 
 /**
+ * @group Interpolation
+ *
  * Interpolates a point on a curve using linear interpolation. Note that this
  * will not result in the points being evenly spaced.
  *

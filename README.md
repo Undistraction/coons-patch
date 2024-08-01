@@ -157,9 +157,20 @@ These functions dictate how the lines/curves are interpolated. The curves that a
 - `interpolateStraightLineU` and `interpolateStraightLineV` will make all lines along the their respective axes straight lines. It does this by collapsing the control points to the end points. This is significantly more performant than the alternative. This is the default.
 - `interpolateCurveU` and `interpolateCurveV` will make all lines along the their respective axes curves. This is signifcantly more memory intensive.
 
-# Project
+### Dependencies
 
-## Install
+This project has two dependencies:
+
+- [fast-memoize](https://www.npmjs.com/package/fast-memoize) for memoization
+- [matrix-js](https://www.npmjs.com/package/matrix-js) for matrix math
+
+### Thanks
+
+Thanks to pomax for his help (and code) for curve fitting (which is much more complex than it might seem). His [A Primer on Bézier Curves](https://pomax.github.io/bezierinfo/) is a thing of wonder.
+
+## Project
+
+### Install
 
 ```bash
 
@@ -167,26 +178,26 @@ pnpm install
 
 ```
 
-## Build
+### Build
 
 ```bash
 pnpm run build # Build once
 pnpm run build-watch # Build and watch for changes
 ```
 
-## Preview build
+### Preview build
 
 ```bash
 pnpm run preview
 ```
 
-## Generate docs
+### Generate docs
 
 ```bash
 pnpm run docs
 ```
 
-## Run tests
+### Run tests
 
 Tests are written using Jest.
 
@@ -203,17 +214,13 @@ pnpm run test-snapshot
 
 This will generate data for all of the fixure definitions in `./tests/fixtures.js`. This command should only be run when absolutely necessary as the current snapshots capture the verified working state of the data. To add new fixtures add new definitions to `./tests/fixtures.js`.
 
-## Lint
+### Lint
 
 ```bash
 pnpm run lint-prettier
 pnpm run lint-eslint
 ```
 
-## Release
+### Release
 
 Releases are via semantic-release and executed on CI via Github actions. Docs are deployed to Vercel.
-
-## Thanks
-
-Thanks to pomax for his help (and code) for curve fitting (which is much more complex than it might seem). His [A Primer on Bézier Curves](https://pomax.github.io/bezierinfo/) is a thing of wonder.

@@ -6,6 +6,8 @@ import { interpolatePointOnSurface } from '../pointOnSurface/bilinear'
 // -----------------------------------------------------------------------------
 
 /**
+ * @group Interpolation
+ *
  * Interpolates a straight line along the U direction of a surface defined
  * by bounding curves.
  *
@@ -50,6 +52,8 @@ export const interpolateStraightLineU = (
 }
 
 /**
+ * @group Interpolation
+ *
  * Interpolates a straight line along the V direction of a surface defined by
  * bounding curves.
  *

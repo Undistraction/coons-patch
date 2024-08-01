@@ -15,6 +15,8 @@ const T_MIDPOINT_2 = 0.75
 // -----------------------------------------------------------------------------
 
 /**
+ * @group Interpolation
+ *
  * Interpolates a cubic Bezier curve along the U direction of a surface defined
  * by bounding curves.
  *
@@ -68,6 +70,8 @@ export const interpolateCurveU = (
 }
 
 /**
+ * @group Interpolation
+ *
  * Interpolates a cubic Bezier curve along the V direction of a surface defined
  * by bounding curves.
  *
@@ -80,6 +84,7 @@ export const interpolateCurveU = (
  * @param {InterpolatePointOnCurve} interpolatePointOnCurve - A function to
  * interpolate points on the curves.
  * @returns {Curve} The interpolated cubic Bezier curve.
+ * @group Interpolation
  */
 export const interpolateCurveV = (
   boundingCurves: BoundingCurves,
