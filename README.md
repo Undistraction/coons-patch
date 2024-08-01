@@ -1,8 +1,10 @@
 # README
 
-A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a kind of four-sided surface and this package provides a small API for getting information about the surface: points on the surface and lines running across the surface. This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) which supplies an extended API build on-top of this package for creating warped grids, and provides an API for modeling complex grids, and to visualise and play with a coons patch, please see the interactive demo [here](https://warp-grid-editor.undistraction.com/).
+A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a kind of four-sided surface defined by four straight or curved edges, and this package provides a small API for getting information about the surface: points on the surface and lines running across the surface.
 
-[Documenation](coons-patch-docs.undistraction.com).
+This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) which supplies an extended API build on-top of this package for creating warped grids, and provides an API for modeling complex grids. To visualise and play with a coons patch, please see its interactive demo [here](https://warp-grid-editor.undistraction.com/).
+
+[Documenation](https://coons-patch-docs.undistraction.com).
 
 ## Install package
 
@@ -28,6 +30,7 @@ import {
   interpolateCurveV
 } from 'coons-patch'
 
+// Define bounding curves for the patch
 const boundingCurves = {
   top: {
     startPoint: { x: 0, y: 0 },
@@ -209,7 +212,7 @@ pnpm run lint-eslint
 
 ## Release
 
-Releases are via semantic-release and executed on CI.
+Releases are via semantic-release and executed on CI via Github actions. Docs are deployed to Vercel.
 
 ## Thanks
 
