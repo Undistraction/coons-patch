@@ -1,18 +1,21 @@
 {
   "include": ["src/**/*"],
   "compilerOptions": {
-    "module": "preserve",
-    "moduleResolution": "bundler",
+    // Enable all strict type-checking options
+    "strict": true,
+    "module": "preserve", // try esnext
+    "moduleResolution": "bundler", // For Vite
     "target": "ES2020",
     "sourceMap": true,
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "skipLibCheck": true,
     "useUnknownInCatchVariables": false,
     "typeRoots": ["./src/@types", "./node_modules/@types"],
     "declaration": true,
+
+    // Directory containing the generated declaration files
     "declarationDir": "./dist"
   }
 }

@@ -32,7 +32,7 @@ export default defineConfig(() => {
     plugins: [
       // Generate a single types file for all our types
       dts({
-        rollupTypes: true,
+        // rollupTypes: true,
       }),
     ],
   }
