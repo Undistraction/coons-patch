@@ -25,6 +25,11 @@ import {
   validateGetSurfacePointArguments,
 } from './utils/validation'
 
+/**
+ * @groupDescription API
+ * The API of the package
+ */
+
 // -----------------------------------------------------------------------------
 // Const
 // -----------------------------------------------------------------------------
@@ -59,17 +64,17 @@ export { interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/linear
  * Computes a point on a surface defined by bounding curves at parameters u and
  * v.
  *
- * @param {Object} boundingCurves - An object containing curves that define the
- * surface boundaries.
- * @param {number} u - The parameter along the first dimension (typically
- * between 0 and 1).
- * @param {number} v - The parameter along the second dimension (typically
- * between 0 and 1).
+ * @param {BoundingCurves} boundingCurves - An object containing curves that
+ * define the surface boundaries.
+ * @param {number} u - The parameter along the first dimension (0–1).
+ * @param {number} v - The parameter along the second dimension (0–1).
+ * @param {Object} [config] - Configuration object.
  * @param {Function}
- * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
- * interpolate points on the curves.
- * @returns {Object} The interpolated point on the surface.
+ * [config.interpolatePointOnCurve=interpolatePointOnCurveDefault] - A function
+ * to interpolate points on the curves.
+ * @returns {Point} The interpolated point on the surface.
  * @throws {Error} If the arguments are invalid.
+ * @group API
  */
 export const getSurfacePoint = (
   boundingCurves: BoundingCurves,
@@ -97,19 +102,22 @@ export const getSurfacePoint = (
  * Generates intersection points on the surface based on the provided bounding
  * curves, columns, and rows.
  *
- * @param {Object} boundingCurves - An object containing curves that define the
- * surface boundaries.
+ * @param {BoundingCurves} boundingCurves - An object containing curves that
+ * define the surface boundaries.
  * @param {number | Array<number> | Array<Object>} columns - Either a number, an
  * array of numbers, or an array of column definitions, each containing a value
  * and an optional isGutter flag.
  * @param {number | Array<number> | Array<Object>} rows - Either a number, an
- * array of numbers, or an array of row definitions.
+ * array of numbers, or an array of row definitions, each containing a value and
+ * an optional isGutter flag.
+ * @param {Object} [config] - Configuration object.
  * @param {Function}
- * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
- * interpolate points on the curves.
- * @returns {Array<Object>} An array of points representing the intersections on
- * the surface.
+ * [config.interpolatePointOnCurve=interpolatePointOnCurveDefault] - A function
+ * to interpolate points on the curves.
+ * @returns {Points} An array of points representing the intersections on the
+ * surface.
  * @throws {Error} If the arguments are invalid.
+ * @group API
  */
 export const getSurfaceIntersectionPoints = (
   boundingCurves: BoundingCurves,
@@ -168,22 +176,24 @@ export const getSurfaceIntersectionPoints = (
  * Generates surface curves along the U-axis based on the provided bounding
  * curves, columns, and rows.
  *
- * @param {Object} boundingCurves - An object containing curves that define the
- * surface boundaries.
+ * @param {BoundingCurves} boundingCurves - An object containing curves that
+ * define the surface boundaries.
  * @param {number | Array<number> | Array<Object>} columns - Either a number, an
  * array of numbers, or an array of column definitions, each containing a value
  * and an optional isGutter flag.
  * @param {number | Array<number> | Array<Object>} rows - Either a number, an
- * array of numbers, or an array of row definitions, each containing a value
- * and an optional isGutter flag.
+ * array of numbers, or an array of row definitions, each containing a value and
+ * an optional isGutter flag.
+ * @param {Object} [config] - Configuration object.
  * @param {Function}
- * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
- * interpolate points on the curves.
- * @param {Function} [interpolateLineU=interpolateStraightLineU] - A
+ * [config.interpolatePointOnCurve=interpolatePointOnCurveDefault] - A function
+ * to interpolate points on the curves.
+ * @param {Function} [config.interpolateLineU=interpolateStraightLineU] - A
  * function to interpolate lines along the U-axis.
- * @returns {Array<Array<Object>>} A 2D array of curves representing the surface
- * along the U-axis.
+ * @returns {StepCurves[]} A 2D array of curves representing the surface along
+ * the U-axis.
  * @throws {Error} If the arguments are invalid.
+ * @group API
  */
 export const getSurfaceCurvesU = (
   boundingCurves: BoundingCurves,
@@ -259,22 +269,24 @@ export const getSurfaceCurvesU = (
  * Generates surface curves along the V-axis based on the provided bounding
  * curves, columns, and rows.
  *
- * @param {Object} boundingCurves - An object containing curves that define the
- * surface boundaries.
+ * @param {BoundingCurves} boundingCurves - An object containing curves that
+ * define the surface boundaries.
  * @param {number | Array<number> | Array<Object>} columns - Either a number, an
  * array of numbers, or an array of column definitions, each containing a value
  * and an optional isGutter flag.
  * @param {number | Array<number> | Array<Object>} rows - Either a number, an
- * array of numbers, or an array of row definitions, each containing a value
- * and an optional isGutter flag.
+ * array of numbers, or an array of row definitions, each containing a value and
+ * an optional isGutter flag.
+ * @param {Object} [config] - Configuration object.
  * @param {Function}
- * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
- * interpolate points on the curves.
- * @param {Function} [interpolateLineV=interpolateStraightLineV] - A
+ * [config.interpolatePointOnCurve=interpolatePointOnCurveDefault] - A function
+ * to interpolate points on the curves.
+ * @param {Function} [config.interpolateLineV=interpolateStraightLineV] - A
  * function to interpolate lines along the V-axis.
  * @returns {Array<Array<Object>>} A 2D array of curves representing the surface
  * along the V-axis.
  * @throws {Error} If the arguments are invalid.
+ * @group API
  */
 export const getSurfaceCurvesV = (
   boundingCurves: BoundingCurves,
@@ -351,23 +363,25 @@ export const getSurfaceCurvesV = (
  * Generates surface curves along both the U-axis and V-axis based on the
  * provided bounding curves, columns, and rows.
  *
- * @param {Object} boundingCurves - An object containing curves that define the
+ * @param {BoundingCurves} boundingCurves - An object containing curves that define the
  * surface boundaries.
  * @param {number | Array<number> | Array<Object>} columns - Either a number, an
  * array of numbers, or an array of column definitions, each containing a value
  * and an optional isGutter flag.
  * @param {number | Array<number> | Array<Object>} rows - Either a number, an
- * array of numbers, or an array of row definitions.
- * @param {Function}
- * [interpolatePointOnCurve=interpolatePointOnCurveEvenlySpaced] - A function to
+ * array of numbers, or an array of row definitions, each containing a value
+ * and an optional isGutter flag.
+ * @param {Object} [config] - Configuration object.
+ * @param {Function} [config.interpolatePointOnCurve=interpolatePointOnCurveDefault] - A function to
  * interpolate points on the curves.
- * @param {Function} [interpolateLineU=interpolateStraightLineU] - A
+ * @param {Function} [config.interpolateLineU=interpolateStraightLineU] - A
  * function to interpolate lines along the U-axis.
- * @param {Function} [interpolateLineV=interpolateStraightLineV] - A
+ * @param {Function} [config.interpolateLineV=interpolateStraightLineV] - A
  * function to interpolate lines along the V-axis.
- * @returns {Object} An object containing 2D arrays of curves representing the
+ * @returns {UVCurves} An object containing 2D arrays of curves representing the
  * surface along both the U-axis and V-axis.
  * @throws {Error} If the arguments are invalid.
+ * @group API
  */
 export const getSurfaceCurves = (
   boundingCurves: BoundingCurves,

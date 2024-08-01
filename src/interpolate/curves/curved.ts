@@ -10,6 +10,24 @@ import { interpolateStraightLineU, interpolateStraightLineV } from './straight'
 const T_MIDPOINT_1 = 0.25
 const T_MIDPOINT_2 = 0.75
 
+// -----------------------------------------------------------------------------
+// Exports
+// -----------------------------------------------------------------------------
+
+/**
+ * Interpolates a cubic Bezier curve along the U direction of a surface defined
+ * by bounding curves.
+ *
+ * @param {BoundingCurves} boundingCurves - An object containing curves that
+ * define the surface boundaries.
+ * @param {number} vStart - The starting parameter along the V direction.
+ * @param {number} vSize - The size of the step along the V direction.
+ * @param {number} vEnd - The ending parameter along the V direction.
+ * @param {number} uStart - The starting parameter along the U direction.
+ * @param {InterpolatePointOnCurve} interpolatePointOnCurve - A function to
+ * interpolate points on the curves.
+ * @returns {Curve} The interpolated cubic Bezier curve.
+ */
 export const interpolateCurveU = (
   boundingCurves: BoundingCurves,
   vStart: number,
@@ -49,6 +67,20 @@ export const interpolateCurveU = (
   return curve
 }
 
+/**
+ * Interpolates a cubic Bezier curve along the V direction of a surface defined
+ * by bounding curves.
+ *
+ * @param {BoundingCurves} boundingCurves - An object containing curves that
+ * define the surface boundaries.
+ * @param {number} uStart - The starting parameter along the U direction.
+ * @param {number} uSize - The size of the step along the U direction.
+ * @param {number} uEnd - The ending parameter along the U direction.
+ * @param {number} vStart - The starting parameter along the V direction.
+ * @param {InterpolatePointOnCurve} interpolatePointOnCurve - A function to
+ * interpolate points on the curves.
+ * @returns {Curve} The interpolated cubic Bezier curve.
+ */
 export const interpolateCurveV = (
   boundingCurves: BoundingCurves,
   uStart: number,

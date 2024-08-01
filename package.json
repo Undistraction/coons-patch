@@ -39,7 +39,7 @@
     "lint-eslint": "eslint './**/*.{ts, js, jcjs}'",
     "build": "vite build && pnpm run docs",
     "build-watch": "vite build --watch",
-    "docs": "npx typedoc src/index.ts",
+    "docs": "typedoc",
     "docs-open": "open ./docs/index.html",
     "release-preview": "semantic-release --no-ci --dry-run --debug",
     "link": "pnpm link --global",

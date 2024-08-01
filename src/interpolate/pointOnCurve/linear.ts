@@ -37,6 +37,14 @@ const interpolate = (
 // Exports
 // -----------------------------------------------------------------------------
 
+/**
+ * Interpolates a point on a curve using linear interpolation. Note that this
+ * will not result in the points being evenly spaced.
+ *
+ * @param {number} t - The parameter along the curve, typically between 0 and 1.
+ * @param {Curve} curve - The curve on which to interpolate the point.
+ * @returns {Point} The interpolated point on the curve.
+ */
 export const interpolatePointOnCurveLinear = (
   t: number,
   curve: Curve
