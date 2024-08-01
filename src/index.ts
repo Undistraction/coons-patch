@@ -6,9 +6,11 @@ import { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/
 import { interpolatePointOnSurface } from './interpolate/pointOnSurface/bilinear'
 import {
   BoundingCurves,
-  InterpolateLineU,
-  InterpolateLineV,
-  InterpolatePointOnCurve,
+  GetSurfaceCurvesConfig,
+  GetSurfaceCurvesUConfig,
+  GetSurfaceCurvesVConfig,
+  GetSurfaceIntersectionPointsConfig,
+  GetSurfacePointConfig,
   Points,
   StepCurves,
   UnprocessedSteps,
@@ -32,34 +34,6 @@ const PRECISION_DEFAULT = 20
 const interpolatePointOnCurveDefault = interpolatePointOnCurveEvenlySpaced({
   precision: PRECISION_DEFAULT,
 })
-
-// -----------------------------------------------------------------------------
-// Types
-// -----------------------------------------------------------------------------
-
-type GetSurfacePointConfig = {
-  interpolatePointOnCurve?: InterpolatePointOnCurve
-}
-
-type GetSurfaceIntersectionPointsConfig = {
-  interpolatePointOnCurve?: InterpolatePointOnCurve
-}
-
-type GetSurfaceCurvesUConfig = {
-  interpolatePointOnCurve?: InterpolatePointOnCurve
-  interpolateLineU?: InterpolateLineU
-}
-
-type GetSurfaceCurvesVConfig = {
-  interpolatePointOnCurve?: InterpolatePointOnCurve
-  interpolateLineV?: InterpolateLineV
-}
-
-type GetSurfaceCurvesConfig = {
-  interpolatePointOnCurve?: InterpolatePointOnCurve
-  interpolateLineU?: InterpolateLineU
-  interpolateLineV?: InterpolateLineV
-}
 
 // -----------------------------------------------------------------------------
 // Re-export Interpolation functions

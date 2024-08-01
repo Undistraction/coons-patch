@@ -8,7 +8,7 @@ import {
   isPlainObj,
   isString,
   isUndefined,
-} from '../../src/utils/types'
+} from '../../src/utils/is'
 
 describe(`types`, () => {
   describe('isInt', () => {

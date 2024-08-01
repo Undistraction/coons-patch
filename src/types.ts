@@ -93,3 +93,31 @@ export type InterpolateLineV = (
   vStart: number,
   interpolatePointOnCurve: InterpolatePointOnCurve
 ) => Curve
+
+// -----------------------------------------------------------------------------
+// API-specic
+// -----------------------------------------------------------------------------
+
+export type GetSurfacePointConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+}
+
+export type GetSurfaceIntersectionPointsConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+}
+
+export type GetSurfaceCurvesUConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+  interpolateLineU?: InterpolateLineU
+}
+
+export type GetSurfaceCurvesVConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+  interpolateLineV?: InterpolateLineV
+}
+
+export type GetSurfaceCurvesConfig = {
+  interpolatePointOnCurve?: InterpolatePointOnCurve
+  interpolateLineU?: InterpolateLineU
+  interpolateLineV?: InterpolateLineV
+}
