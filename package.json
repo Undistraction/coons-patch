@@ -6,8 +6,8 @@
   "main": "./dist/index.common.js",
   "exports": {
     ".": {
-      "import": "./dist/index.common.js",
-      "require": "./dist/index.common.js",
+      "import": "./dist/index.common.mjs",
+      "require": "./dist/index.common.cjs",
       "types": "./dist/index.d.ts",
       "source": "./src/index.ts"
     }
