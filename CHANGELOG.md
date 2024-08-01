@@ -1,8 +1,18 @@
+## [1.8.0](https://github.com/undistraction/coons-patch/compare/v1.7.1...v1.8.0) (2024-08-01)
+
+### ⚠ BREAKING CHANGES
+
+* CHANGE
+
+### Features
+
+* Force package deploy ([69cab51](https://github.com/undistraction/coons-patch/commit/69cab51747200c6cf607a00cd4840f8a5fd00c3a))
+
 ## [1.7.1](https://github.com/undistraction/coons-patch/compare/v1.7.0...v1.7.1) (2024-08-01)
 
 ### Bug Fixes
 
-* TS type exports ([a986e32](https://github.com/undistraction/coons-patch/commit/a986e32521ce8c2591aab97831bdfde1175cc3c1))
+- TS type exports ([a986e32](https://github.com/undistraction/coons-patch/commit/a986e32521ce8c2591aab97831bdfde1175cc3c1))
 
 ## [1.7.0](https://github.com/undistraction/coons-patch/compare/v1.6.0...v1.7.0) (2024-08-01)
 
