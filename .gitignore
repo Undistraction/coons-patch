@@ -19,6 +19,9 @@ node_modules/
 
 **/dist/
 
+# Docs (we generate on build)
+/docs
+
 # Local files
 
 TODO.md

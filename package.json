@@ -13,7 +13,8 @@
   },
   "files": [
     "/dist",
-    "/src"
+    "/src",
+    "/docs"
   ],
   "homepage": "https://coons-patch.undistraction.com",
   "repository": {
@@ -36,9 +37,11 @@
     "lint": "pnpm run lint-prettier && pnpm run lint-eslint",
     "lint-prettier": "prettier . --write",
     "lint-eslint": "eslint './**/*.{ts, js, jcjs}'",
-    "build": "vite build",
+    "build": "vite build && pnpm run docs",
     "build-watch": "vite build --watch",
-    "release": "semantic-release --no-ci --dry-run --debug",
+    "docs": "npx typedoc src/index.ts",
+    "docs-open": "open ./docs/index.html",
+    "release-preview": "semantic-release --no-ci --dry-run --debug",
     "link": "pnpm link --global",
     "unlink": "pnpm unlink --global",
     "tsc": "tsc ./src/index.ts"
@@ -81,6 +84,7 @@
     "prop-types": "^15.8.1",
     "semantic-release": "^24.0.0",
     "ts-jest": "^29.2.3",
+    "typedoc": "^0.26.5",
     "typescript": "^5.5.3",
     "vite": "^5.3.3",
     "vite-plugin-dts": "4.0.0-beta.2"
