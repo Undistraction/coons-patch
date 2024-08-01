@@ -6,19 +6,20 @@ import { interpolatePointOnSurface } from '../pointOnSurface/bilinear'
 // -----------------------------------------------------------------------------
 
 /**
- * @group Interpolation
+ * Interpolates a straight line along the U direction of a surface defined by
+ * bounding curves.
  *
- * Interpolates a straight line along the U direction of a surface defined
- * by bounding curves.
- *
- * @param {BoundingCurves} boundingCurves - An object containing curves that define the
- * surface boundaries.
+ * @param {BoundingCurves} boundingCurves - An object containing curves that
+ * define the surface boundaries.
  * @param {number} uStart - The starting parameter along the U direction.
  * @param {number} uSize - The size of the step along the U direction.
  * @param {number} uEnd - The ending parameter along the U direction.
  * @param {number} vStart - The starting parameter along the V direction.
- * @param {InterpolatePointOnCurve} interpolatePointOnCurve - A function to interpolate points on the curves.
+ * @param {InterpolatePointOnCurve} interpolatePointOnCurve - A function to
+ * interpolate points on the curves.
  * @returns {Curve} The interpolated straight line as a cubic Bezier curve.
+ *
+ * @group Interpolation
  */
 export const interpolateStraightLineU = (
   boundingCurves: BoundingCurves,
@@ -52,8 +53,6 @@ export const interpolateStraightLineU = (
 }
 
 /**
- * @group Interpolation
- *
  * Interpolates a straight line along the V direction of a surface defined by
  * bounding curves.
  *
@@ -66,6 +65,8 @@ export const interpolateStraightLineU = (
  * @param {InterpolatePointOnCurve} interpolatePointOnCurve - A function to
  * interpolate points on the curves.
  * @returns {Curve} The interpolated straight line as a cubic Bezier curve.
+ *
+ * @group Interpolation
  */
 export const interpolateStraightLineV = (
   boundingCurves: BoundingCurves,

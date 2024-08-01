@@ -27,7 +27,11 @@ import {
 
 /**
  * @groupDescription API
- * The API of the package
+ * Access information about a coons patch defined by four bounding curves.
+ *
+ *
+ * @groupDescription Interpolation
+ * Functions used to interpolate points on curves and surfaces.
  */
 
 // -----------------------------------------------------------------------------
@@ -61,7 +65,6 @@ export { interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/linear
 // -----------------------------------------------------------------------------
 
 /**
- * @group API
  * Computes a point on a surface defined by bounding curves at parameters u and
  * v.
  *
@@ -75,6 +78,8 @@ export { interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/linear
  * to interpolate points on the curves.
  * @returns {Point} The interpolated point on the surface.
  * @throws {Error} If the arguments are invalid.
+ *
+ * @group API
  */
 export const getSurfacePoint = (
   boundingCurves: BoundingCurves,
@@ -99,8 +104,6 @@ export const getSurfacePoint = (
 }
 
 /**
- * @group API
- *
  * Generates intersection points on the surface based on the provided bounding
  * curves, columns, and rows.
  *
@@ -119,6 +122,8 @@ export const getSurfacePoint = (
  * @returns {Points} An array of points representing the intersections on the
  * surface.
  * @throws {Error} If the arguments are invalid.
+ *
+ * @group API
  */
 export const getSurfaceIntersectionPoints = (
   boundingCurves: BoundingCurves,
@@ -174,8 +179,6 @@ export const getSurfaceIntersectionPoints = (
 }
 
 /**
- * @group API
- *
  * Generates surface curves along the U-axis based on the provided bounding
  * curves, columns, and rows.
  *
@@ -196,6 +199,8 @@ export const getSurfaceIntersectionPoints = (
  * @returns {StepCurves[]} A 2D array of curves representing the surface along
  * the U-axis.
  * @throws {Error} If the arguments are invalid.
+ *
+ * @group API
  */
 export const getSurfaceCurvesU = (
   boundingCurves: BoundingCurves,
@@ -268,8 +273,6 @@ export const getSurfaceCurvesU = (
 }
 
 /**
- * @group API
- *
  * Generates surface curves along the V-axis based on the provided bounding
  * curves, columns, and rows.
  *
@@ -290,6 +293,8 @@ export const getSurfaceCurvesU = (
  * @returns {Array<Array<Object>>} A 2D array of curves representing the surface
  * along the V-axis.
  * @throws {Error} If the arguments are invalid.
+ *
+ * @group API
  */
 export const getSurfaceCurvesV = (
   boundingCurves: BoundingCurves,
@@ -363,8 +368,6 @@ export const getSurfaceCurvesV = (
 }
 
 /**
- * @group API
- *
  * Generates surface curves along both the U-axis and V-axis based on the
  * provided bounding curves, columns, and rows.
  *
@@ -386,6 +389,8 @@ export const getSurfaceCurvesV = (
  * @returns {UVCurves} An object containing 2D arrays of curves representing the
  * surface along both the U-axis and V-axis.
  * @throws {Error} If the arguments are invalid.
+ *
+ * @group API
  */
 export const getSurfaceCurves = (
   boundingCurves: BoundingCurves,

@@ -62,8 +62,6 @@ const getLutForCurve = memoize((curve, precision) => {
 // -----------------------------------------------------------------------------
 
 /**
- * @group Interpolation
- *
  * Interpolates a point on a curve such that the points are evenly spaced.
  *
  * @param {Object} options - Configuration options.
@@ -72,6 +70,8 @@ const getLutForCurve = memoize((curve, precision) => {
  * performance.
  * @returns {Function} A function that takes a parameter `t` and a `curve`, and
  * returns an interpolated point on the curve.
+ *
+ * @group Interpolation
  */
 export const interpolatePointOnCurveEvenlySpaced =
   (
