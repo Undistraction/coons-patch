@@ -8,8 +8,8 @@ import {
   UnprocessedSteps,
 } from '../types'
 import { mapObj } from './functional'
+import { isArray, isFunction, isInt, isNumber, isPlainObj } from './is'
 import { roundTo5 } from './math'
-import { isArray, isFunction, isInt, isNumber, isPlainObj } from './types'
 // -----------------------------------------------------------------------------
 // Utils
 // -----------------------------------------------------------------------------

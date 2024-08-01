@@ -6,7 +6,7 @@ import {
   UnprocessedSteps,
 } from '../types'
 import { times } from './functional'
-import { isInt, isPlainObj } from './types'
+import { isInt, isPlainObj } from './is'
 
 // -----------------------------------------------------------------------------
 // Utils
