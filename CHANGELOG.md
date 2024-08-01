@@ -1,12 +1,18 @@
+## [1.8.1](https://github.com/undistraction/coons-patch/compare/v1.8.0...v1.8.1) (2024-08-01)
+
+### Bug Fixes
+
+* Build export suffixes ([456d12a](https://github.com/undistraction/coons-patch/commit/456d12a6170ce8028321c14eb10d15859af6d877))
+
 ## [1.8.0](https://github.com/undistraction/coons-patch/compare/v1.7.1...v1.8.0) (2024-08-01)
 
 ### ⚠ BREAKING CHANGES
 
-* CHANGE
+- CHANGE
 
 ### Features
 
-* Force package deploy ([69cab51](https://github.com/undistraction/coons-patch/commit/69cab51747200c6cf607a00cd4840f8a5fd00c3a))
+- Force package deploy ([69cab51](https://github.com/undistraction/coons-patch/commit/69cab51747200c6cf607a00cd4840f8a5fd00c3a))
 
 ## [1.7.1](https://github.com/undistraction/coons-patch/compare/v1.7.0...v1.7.1) (2024-08-01)
 
