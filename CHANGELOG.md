@@ -1,8 +1,14 @@
+## [1.7.1](https://github.com/undistraction/coons-patch/compare/v1.7.0...v1.7.1) (2024-08-01)
+
+### Bug Fixes
+
+* TS type exports ([a986e32](https://github.com/undistraction/coons-patch/commit/a986e32521ce8c2591aab97831bdfde1175cc3c1))
+
 ## [1.7.0](https://github.com/undistraction/coons-patch/compare/v1.6.0...v1.7.0) (2024-08-01)
 
 ### Features
 
-* Add dependencies to README ([eda3fc9](https://github.com/undistraction/coons-patch/commit/eda3fc99ecce6a3dcf835f2ae3efd5a750d9ac23))
+- Add dependencies to README ([eda3fc9](https://github.com/undistraction/coons-patch/commit/eda3fc99ecce6a3dcf835f2ae3efd5a750d9ac23))
 
 ## [1.6.0](https://github.com/undistraction/coons-patch/compare/v1.5.0...v1.6.0) (2024-08-01)
 
