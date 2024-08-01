@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
   isArray,
   isFunction,
@@ -12,14 +12,14 @@ import {
 } from '../../src/utils/is'
 
 describe(`types`, () => {
-  describe('isInt', () => {
-    test('returns true if argument is an int', () => {
+  describe(`isInt`, () => {
+    it(`returns true if argument is an int`, () => {
       expect(isInt(0)).toBeTrue()
       expect(isInt(-7)).toBeTrue()
       expect(isInt(7)).toBeTrue()
     })
 
-    test('returns false if argument is not an int', () => {
+    it(`returns false if argument is not an int`, () => {
       expect(isInt(null)).toBeFalse()
       expect(isInt(undefined)).toBeFalse()
       expect(isInt()).toBeFalse()
@@ -38,8 +38,8 @@ describe(`types`, () => {
     })
   })
 
-  describe('isNumber', () => {
-    test('returns true if argument is an int', () => {
+  describe(`isNumber`, () => {
+    it(`returns true if argument is an int`, () => {
       expect(isNumber(0)).toBeTrue()
       expect(isNumber(-7)).toBeTrue()
       expect(isNumber(7)).toBeTrue()
@@ -47,7 +47,7 @@ describe(`types`, () => {
       expect(isNumber(-0.1)).toBeTrue()
     })
 
-    test('returns false if argument is not an int', () => {
+    it(`returns false if argument is not an int`, () => {
       expect(isNumber(null)).toBeFalse()
       expect(isNumber(undefined)).toBeFalse()
       expect(isNumber()).toBeFalse()
@@ -64,13 +64,13 @@ describe(`types`, () => {
     })
   })
 
-  describe('isUndefined', () => {
-    test('returns true if argument is undefined', () => {
+  describe(`isUndefined`, () => {
+    it(`returns true if argument is undefined`, () => {
       expect(isUndefined()).toBeTrue()
       expect(isUndefined(undefined)).toBeTrue()
     })
 
-    test('returns false if argument is not undefined', () => {
+    it(`returns false if argument is not undefined`, () => {
       expect(isUndefined(null)).toBeFalse()
       expect(isUndefined(NaN)).toBeFalse()
       expect(isUndefined(true)).toBeFalse()
@@ -86,12 +86,12 @@ describe(`types`, () => {
     })
   })
 
-  describe('isNull', () => {
-    test('returns true if argument is null', () => {
+  describe(`isNull`, () => {
+    it(`returns true if argument is null`, () => {
       expect(isNull(null)).toBeTrue()
     })
 
-    test('returns false if argument is not null', () => {
+    it(`returns false if argument is not null`, () => {
       expect(isNull()).toBeFalse()
       expect(isNull(undefined)).toBeFalse()
       expect(isNull(NaN)).toBeFalse()
@@ -108,14 +108,14 @@ describe(`types`, () => {
     })
   })
 
-  describe('isNil', () => {
-    test('returns true if argument is null or undefined', () => {
+  describe(`isNil`, () => {
+    it(`returns true if argument is null or undefined`, () => {
       expect(isNil(null)).toBeTrue()
       expect(isNil(undefined)).toBeTrue()
       expect(isNil()).toBeTrue()
     })
 
-    test('returns false if argument is not null or undefined', () => {
+    it(`returns false if argument is not null or undefined`, () => {
       expect(isNil(NaN)).toBeFalse()
       expect(isNil(true)).toBeFalse()
       expect(isNil(false)).toBeFalse()
@@ -130,14 +130,14 @@ describe(`types`, () => {
     })
   })
 
-  describe('isString', () => {
-    test('returns true if argument is a String', () => {
-      expect(isString('')).toBeTrue()
-      expect(isString('abc')).toBeTrue()
-      expect(isString(new String('abc'))).toBeTrue()
+  describe(`isString`, () => {
+    it(`returns true if argument is a String`, () => {
+      expect(isString(``)).toBeTrue()
+      expect(isString(`abc`)).toBeTrue()
+      expect(isString(new String(`abc`))).toBeTrue()
     })
 
-    test('returns false if argument is not null', () => {
+    it(`returns false if argument is not null`, () => {
       expect(isString(null)).toBeFalse()
       expect(isString(undefined)).toBeFalse()
       expect(isString()).toBeFalse()
@@ -153,13 +153,13 @@ describe(`types`, () => {
     })
   })
 
-  describe('isArray', () => {
-    test('returns true if argument is Array', () => {
+  describe(`isArray`, () => {
+    it(`returns true if argument is Array`, () => {
       expect(isArray([])).toBeTrue()
-      expect(isArray(new Array('abc'))).toBeTrue()
+      expect(isArray(new Array(`abc`))).toBeTrue()
     })
 
-    test('returns false if argument is not Array', () => {
+    it(`returns false if argument is not Array`, () => {
       expect(isArray()).toBeFalse()
       expect(isArray(null)).toBeFalse()
       expect(isArray(undefined)).toBeFalse()
@@ -175,13 +175,13 @@ describe(`types`, () => {
     })
   })
 
-  describe('isPlainObj', () => {
-    test('returns true if argument is Array', () => {
+  describe(`isPlainObj`, () => {
+    it(`returns true if argument is Array`, () => {
       expect(isPlainObj({})).toBeTrue()
       expect(isPlainObj(new Object())).toBeTrue()
     })
 
-    test('returns false if argument is not Array', () => {
+    it(`returns false if argument is not Array`, () => {
       expect(isPlainObj()).toBeFalse()
       expect(isPlainObj(null)).toBeFalse()
       expect(isPlainObj(undefined)).toBeFalse()
@@ -197,12 +197,12 @@ describe(`types`, () => {
     })
   })
 
-  describe('isFunction', () => {
-    test('returns true if argument is a function', () => {
+  describe(`isFunction`, () => {
+    it(`returns true if argument is a function`, () => {
       expect(isFunction(() => {})).toBeTrue()
     })
 
-    test('returns false if argument is not a function', () => {
+    it(`returns false if argument is not a function`, () => {
       expect(isFunction()).toBeFalse()
       expect(isFunction(null)).toBeFalse()
       expect(isFunction(undefined)).toBeFalse()

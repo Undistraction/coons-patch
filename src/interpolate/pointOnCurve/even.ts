@@ -48,7 +48,7 @@ const findClosestPointOnCurve = (
       return interpolatePointOnCurveLinear(t, curve)
     }
   }
-  throw new Error('Could not find point on curve')
+  throw new Error(`Could not find point on curve`)
 }
 
 // We only want to do this once per curve as it is very expensive so we memoize

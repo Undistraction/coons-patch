@@ -10,7 +10,7 @@ import {
 import fixtures from './fixtures.js'
 import { __dirname, writeFileAsync } from './helpers.js'
 
-console.log('Generating data for fixtures')
+console.log(`Generating data for fixtures`)
 
 // -----------------------------------------------------------------------------
 // Utils
@@ -26,37 +26,37 @@ fixtures.forEach(async ({ name, input, skipSnapshot }) => {
     console.log(`Generating data for '${name}'`)
   }
 
-  console.log('-----------------------------')
-  console.log('getSurfacePoint', input.api.getSurfacePoint.args)
-  console.log('-----------------------------')
+  console.log(`-----------------------------`)
+  console.log(`getSurfacePoint`, input.api.getSurfacePoint.args)
+  console.log(`-----------------------------`)
   const point = getSurfacePoint(...input.api.getSurfacePoint.args)
 
   print(point)
 
-  console.log('-----------------------------')
-  console.log('getSurfaceIntersectionPoints')
-  console.log('-----------------------------')
+  console.log(`-----------------------------`)
+  console.log(`getSurfaceIntersectionPoints`)
+  console.log(`-----------------------------`)
   const intersectionPoints = getSurfaceIntersectionPoints(
     ...input.api.getSurfaceIntersectionPoints.args
   )
 
   print(intersectionPoints)
 
-  console.log('-----------------------------')
-  console.log('getSurfaceCurvesU')
-  console.log('-----------------------------')
+  console.log(`-----------------------------`)
+  console.log(`getSurfaceCurvesU`)
+  console.log(`-----------------------------`)
   const curvesU = getSurfaceCurvesU(...input.api.getSurfaceCurvesU.args)
   print(curvesU)
 
-  console.log('-----------------------------')
-  console.log('getSurfaceCurvesV')
-  console.log('-----------------------------')
+  console.log(`-----------------------------`)
+  console.log(`getSurfaceCurvesV`)
+  console.log(`-----------------------------`)
   const curvesV = getSurfaceCurvesV(...input.api.getSurfaceCurvesV.args)
   print(curvesV)
 
-  console.log('-----------------------------')
-  console.log('getSurfaceCurves')
-  console.log('-----------------------------')
+  console.log(`-----------------------------`)
+  console.log(`getSurfaceCurves`)
+  console.log(`-----------------------------`)
   const curves = getSurfaceCurves(...input.api.getSurfaceCurves.args)
   print(curves)
 

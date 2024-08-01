@@ -1,37 +1,37 @@
 export default {
-  branches: ['main'],
+  branches: [`main`],
   plugins: [
     [
-      '@semantic-release/commit-analyzer',
+      `@semantic-release/commit-analyzer`,
       {
-        preset: 'conventionalcommits',
+        preset: `conventionalcommits`,
       },
     ],
     [
-      '@semantic-release/release-notes-generator',
+      `@semantic-release/release-notes-generator`,
       {
-        preset: 'conventionalcommits',
+        preset: `conventionalcommits`,
         parserOpts: {
-          noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING'],
+          noteKeywords: [`BREAKING CHANGE`, `BREAKING CHANGES`, `BREAKING`],
         },
         writerOpts: {
-          commitsSort: ['subject', 'scope'],
+          commitsSort: [`subject`, `scope`],
         },
       },
     ],
     [
-      '@semantic-release/changelog',
+      `@semantic-release/changelog`,
       {
-        changelogFile: 'CHANGELOG.md',
+        changelogFile: `CHANGELOG.md`,
       },
     ],
-    '@semantic-release/npm',
+    `@semantic-release/npm`,
     [
-      '@semantic-release/git',
+      `@semantic-release/git`,
       {
-        assets: ['CHANGELOG.md', 'package.json'],
+        assets: [`CHANGELOG.md`, `package.json`],
       },
     ],
-    '@semantic-release/github',
+    `@semantic-release/github`,
   ],
 }

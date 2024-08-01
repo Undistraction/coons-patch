@@ -9,7 +9,7 @@ import { boundingCurvesValid } from '../fixtures'
 // Reuse tests for correct validations on bounding curves
 const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
   describe(`bounding curves`, () => {
-    it('should throw if boundingCurves is not an object', () => {
+    it(`should throw if boundingCurves is not an object`, () => {
       expect(() => functionUnderTest(null)).toThrow(
         `boundingCurves must be an object, but it was 'null'`
       )
@@ -68,7 +68,7 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
     )
   })
 
-  describe.each(CURVES)(`For '%s' curve validates points`, (curve) => {
+  describe.each(CURVES)(`for '%s' curve validates points`, (curve) => {
     it(`should throw if curve is not an object`, () => {
       const bounds = {
         ...boundingCurvesValid,
@@ -79,7 +79,7 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
       )
     })
 
-    it('should throw if startPoint is not a valid point', () => {
+    it(`should throw if startPoint is not a valid point`, () => {
       const bounds = {
         ...boundingCurvesValid,
         [curve]: { startPoint: 11, endPoint: { x: 0, y: 0 } },
@@ -89,7 +89,7 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
       )
     })
 
-    it('should throw if endPoint is not a valid point', () => {
+    it(`should throw if endPoint is not a valid point`, () => {
       const bounds = {
         ...boundingCurvesValid,
         [curve]: { endPoint: 11, startPoint: { x: 0, y: 0 } },

@@ -196,7 +196,7 @@ export const validateGetSurfacePointArguments = (
 ): void => {
   validateBoundingCurves(boundingCurves)
   validateUV(u, v)
-  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
+  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
 }
 
 export const validateGetSurfaceIntersectionPointsArguments = (
@@ -207,7 +207,7 @@ export const validateGetSurfaceIntersectionPointsArguments = (
 ): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
+  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
 }
 
 export const validateGetSurfaceCurvesArguments = (
@@ -220,9 +220,9 @@ export const validateGetSurfaceCurvesArguments = (
 ): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
-  validateFunction(interpolateLineU, 'interpolateLineU')
-  validateFunction(interpolateLineV, 'interpolateLineV')
+  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
+  validateFunction(interpolateLineU, `interpolateLineU`)
+  validateFunction(interpolateLineV, `interpolateLineV`)
 }
 
 export const validategetSurfaceCurvesUArguments = (
@@ -234,8 +234,8 @@ export const validategetSurfaceCurvesUArguments = (
 ): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
-  validateFunction(interpolateLineU, 'interpolateLineU')
+  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
+  validateFunction(interpolateLineU, `interpolateLineU`)
 }
 
 export const validategetSurfaceCurvesVArguments = (
@@ -247,6 +247,6 @@ export const validategetSurfaceCurvesVArguments = (
 ): void => {
   validateBoundingCurves(boundingCurves)
   validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, 'interpolatePointOnCurve')
-  validateFunction(interpolateLineV, 'interpolateLineV')
+  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
+  validateFunction(interpolateLineV, `interpolateLineV`)
 }

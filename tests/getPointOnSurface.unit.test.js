@@ -15,32 +15,32 @@ describe(`getSurfacePoint`, () => {
     )
 
     describe(`u and v`, () => {
-      it('should throw u is not a number', () => {
+      it(`should throw u is not a number`, () => {
         expect(() => getSurfacePoint(boundingCurvesValid)).toThrow(
           `u value must be a number, but was 'undefined'`
         )
       })
-      it('should throw if value of u is less than 0', () => {
+      it(`should throw if value of u is less than 0`, () => {
         expect(() => getSurfacePoint(boundingCurvesValid, -1, 0)).toThrow(
           `u value must be between 0 and 1, but was '-1'`
         )
       })
-      it('should throw if value of u is greater than 1', () => {
+      it(`should throw if value of u is greater than 1`, () => {
         expect(() => getSurfacePoint(boundingCurvesValid, 2, 0)).toThrow(
           `u value must be between 0 and 1, but was '2'`
         )
       })
-      it('should throw v is not an number', () => {
+      it(`should throw v is not an number`, () => {
         expect(() => getSurfacePoint(boundingCurvesValid, 0)).toThrow(
           `v value must be a number, but was 'undefined'`
         )
       })
-      it('should throw if value of v is less than 0', () => {
+      it(`should throw if value of v is less than 0`, () => {
         expect(() => getSurfacePoint(boundingCurvesValid, 0, -1)).toThrow(
           `v value must be between 0 and 1, but was '-1'`
         )
       })
-      it('should throw if value of v is greater than 1', () => {
+      it(`should throw if value of v is greater than 1`, () => {
         expect(() => getSurfacePoint(boundingCurvesValid, 0, 2)).toThrow(
           `v value must be between 0 and 1, but was '2'`
         )
@@ -63,7 +63,7 @@ describe(`getSurfacePoint`, () => {
       expect(() => getSurfacePoint(boundingCurvesValid, 1, 1)).not.toThrow()
     })
 
-    describe.each(fixtures)(`For fixture: '$name'`, ({ name, input }) => {
+    describe.each(fixtures)(`fixture: '$name'`, ({ name, input }) => {
       let output
 
       beforeAll(async () => {

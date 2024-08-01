@@ -11,7 +11,7 @@ module.exports = {
 
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': [`.ts`, `.tsx`],
     },
     'import/resolver': {
       // You will also need to install and configure the TypeScript resolver
@@ -23,25 +23,68 @@ module.exports = {
     },
   },
 
-  parser: '@typescript-eslint/parser',
+  parser: `@typescript-eslint/parser`,
   parserOptions: {
     ecmaVersion: 2018,
-    sourcetype: 'module',
+    sourcetype: `module`,
   },
 
   extends: [
-    'eslint:recommended',
+    `eslint:recommended`,
     `plugin:@typescript-eslint/recommended`,
-    'plugin:import/recommended',
+    `plugin:import/recommended`,
     `plugin:import/typescript`,
+    `plugin:prettier/recommended`,
   ],
 
-  plugins: ['import', '@typescript-eslint'],
+  plugins: [`import`, `@typescript-eslint`],
 
-  ignorePatterns: ['**/coverage/*', `/node_modules/*`, `/dist/`, '/docs/'],
+  ignorePatterns: [`**/coverage/*`, `/node_modules/*`, `/dist/`, `/docs/`],
 
   rules: {
+    quotes: [
+      `error`,
+      `backtick`,
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
     'react/prop-types': 0,
+    'vitest/consistent-test-filename': [
+      `error`,
+      {
+        pattern: `.*\\.unit\\.test\\.[tj]s?$`,
+      },
+    ],
+    'vitest/consistent-test-it': [
+      `error`,
+      {
+        fn: `it`,
+      },
+    ],
+    'vitest/expect-expect': `error`,
+    'vitest/no-commented-out-tests': `error`,
+    'vitest/no-disabled-tests': `error`,
+    'vitest/no-duplicate-hooks': `error`,
+    'vitest/no-focused-tests': `error`,
+    'vitest/no-identical-title': `error`,
+    'vitest/no-standalone-expect': `error`,
+    'vitest/no-test-return-statement': `error`,
+    'vitest/prefer-called-with': `error`,
+    'vitest/prefer-comparison-matcher': `error`,
+    'vitest/prefer-each': `error`,
+    'vitest/prefer-equality-matcher': `error`,
+    'vitest/prefer-hooks-in-order': `error`,
+    'vitest/prefer-hooks-on-top': `error`,
+    'vitest/prefer-lowercase-title': `error`,
+    'vitest/prefer-mock-promise-shorthand': `error`,
+    'vitest/prefer-spy-on': `error`,
+    'vitest/prefer-to-be-object': `error`,
+    'vitest/prefer-to-be': `error`,
+    'vitest/prefer-to-contain': `error`,
+    'vitest/prefer-to-have-length': `error`,
+    'vitest/require-to-throw-message': `error`,
+    'vitest/valid-describe-callback': `error`,
+    'vitest/valid-expect': `error`,
+    'vitest/valid-title': `error`,
   },
 
   overrides: [

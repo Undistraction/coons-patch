@@ -29,6 +29,6 @@ export default {
     'scope-case': [0, `always`],
     // Subject should be sentence case.
     'subject-case': [2, `always`, `sentence-case`],
-    'body-max-line-length': [0, 'always', 'Infinity'],
+    'body-max-line-length': [0, `always`, `Infinity`],
   },
 }

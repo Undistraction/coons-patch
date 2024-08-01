@@ -2,12 +2,13 @@ class Callable extends Function {
   private _bound
 
   constructor() {
-    super('...args', 'return this._bound.call(...args)')
+    super(`...args`, `return this._bound.call(...args)`)
     this._bound = this.bind(this)
     return this._bound
   }
 }
 
+// eslint-disable-next-line quotes
 declare module 'matrix-js' {
   export class Matrix extends Callable {
     constructor(a: number, b: number): Matrix

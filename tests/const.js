@@ -1,1 +1,1 @@
-export const CURVES = [['top'], [`left`], ['bottom'], ['right']]
+export const CURVES = [[`top`], [`left`], [`bottom`], [`right`]]

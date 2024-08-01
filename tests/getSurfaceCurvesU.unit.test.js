@@ -45,7 +45,7 @@ describe(`getSurfaceCurvesU`, () => {
       expect(() => getSurfaceCurvesU(boundingCurvesValid, 1, 1)).not.toThrow()
     })
 
-    describe.each(fixtures)(`For fixture: '$name'`, ({ name, input }) => {
+    describe.each(fixtures)(`fixture: '$name'`, ({ name, input }) => {
       let output
 
       beforeAll(async () => {

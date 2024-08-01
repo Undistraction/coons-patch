@@ -38,7 +38,7 @@ export const boundingCurvesValid = {
 // Set 'skipSnapshot' falsetrue' for each item to skip the snapshot
 const allFixtures = [
   {
-    name: '1x1 grid',
+    name: `1x1 grid`,
     skipSnapshot: true,
     skipTest: false,
     input: {
@@ -67,7 +67,7 @@ const allFixtures = [
     },
   },
   {
-    name: '3x3 grid',
+    name: `3x3 grid`,
     skipSnapshot: true,
     skipTest: false,
     input: {
@@ -96,7 +96,7 @@ const allFixtures = [
     },
   },
   {
-    name: '3x3 grid with gutters',
+    name: `3x3 grid with gutters`,
     skipSnapshot: true,
     skipTest: false,
     input: {
@@ -126,7 +126,7 @@ const allFixtures = [
     },
   },
   {
-    name: '3x3 grid with linear interpolationStrategy',
+    name: `3x3 grid with linear interpolationStrategy`,
     skipSnapshot: true,
     skipTest: false,
     input: {
@@ -134,7 +134,7 @@ const allFixtures = [
       grid: {
         columns: 3,
         rows: 3,
-        interpolationStrategy: 'linear',
+        interpolationStrategy: `linear`,
       },
       api: {
         getSurfacePoint: {
@@ -156,7 +156,7 @@ const allFixtures = [
     },
   },
   {
-    name: '3x3 grid with curves lineStrategy',
+    name: `3x3 grid with curves lineStrategy`,
     skipSnapshot: true,
     skipTest: false,
     input: {
@@ -164,7 +164,7 @@ const allFixtures = [
       grid: {
         columns: 3,
         rows: 3,
-        lineStrategy: 'curves',
+        lineStrategy: `curves`,
       },
       api: {
         getSurfacePoint: {
@@ -186,7 +186,7 @@ const allFixtures = [
     },
   },
   {
-    name: 'Grid with custom columns and rows via array of numbers',
+    name: `Grid with custom columns and rows via array of numbers`,
     skipSnapshot: true,
     skipTest: false,
     input: {
@@ -215,7 +215,7 @@ const allFixtures = [
     },
   },
   {
-    name: 'Grid with custom columns and rows via array of objects',
+    name: `Grid with custom columns and rows via array of objects`,
     skipSnapshot: false,
     skipTest: false,
     input: {
