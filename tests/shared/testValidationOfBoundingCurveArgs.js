@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { CURVES } from '../const'
 import { boundingCurvesValid } from '../fixtures'
 
@@ -100,5 +101,4 @@ const testValidationOfBoundingCurveArgs = (functionUnderTest) => {
   })
 }
 
-// eslint-disable-next-line jest/no-export
 export default testValidationOfBoundingCurveArgs

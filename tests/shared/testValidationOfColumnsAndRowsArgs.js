@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 // -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
@@ -45,5 +47,4 @@ const testValidationOfColumnsAndRowsArgs = (functionUnderTest) => {
   })
 }
 
-// eslint-disable-next-line jest/no-export
 export default testValidationOfColumnsAndRowsArgs

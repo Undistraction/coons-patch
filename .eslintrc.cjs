@@ -5,10 +5,8 @@
 module.exports = {
   env: {
     browser: true,
-    jest: true,
     node: true,
     es6: true,
-    'jest/globals': true,
   },
 
   settings: {
@@ -40,7 +38,7 @@ module.exports = {
 
   plugins: ['import', '@typescript-eslint'],
 
-  ignorePatterns: ['**/coverage/*', `/node_modules/*`, `/dist/`],
+  ignorePatterns: ['**/coverage/*', `/node_modules/*`, `/dist/`, '/docs/'],
 
   rules: {
     'react/prop-types': 0,
@@ -49,8 +47,7 @@ module.exports = {
   overrides: [
     {
       files: [`tests/**/*.js`],
-      plugins: [`jest`],
-      extends: [`plugin:jest/recommended`],
+      plugins: [`vitest`],
     },
   ],
 }

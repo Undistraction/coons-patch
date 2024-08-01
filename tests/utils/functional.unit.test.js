@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals'
+import { describe, expect, it, vi } from 'vitest'
 import { mapObj, times, timesReduce } from '../../src/utils/functional'
 
 // -----------------------------------------------------------------------------
@@ -7,28 +7,28 @@ import { mapObj, times, timesReduce } from '../../src/utils/functional'
 
 describe('times', () => {
   it('should call the callback n times', () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
     const n = 5
     times(callback, n)
     expect(callback).toHaveBeenCalledTimes(n)
   })
 
   it('should pass the correct index to the callback', () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
     const n = 5
     times(callback, n)
     expect(callback.mock.calls).toEqual([[0], [1], [2], [3], [4]])
   })
 
   it('should return an array of results from the callback', () => {
-    const callback = jest.fn((i) => i * 2)
+    const callback = vi.fn((i) => i * 2)
     const n = 5
     const result = times(callback, n)
     expect(result).toEqual([0, 2, 4, 6, 8])
   })
 
   it('should return an empty array if n is 0', () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
     const n = 0
     const result = times(callback, n)
     expect(result).toEqual([])
@@ -36,7 +36,7 @@ describe('times', () => {
   })
 
   it('should return an empty array if n is negative', () => {
-    const callback = jest.fn()
+    const callback = vi.fn()
     const n = -5
     const result = times(callback, n)
     expect(result).toEqual([])
@@ -46,7 +46,7 @@ describe('times', () => {
 
 describe('timesReduce', () => {
   it('should call the callback n times and accumulate the result', () => {
-    const callback = jest.fn((acc, i) => acc + i)
+    const callback = vi.fn((acc, i) => acc + i)
     const n = 5
     const initialValue = 0
     const result = timesReduce(callback, initialValue, n)
@@ -55,7 +55,7 @@ describe('timesReduce', () => {
   })
 
   it('should pass the correct arguments to the callback', () => {
-    const callback = jest.fn((acc, i) => acc + i)
+    const callback = vi.fn((acc, i) => acc + i)
     const n = 3
     const initialValue = 0
     timesReduce(callback, initialValue, n)
@@ -65,7 +65,7 @@ describe('timesReduce', () => {
   })
 
   it('should return the initial value if n is 0', () => {
-    const callback = jest.fn((acc, i) => acc + i)
+    const callback = vi.fn((acc, i) => acc + i)
     const n = 0
     const initialValue = 10
     const result = timesReduce(callback, initialValue, n)
@@ -74,7 +74,7 @@ describe('timesReduce', () => {
   })
 
   it('should handle negative n gracefully', () => {
-    const callback = jest.fn((acc, i) => acc + i)
+    const callback = vi.fn((acc, i) => acc + i)
     const n = -5
     const initialValue = 10
     const result = timesReduce(callback, initialValue, n)

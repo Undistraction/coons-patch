@@ -24,7 +24,7 @@ export default defineConfig(() => {
             return 'index.mjs'
           }
           if (format === 'cjs') {
-            return 'index.common.js'
+            return 'index.common.cjs'
           }
         },
       },
