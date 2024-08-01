@@ -1,17 +1,23 @@
+## [1.7.0](https://github.com/undistraction/coons-patch/compare/v1.6.0...v1.7.0) (2024-08-01)
+
+### Features
+
+* Add dependencies to README ([eda3fc9](https://github.com/undistraction/coons-patch/commit/eda3fc99ecce6a3dcf835f2ae3efd5a750d9ac23))
+
 ## [1.6.0](https://github.com/undistraction/coons-patch/compare/v1.5.0...v1.6.0) (2024-08-01)
 
 ### ⚠ BREAKING CHANGES
 
-* CHANGE
+- CHANGE
 
 ### Features
 
-* API changes ([7ef5251](https://github.com/undistraction/coons-patch/commit/7ef52511b1bf83efdf1b5e9ccc13be8ac9e0c4ea))
-* Switch to typescript for source ([cff4f6c](https://github.com/undistraction/coons-patch/commit/cff4f6c5e3a5972cd8585ee79daab444c29a9a87))
+- API changes ([7ef5251](https://github.com/undistraction/coons-patch/commit/7ef52511b1bf83efdf1b5e9ccc13be8ac9e0c4ea))
+- Switch to typescript for source ([cff4f6c](https://github.com/undistraction/coons-patch/commit/cff4f6c5e3a5972cd8585ee79daab444c29a9a87))
 
 ### Bug Fixes
 
-* Matrix-js typings ([cbe5eb7](https://github.com/undistraction/coons-patch/commit/cbe5eb7c4703d0b62f87f654b7f6d3ece1cf9a6f))
+- Matrix-js typings ([cbe5eb7](https://github.com/undistraction/coons-patch/commit/cbe5eb7c4703d0b62f87f654b7f6d3ece1cf9a6f))
 
 ## [1.5.0](https://github.com/undistraction/coons-patch/compare/v1.4.0...v1.5.0) (2024-07-30)
 
