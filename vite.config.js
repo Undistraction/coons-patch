@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 // eslint-disable-next-line
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 // -----------------------------------------------------------------------------
 // Exports
@@ -15,10 +16,23 @@ export default defineConfig(() => {
       lib: {
         entry: resolve(__dirname, 'src/index.ts'),
         name: 'coons-patch',
-        // the phtmlroper extensions will be added
-        fileName: 'coons-patch',
-        formats: ['es', 'cjs', 'umd'],
+        formats: ['es', 'cjs'],
+        fileName: (format, entryAlias) => {
+          console.log('>>', format, entryAlias)
+          if (format === 'es') {
+            return 'index.mjs'
+          }
+          if (format === 'cjs') {
+            return 'index.common.js'
+          }
+        },
       },
     },
+    plugins: [
+      // Generate a single types file for all our types
+      dts({
+        rollupTypes: true,
+      }),
+    ],
   }
 })
