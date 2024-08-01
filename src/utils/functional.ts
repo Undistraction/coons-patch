@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // These are very general-purpose functions, so any is appropriate here.
 
-// -----------------------------------------------------------------------------
-// Types
-// -----------------------------------------------------------------------------
-
-type ObjectWithStringKeys = { [key: string]: any }
+import { ObjectWithStringKeys } from '../types'
 
 // -----------------------------------------------------------------------------
 // Exports

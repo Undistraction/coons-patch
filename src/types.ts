@@ -94,6 +94,16 @@ export type InterpolateLineV = (
   interpolatePointOnCurve: InterpolatePointOnCurve
 ) => Curve
 
+export type GetCoordinateOnSurfaceConfig = {
+  coordinateName: Coordinate
+  boundaryPoints: BoundaryPoints
+  cornerPoints: CornerPoints
+  u: number
+  v: number
+}
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type ObjectWithStringKeys = { [key: string]: any }
+
 // -----------------------------------------------------------------------------
 // API-specic
 // -----------------------------------------------------------------------------

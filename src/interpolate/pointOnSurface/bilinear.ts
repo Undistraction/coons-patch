@@ -1,23 +1,10 @@
 import {
-  BoundaryPoints,
   BoundingCurves,
   Coordinate,
-  CornerPoints,
+  GetCoordinateOnSurfaceConfig,
   InterpolatePointOnCurve,
   Point,
 } from '../../types'
-
-// -----------------------------------------------------------------------------
-// Types
-// -----------------------------------------------------------------------------
-
-type GetCoordinateOnSurfaceConfig = {
-  coordinateName: Coordinate
-  boundaryPoints: BoundaryPoints
-  cornerPoints: CornerPoints
-  u: number
-  v: number
-}
 
 // -----------------------------------------------------------------------------
 // Utils

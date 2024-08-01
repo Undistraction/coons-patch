@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "useUnknownInCatchVariables": false,
     "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "declaration": true
+    "declaration": true,
+    "declarationDir": "./dist"
   }
 }
