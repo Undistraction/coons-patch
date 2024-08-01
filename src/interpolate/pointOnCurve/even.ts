@@ -1,5 +1,5 @@
 import memoize from 'fast-memoize'
-import { Curve, Point, Points } from '../../types'
+import { Curve, InterpolatePointOnCurve, Point, Points } from '../../types'
 import { times, timesReduce } from '../../utils/functional'
 import { getDistanceBetweenPoints, roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'
@@ -78,7 +78,7 @@ export const interpolatePointOnCurveEvenlySpaced =
     // Get an approximation using an arbitrary number of points. Increase for
     // more accuracy at cost of performance
     { precision }: { precision: number }
-  ) =>
+  ): InterpolatePointOnCurve =>
   (t: number, curve: Curve): Point => {
     // Round the ratio to 10 decimal places to avoid rounding issues where the
     // number is fractionally over 1 or below 0

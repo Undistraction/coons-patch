@@ -3,9 +3,10 @@
   "version": "1.7.0",
   "packageManager": "pnpm@9.6.0",
   "description": "Create a Coons patch and access points and curves on its surface",
+  "main": "./dist/index.common.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.common.js",
       "require": "./dist/index.common.js",
       "types": "./dist/index.d.ts",
       "source": "./src/index.ts"
@@ -43,8 +44,7 @@
     "docs-open": "open ./docs/index.html",
     "release-preview": "semantic-release --no-ci --dry-run --debug",
     "link": "pnpm link --global",
-    "unlink": "pnpm unlink --global",
-    "tsc": "tsc ./src/index.ts"
+    "unlink": "pnpm unlink --global"
   },
   "keywords": [
     "coons patch",
@@ -87,7 +87,7 @@
     "typedoc": "^0.26.5",
     "typescript": "5.4.2",
     "vite": "^5.3.3",
-    "vite-plugin-dts": "4.0.0-beta.2"
+    "vite-plugin-dts": "3.9.1"
   },
   "dependencies": {
     "fast-memoize": "^2.5.2",

@@ -101,7 +101,7 @@ export type GetCoordinateOnSurfaceConfig = {
   u: number
   v: number
 }
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export type ObjectWithStringKeys = { [key: string]: any }
 
 // -----------------------------------------------------------------------------

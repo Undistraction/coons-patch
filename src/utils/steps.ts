@@ -26,14 +26,14 @@ const getTotalValues = (columns: Steps, rows: Steps) => ({
   rowsTotalValue: addAll(rows),
 })
 
-const expandToSteps = (unprocessedSteps: UnprocessedSteps): ExpandedSteps => {
+const ensureArray = (unprocessedSteps: UnprocessedSteps): ExpandedSteps => {
   if (isInt(unprocessedSteps)) {
-    return times(() => unprocessedSteps, unprocessedSteps)
+    return times(() => 1, unprocessedSteps)
   }
   return unprocessedSteps
 }
 
-const convertToObjects = (steps: ExpandedSteps): Steps =>
+const ensureObjects = (steps: ExpandedSteps): Steps =>
   steps.map((step: UnprocessedStep) => {
     if (isPlainObj(step)) {
       return step as Step
@@ -59,8 +59,8 @@ export const getTSize = (
 }
 
 export const processSteps = (steps: UnprocessedSteps): Steps => {
-  const arrayOfSteps = expandToSteps(steps)
-  return convertToObjects(arrayOfSteps)
+  const arrayOfSteps = ensureArray(steps)
+  return ensureObjects(arrayOfSteps)
 }
 
 export const getStepData = (
