@@ -128,14 +128,14 @@ The API can be broken into functions that return points and functions that retur
 
 ### Functions that return points
 
-- `getSurfacePoint` Computes a point on a surface defined by four bounding curves at parameters u and v.
-- `getSurfaceIntersectionPoints` Returns and array of oints on the surface where the provided rows and columns intersect.
+- `getSurfacePoint(boundingCurves, u, v)` Computes a point on a surface defined by four bounding curves at parameters u and v.
+- `getSurfaceIntersectionPoints(boundingCurves, columns, rows)` Returns and array of oints on the surface where the provided rows and columns intersect.
 
 ### Functions that return curves
 
-- `getSurfaceCurvesU` Returns a 2D array of surface curves along U-axis based on the provided bounding curves and columns.
-- `getSurfaceCurvesV` Returns a 2D array of surface curves along V-axis based on the provided bounding curves and rows.
-- `getSurfaceCurves` Returns a two 2D arrays of surface curves, one for each axis, based on the provided bounding curves, columns and rows.
+- `getSurfaceCurvesU(boundingCurves, columns, rows)` Returns a 2D array of surface curves along U-axis based on the provided bounding curves and columns.
+- `getSurfaceCurvesV(boundingCurves, columns, rows)` Returns a 2D array of surface curves along V-axis based on the provided bounding curves and rows.
+- `getSurfaceCurves(boundingCurves, columns, rows)` Returns a two 2D arrays of surface curves, one for each axis, based on the provided bounding curves, columns and rows.
 
 When curves are calculated, they are calculated based on the the grid size, with a separate curve returned for each step of the column or row. This means that a single curve from top to bottom or left to right is made up of multiple sub-curves, running between column and row intersections. This ensures a much greater accuracy and allows new patches to be created for individual cells because each cell is itself surrounded by four bounding curves.
 
@@ -156,6 +156,10 @@ These functions dictate how the lines/curves are interpolated. The curves that a
 
 - `interpolateStraightLineU` and `interpolateStraightLineV` will make all lines along the their respective axes straight lines. It does this by collapsing the control points to the end points. This is significantly more performant than the alternative. This is the default.
 - `interpolateCurveU` and `interpolateCurveV` will make all lines along the their respective axes curves. This is signifcantly more memory intensive.
+
+# Some notes on the implementation
+
+Calulating the curves that make up the grid (and therefore the grid cell bounds) is not a perfect process, and involves transforming a parametised into a cubic Bezier curve. Because there is no guarantee that the interpolated curve can be represented by a cubic Bezier, the Bezier has to fitted to the parametised curve. In some cases this means the edges will deviate from the bounds. In cases of a 1x1 grid, I cheat and just return the bounds of the grid, however with low numbers of columns and rows, and when curves are tighter at the corners, the curves will sometimes deviate from the bounds. This isn't a problem with higher numbers of rows/columns as each curve is made up of a different curve for each cell which gives more accurate results. Whilst it would certainly be possible to compose each grid-cell's bounds of multiple curves for increased accuracy, this would prevent one of the most useful bits of functionality - recursion, meaning you can use the bounds of any grid cell as the bounds for another nested grid.
 
 ### Dependencies
 
