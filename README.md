@@ -1,16 +1,16 @@
 # README
 
-A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch)
+A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a kind of four-sided surface and this package provides a small API for getting information about the surface: points on the surface and lines running across the surface. This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) which supplies an extended API build on-top of this package for creating warped grids, and provides an API for modeling complex grids, and to visualise and play with a coons patch, please see the interactive demo [here](https://warp-grid-editor.undistraction.com/).
 
-This package provides a small API for getting information about the surface: points on the surface and lines running across the surface.
+This package only models a coons-patch and provides data about its model, however it does so in such a way that it can be easily rendered to the screen using SVG, canvas, or anything else you like.
 
-This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) which supplies an extended API for creating warped grids, including access to data about individual grid-cells, and use of gutters. There is an interactive demo for warp grid [here](https://warp-grid-editor.undistraction.com/) which will allow you to play with a coons patch on-screen.
+To use any of the API you must provide a set of four **bounding curves** (`top`, `left`, `bottom` and `right`) in the form of four cubic Bezier curves. A cubic Bezier curve describes a line or curve using a start point (`startPoint`), an end point (`endPoint`) and two other control points(`controlPoint1` and `controlPoint2`). Each point has an `x` and `y` coordinate.
 
-This package only provides the data related to a coons-patch, but it does so in such a way that it can be easily rendered to the screen using SVG, canvas, or anything else that understands cubic Bezier curves.
+At minimum you must supply start and end points for each curves. If you do not supply `controlPoint1` it will be set to the same cooridinates as the start point, and if you do not supply `controlPoint2` it will be set to the same coordindates as the end point. If both control points are set to the same values as the start and end point, this will result in a straight line.
 
-To use any of the API functions you must provide a set of four bounding curves (`top`, `left`, `bottom` and `right`) in the form of four cubic Bezier curves. A cubic Bezier curve describes a line or curve using a start point (`startPoint`), an end point (`endPoint`) and two other control points(`controlPoint1` and `controlPoint2`). Each point has an `x` and `y` coordinates.
+You also need to ensure that the four curves meet at the corners. The `top` and `bottom` curves run left to right, and `left` and `right` curves run top to bottom, so the `startPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `left` curve, the `endPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `right` curve, the `startPoint` of the `bottom` curve must share the same cooridinates with the end point of the `left` curve, and the `endPoint` of the `bottom` curve must share the same coordinates with the `endPoint` of the `right` curve.
 
-At minimum you must supply start and end points for each curves. If you do not supply `controlPoint1` it will be set to the same cooridinates as the start point, and if you do not supply `controlPoint2` it will be set to the same coordindates as the end point. If both control points are set to the same values as the start and end point it will result in a straight line. You also need to ensure that the four curves meet at the corners. The `top` and `bottom` curves run left to right, and `left` and `right` curves run top to bottom, so the `startPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `left` curve, the `endPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `right` curve, the `startPoint` of the `bottom` curve must share the same cooridinates with the end point of the `left` curve, and the `endPoint` of the `bottom` curve must share the same coordinates with the `endPoint` of the `right` curve.
+There are a large number of validations that run on all the data you input and will throw Errors with useful messages if any of the data you supply is not valid.
 
 Points look like this:
 
@@ -43,27 +43,26 @@ Bounding curves look like this, where each item is curve.
 }
 ```
 
+## A note on naming and the underlying math
+
+Because a coons-patch is not bounded to x and y coordinates, the parameters `u` and `v` are used in algebraic descriptions to represent to two axes of the patch. Similarly `t` is used to for a single axes. The naming of the API reflects this so keep closer to the underlying math. In all cases, these parameters (`u`, `v` and `t`) are only valid in the range 0–1, where 0 represents the beginning of a surface along that axis, and 1 represents the end. In this respect, the values can be thought about as ratios representing a position along a path from start to end. So a `u` value of 0 and `v` value of 0 would represnt the top-left corner and a `u` value of 1 and `v` value of 1 would represent the bottom-right corner.
+
 ## API
 
 The API can be broken into functions that return points and functions that return curves.
 
-### Points
+### Functions that return points
 
-- `getSurfacePoint` Computes a point on a surface defined by bounding curves at
-  parameters u and v.
-- `getSurfaceIntersectionPoints` Generates intersection points on the surface
-  based on the provided bounding curves, columns, and rows.
+- `getSurfacePoint` Computes a point on a surface defined by four bounding curves at parameters u and v.
+- `getSurfaceIntersectionPoints` Returns and array of oints on the surface where the provided rows and columns intersect.
 
-### Curves
+### Functions that return curves
 
-- `getSurfaceCurvesU` Generates surface curves along U-axis based on the
-  provided bounding curves, columns, and rows.
-- `getSurfaceCurvesV` Generates surface curves along the V-axis based on the
-  provided bounding curves, columns, and rows.
-- `getSurfaceCurves` Generates surface curves along both the U-axis and V-axis
-  based on the provided bounding curves, columns, and rows.
+- `getSurfaceCurvesU` Returns a 2D array of surface curves along U-axis based on the provided bounding curves and columns.
+- `getSurfaceCurvesV` Returns a 2D array of surface curves along V-axis based on the provided bounding curves and rows.
+- `getSurfaceCurves` Returns a two 2D arrays of surface curves, one for each axis, based on the provided bounding curves, columns and rows.
 
-When curves are calculated, they are calculated based on the the grid size, with a separate curve returned for each step of the column or row. This means that a single curve from top to bottom or left to right is made up of multiple sub-curves, one for each column or row. This ensures a much greater accuracy and allows new patches to be created for individual cells because each cell is itself surrounded by four bounding curves.
+When curves are calculated, they are calculated based on the the grid size, with a separate curve returned for each step of the column or row. This means that a single curve from top to bottom or left to right is made up of multiple sub-curves, running between column and row intersections. This ensures a much greater accuracy and allows new patches to be created for individual cells because each cell is itself surrounded by four bounding curves.
 
 ## Interpolation functions
 
@@ -87,13 +86,71 @@ These functions dictate how the lines/curves are interpolated. The curves that a
 
 ```bash
 npm add coons-patch
+# or
 yarn add coons-patch
+# or
 pnpm add coons-patch
 ```
 
 ## Quick-start
 
-TBD
+```javaScript
+import {
+  getSurfacePoint,
+  getSurface,
+  getSurfaceCurvesU,
+  getSurfaceCurvesV,
+  getSurfaceCurves,
+  interpolatePointOnCurveLinear,
+  interpolateCurveU,
+  interpolateCurveV
+} from 'coons-patch'
+
+const boundingCurves = {
+  top: {
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 100, y: 0 },
+    controlPoint1: { x: 10, y: -10 },
+    controlPoint2: { x: 90, y: -10 },
+  },
+  bottom: {
+    startPoint: { x: 0, y: 100 },
+    endPoint: { x: 100, y: 100 },
+    controlPoint1: { x: -10, y: 110 },
+    controlPoint2: { x: 110, y: 110 },
+  },
+  left: {
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 0, y: 100 },
+    controlPoint1: { x: -10, y: -10 },
+    controlPoint2: { x: -10, y: 110 },
+  },
+  right: {
+    startPoint: { x: 100, y: 0 },
+    endPoint: { x: 100, y: 100 },
+    controlPoint1: { x: 110, y: -10 },
+    controlPoint2: { x: 110, y: 110 },
+  },
+}
+
+const point = getSurfacePath(boundingCurves, 0.1. 0.6)
+const points = getSurfaceIntersectionPoints(boundingCurves, 6, 4)
+const curvesU = getSurfaceCurvesU(boundingCurves, 6, 4)
+const curvesV = getSurfaceCurvesU(boundingCurves, 6, 4)
+const curves = getSurfaceCurvesU(boundingCurves, 6, 4)
+
+// To change the way that points are interpolated on lines to a linear strategy:
+const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
+  interpolatePointOnCurve: interpolatePointOnCurveLinear
+})
+
+// To change the way that lines are interpolated to use curves
+const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
+  interpolateLineU: interpolateCurveU
+})
+
+
+```
 
 # Project
 
@@ -108,18 +165,20 @@ pnpm install
 ## Build
 
 ```bash
-
 pnpm run build # Build once
 pnpm run build-watch # Build and watch for changes
-
 ```
 
 ## Preview build
 
 ```bash
-
 pnpm run preview
+```
 
+## Generate docs
+
+```bash
+pnpm run docs
 ```
 
 ## Run tests
@@ -127,10 +186,8 @@ pnpm run preview
 Tests are written using Jest.
 
 ```bash
-
 pnpm run test # Run tests once
 pnpm run test-watch # Run tests and watch for changes
-
 ```
 
 Due to the volume and complexity of the data returned from the API, the tests use snapshots of the data as test fixtures. These snapshots ar generated using:
@@ -147,6 +204,10 @@ This will generate data for all of the fixure definitions in `./tests/fixtures.j
 pnpm run lint-prettier
 pnpm run lint-eslint
 ```
+
+## Release
+
+Releases are via semantic-release and executed on CI.
 
 ## Thanks
 
