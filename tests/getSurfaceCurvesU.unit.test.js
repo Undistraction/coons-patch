@@ -1,4 +1,3 @@
-import { beforeAll, describe, expect, it } from 'vitest'
 import { getSurfaceCurvesU, interpolatePointOnCurveEvenlySpaced } from '../src'
 import fixtures, { boundingCurvesValid } from './fixtures'
 import { loadFixtureData } from './helpers'

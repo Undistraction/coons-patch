@@ -1,4 +1,3 @@
-import { beforeAll, describe, expect, it } from 'vitest'
 import { getSurfacePoint } from '../src'
 import fixtures, { boundingCurvesValid } from './fixtures'
 import { loadFixtureData } from './helpers'

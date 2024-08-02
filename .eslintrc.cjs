@@ -7,6 +7,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
+    'vitest/env': true,
   },
 
   settings: {
@@ -39,7 +40,16 @@ module.exports = {
 
   plugins: [`import`, `@typescript-eslint`],
 
-  ignorePatterns: [`**/coverage/*`, `/node_modules/*`, `/dist/`, `/docs/`],
+  ignorePatterns: [
+    `/node_modules/*`,
+    // Build artifacts
+    `/dist/`,
+    `/docs/`,
+    `**pnpm-lock.yaml`,
+    `**CHANGELOG.md`,
+    // Test artifacts
+    `**/coverage/*`,
+  ],
 
   rules: {
     quotes: [
