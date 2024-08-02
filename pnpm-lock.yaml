@@ -11,9 +11,6 @@ importers:
 
   .:
     dependencies:
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.57.0)
       fast-memoize:
         specifier: ^2.5.2
         version: 2.5.2
@@ -57,6 +54,9 @@ importers:
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.0)
       eslint-import-resolver-typescript:
         specifier: ^3.6.1
         version: 3.6.1(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.4.2))(eslint-plugin-import@2.29.1)(eslint@8.57.0)
