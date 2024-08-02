@@ -28,6 +28,9 @@ export default defineConfig(() => {
           }
         },
       },
+      rollupOptions: {
+        external: [/node_modules/],
+      },
     },
     plugins: [
       // Generate a single types file for all our types
