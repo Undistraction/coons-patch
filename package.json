@@ -6,7 +6,7 @@
   "main": "./dist/index.common.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts",
       "source": "./src/index.ts"
@@ -42,9 +42,7 @@
     "build-watch": "vite build --watch",
     "docs": "typedoc",
     "docs-open": "open ./docs/index.html",
-    "release-preview": "semantic-release --no-ci --dry-run --debug",
-    "link": "pnpm link --global",
-    "unlink": "pnpm unlink --global"
+    "release-preview": "semantic-release --no-ci --dry-run --debug"
   },
   "keywords": [
     "coons patch",

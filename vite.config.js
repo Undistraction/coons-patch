@@ -21,7 +21,7 @@ export default defineConfig(() => {
         // Choose names for build artifacts
         fileName: (format) => {
           if (format === `es`) {
-            return `index.mjs`
+            return `index.js`
           }
           if (format === `cjs`) {
             return `index.cjs`
@@ -29,7 +29,7 @@ export default defineConfig(() => {
         },
       },
       rollupOptions: {
-        external: [/node_modules/],
+        external: [`fast-memoize`, `matrix-js`],
       },
     },
     plugins: [
