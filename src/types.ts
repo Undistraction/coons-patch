@@ -59,6 +59,10 @@ export interface CornerPoints {
   bottomRight: Point
 }
 
+// -----------------------------------------------------------------------------
+// Interfaces: Function args
+// -----------------------------------------------------------------------------
+
 export interface GetCoordinateOnSurfaceConfig {
   coordinateName: Coordinate
   boundaryPoints: BoundaryPoints
@@ -111,6 +115,9 @@ export type Steps = Step[]
 
 export type StepCurves = Curve[]
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export type ObjectWithStringKeys = { [key: string]: any }
+
 // -----------------------------------------------------------------------------
 // Types: Function signatures
 // -----------------------------------------------------------------------------
@@ -134,6 +141,3 @@ export type InterpolateLineV = (
   vStart: number,
   interpolatePointOnCurve: InterpolatePointOnCurve
 ) => Curve
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export type ObjectWithStringKeys = { [key: string]: any }
