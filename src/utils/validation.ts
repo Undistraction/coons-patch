@@ -14,8 +14,13 @@ import { roundTo5 } from './math'
 // Utils
 // -----------------------------------------------------------------------------
 
-const roundPointCoordinates = (point: Point): Point =>
-  mapObj(roundTo5, point) as Point
+const roundPointCoordinates = (point: Point): Point => {
+  return {
+    ...point,
+    x: roundTo5(point.x),
+    y: roundTo5(point.x),
+  }
+}
 
 const getPointsAreSame = (point1: Point, point2: Point): boolean => {
   // Round the points to 5 decimal places to avoid rounding issues where the

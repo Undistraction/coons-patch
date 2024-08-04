@@ -42,7 +42,8 @@
     "build-watch": "vite build --watch",
     "docs": "typedoc",
     "docs-open": "open ./docs/index.html",
-    "release-preview": "semantic-release --no-ci --dry-run --debug"
+    "release-preview": "semantic-release --no-ci --dry-run --debug",
+    "tsc": "tsc src/**/*.ts --noEmit"
   },
   "keywords": [
     "coons patch",

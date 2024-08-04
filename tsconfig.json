@@ -14,7 +14,8 @@
     "useUnknownInCatchVariables": false,
     "typeRoots": ["./src/@types", "./node_modules/@types"],
     "declaration": true,
-
+    // Throw if there is an error during build
+    "noEmitOnError": true,
     // Directory containing the generated declaration files
     "declarationDir": "./dist"
   }
