@@ -3,7 +3,7 @@
   "compilerOptions": {
     // Enable all strict type-checking options
     "strict": true,
-    "module": "preserve", // try esnext
+    "module": "esnext",
     "moduleResolution": "bundler", // For Vite
     "target": "ES2017",
     "sourceMap": true,
