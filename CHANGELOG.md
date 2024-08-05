@@ -1,8 +1,23 @@
+## [1.8.3](https://github.com/undistraction/coons-patch/compare/v1.8.2...v1.8.3) (2024-08-05)
+
+### ⚠ BREAKING CHANGES
+
+* CHANGE
+* CHANGE
+
+### Bug Fixes
+
+* Switch ts module type for single-file type export ([e48c928](https://github.com/undistraction/coons-patch/commit/e48c9288d4ca5efb83534fd011182df5e0ed76a7))
+
+### Miscellaneous Chores
+
+* Externalisation of modules ([80f4c26](https://github.com/undistraction/coons-patch/commit/80f4c26b3c0988b25b5f8076bb7a1315c87fbe13))
+
 ## [1.8.2](https://github.com/undistraction/coons-patch/compare/v1.8.1...v1.8.2) (2024-08-01)
 
 ### Bug Fixes
 
-* Remove second suffix from mjs exports ([7b4b484](https://github.com/undistraction/coons-patch/commit/7b4b484c80b1dddf2c93387d9dd43bd056524aa2))
+- Remove second suffix from mjs exports ([7b4b484](https://github.com/undistraction/coons-patch/commit/7b4b484c80b1dddf2c93387d9dd43bd056524aa2))
 
 ## [1.8.1](https://github.com/undistraction/coons-patch/compare/v1.8.0...v1.8.1) (2024-08-01)
 
