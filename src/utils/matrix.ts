@@ -6,6 +6,7 @@
  * ---------------------------------------------------------------------------*/
 
 import matrix, { Matrix } from 'matrix-js'
+
 import { times } from './functional'
 import { binomial } from './math'
 

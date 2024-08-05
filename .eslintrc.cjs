@@ -38,7 +38,7 @@ module.exports = {
     `plugin:prettier/recommended`,
   ],
 
-  plugins: [`import`, `@typescript-eslint`],
+  plugins: [`simple-import-sort`, `import`, `@typescript-eslint`],
 
   ignorePatterns: [
     `/node_modules/*`,
@@ -52,6 +52,8 @@ module.exports = {
   ],
 
   rules: {
+    'simple-import-sort/imports': `error`,
+    'simple-import-sort/exports': `error`,
     quotes: [
       `error`,
       `backtick`,

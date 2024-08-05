@@ -16,7 +16,6 @@ export {
   interpolateStraightLineU,
   interpolateStraightLineV,
 } from './interpolate/curves/straight'
-
 export { interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/even'
 export { interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/linear'
 
