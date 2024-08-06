@@ -85,8 +85,7 @@
     "typescript": "5.4.2",
     "vite": "^5.3.3",
     "vite-plugin-dts": "3.9.1",
-    "vitest": "^2.0.5",
-    "vtest": "^1.1.0"
+    "vitest": "^2.0.5"
   },
   "dependencies": {
     "fast-memoize": "^2.5.2",
