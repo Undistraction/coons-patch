@@ -6,6 +6,8 @@ This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) 
 
 [Documenation](https://coons-patch-docs.undistraction.com).
 
+This package is written in TypeScript and exports its types.
+
 ## Install package
 
 ```bash

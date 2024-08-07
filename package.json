@@ -43,7 +43,7 @@
     "docs": "typedoc",
     "docs-open": "open ./docs/index.html",
     "release-preview": "semantic-release --no-ci --dry-run --debug",
-    "tsc": "tsc src/**/*.ts --noEmit"
+    "tsc": "tsc"
   },
   "keywords": [
     "coons patch",
