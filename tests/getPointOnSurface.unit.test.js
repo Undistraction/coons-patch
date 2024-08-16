@@ -70,7 +70,7 @@ describe(`getSurfacePoint`, () => {
       })
 
       it(`returns the correct data`, () => {
-        expect(getSurfacePoint(...input.api.getSurfacePoint.args)).toEqual(
+        expect(getSurfacePoint(...input.getSurfacePoint.args)).toEqual(
           output.point
         )
       })

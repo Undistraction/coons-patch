@@ -27,9 +27,9 @@ fixtures.forEach(async ({ name, input, skipSnapshot }) => {
   }
 
   console.log(`-----------------------------`)
-  console.log(`getSurfacePoint`, input.api.getSurfacePoint.args)
+  console.log(`getSurfacePoint`, input.getSurfacePoint.args)
   console.log(`-----------------------------`)
-  const point = getSurfacePoint(...input.api.getSurfacePoint.args)
+  const point = getSurfacePoint(...input.getSurfacePoint.args)
 
   print(point)
 
@@ -37,7 +37,7 @@ fixtures.forEach(async ({ name, input, skipSnapshot }) => {
   console.log(`getSurfaceIntersectionPoints`)
   console.log(`-----------------------------`)
   const intersectionPoints = getSurfaceIntersectionPoints(
-    ...input.api.getSurfaceIntersectionPoints.args
+    ...input.getSurfaceIntersectionPoints.args
   )
 
   print(intersectionPoints)
@@ -45,19 +45,19 @@ fixtures.forEach(async ({ name, input, skipSnapshot }) => {
   console.log(`-----------------------------`)
   console.log(`getSurfaceCurvesU`)
   console.log(`-----------------------------`)
-  const curvesU = getSurfaceCurvesU(...input.api.getSurfaceCurvesU.args)
+  const curvesU = getSurfaceCurvesU(...input.getSurfaceCurvesU.args)
   print(curvesU)
 
   console.log(`-----------------------------`)
   console.log(`getSurfaceCurvesV`)
   console.log(`-----------------------------`)
-  const curvesV = getSurfaceCurvesV(...input.api.getSurfaceCurvesV.args)
+  const curvesV = getSurfaceCurvesV(...input.getSurfaceCurvesV.args)
   print(curvesV)
 
   console.log(`-----------------------------`)
   console.log(`getSurfaceCurves`)
   console.log(`-----------------------------`)
-  const curves = getSurfaceCurves(...input.api.getSurfaceCurves.args)
+  const curves = getSurfaceCurves(...input.getSurfaceCurves.args)
   print(curves)
 
   const snapshot = JSON.stringify(

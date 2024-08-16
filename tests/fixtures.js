@@ -42,27 +42,20 @@ const allFixtures = [
     skipSnapshot: true,
     skipTest: false,
     input: {
-      bounds: boundingCurvesValid,
-      grid: {
-        columns: 1,
-        rows: 1,
+      getSurfacePoint: {
+        args: [boundingCurvesValid, 0.25, 0.5],
       },
-      api: {
-        getSurfacePoint: {
-          args: [boundingCurvesValid, 0.25, 0.5],
-        },
-        getSurfaceIntersectionPoints: {
-          args: [boundingCurvesValid, 0, 0],
-        },
-        getSurfaceCurvesU: {
-          args: [boundingCurvesValid, 0, 0],
-        },
-        getSurfaceCurvesV: {
-          args: [boundingCurvesValid, 0, 0],
-        },
-        getSurfaceCurves: {
-          args: [boundingCurvesValid, 0, 0],
-        },
+      getSurfaceIntersectionPoints: {
+        args: [boundingCurvesValid, 0, 0],
+      },
+      getSurfaceCurvesU: {
+        args: [boundingCurvesValid, 0, 0],
+      },
+      getSurfaceCurvesV: {
+        args: [boundingCurvesValid, 0, 0],
+      },
+      getSurfaceCurves: {
+        args: [boundingCurvesValid, 0, 0],
       },
     },
   },
@@ -71,57 +64,20 @@ const allFixtures = [
     skipSnapshot: true,
     skipTest: false,
     input: {
-      bounds: boundingCurvesValid,
-      grid: {
-        columns: 3,
-        rows: 3,
+      getSurfacePoint: {
+        args: [boundingCurvesValid, 0.25, 0.5],
       },
-      api: {
-        getSurfacePoint: {
-          args: [boundingCurvesValid, 0.25, 0.5],
-        },
-        getSurfaceIntersectionPoints: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesU: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesV: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurves: {
-          args: [boundingCurvesValid, 4, 3],
-        },
+      getSurfaceIntersectionPoints: {
+        args: [boundingCurvesValid, 4, 3],
       },
-    },
-  },
-  {
-    name: `3x3 grid with gutters`,
-    skipSnapshot: true,
-    skipTest: false,
-    input: {
-      bounds: boundingCurvesValid,
-      grid: {
-        columns: 3,
-        rows: 3,
-        gutter: 0.1,
+      getSurfaceCurvesU: {
+        args: [boundingCurvesValid, 4, 3],
       },
-      api: {
-        getSurfacePoint: {
-          args: [boundingCurvesValid, 0.25, 0.5],
-        },
-        getSurfaceIntersectionPoints: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesU: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesV: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurves: {
-          args: [boundingCurvesValid, 4, 3],
-        },
+      getSurfaceCurvesV: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurves: {
+        args: [boundingCurvesValid, 4, 3],
       },
     },
   },
@@ -130,28 +86,20 @@ const allFixtures = [
     skipSnapshot: true,
     skipTest: false,
     input: {
-      bounds: boundingCurvesValid,
-      grid: {
-        columns: 3,
-        rows: 3,
-        interpolationStrategy: `linear`,
+      getSurfacePoint: {
+        args: [boundingCurvesValid, 0.25, 0.5],
       },
-      api: {
-        getSurfacePoint: {
-          args: [boundingCurvesValid, 0.25, 0.5],
-        },
-        getSurfaceIntersectionPoints: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesU: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesV: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurves: {
-          args: [boundingCurvesValid, 4, 3],
-        },
+      getSurfaceIntersectionPoints: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurvesU: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurvesV: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurves: {
+        args: [boundingCurvesValid, 4, 3],
       },
     },
   },
@@ -160,28 +108,20 @@ const allFixtures = [
     skipSnapshot: true,
     skipTest: false,
     input: {
-      bounds: boundingCurvesValid,
-      grid: {
-        columns: 3,
-        rows: 3,
-        lineStrategy: `curves`,
+      getSurfacePoint: {
+        args: [boundingCurvesValid, 0.25, 0.5],
       },
-      api: {
-        getSurfacePoint: {
-          args: [boundingCurvesValid, 0.25, 0.5],
-        },
-        getSurfaceIntersectionPoints: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesU: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesV: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurves: {
-          args: [boundingCurvesValid, 4, 3],
-        },
+      getSurfaceIntersectionPoints: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurvesU: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurvesV: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurves: {
+        args: [boundingCurvesValid, 4, 3],
       },
     },
   },
@@ -190,27 +130,20 @@ const allFixtures = [
     skipSnapshot: true,
     skipTest: false,
     input: {
-      bounds: boundingCurvesValid,
-      grid: {
-        columns: [5, 1, 5, 4, 5, 1, 5, 1, 5],
-        rows: [5, 1, 5, 3, 5, 1, 10],
+      getSurfacePoint: {
+        args: [boundingCurvesValid, 0.25, 0.5],
       },
-      api: {
-        getSurfacePoint: {
-          args: [boundingCurvesValid, 0.25, 0.5],
-        },
-        getSurfaceIntersectionPoints: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesU: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurvesV: {
-          args: [boundingCurvesValid, 4, 3],
-        },
-        getSurfaceCurves: {
-          args: [boundingCurvesValid, 4, 3],
-        },
+      getSurfaceIntersectionPoints: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurvesU: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurvesV: {
+        args: [boundingCurvesValid, 4, 3],
+      },
+      getSurfaceCurves: {
+        args: [boundingCurvesValid, 4, 3],
       },
     },
   },
@@ -219,27 +152,20 @@ const allFixtures = [
     skipSnapshot: false,
     skipTest: false,
     input: {
-      bounds: boundingCurvesValid,
-      grid: {
-        columns: [{ value: 1 }, { value: 4 }, { value: 10 }],
-        rows: [{ value: 4 }, { value: 6 }, { value: 4 }, { value: 10 }],
+      getSurfacePoint: {
+        args: [boundingCurvesValid, 0.25, 0.5],
       },
-      api: {
-        getSurfacePoint: {
-          args: [boundingCurvesValid, 0.25, 0.5],
-        },
-        getSurfaceIntersectionPoints: {
-          args: [boundingCurvesValid, 1, 2],
-        },
-        getSurfaceCurvesU: {
-          args: [boundingCurvesValid, 1, 2],
-        },
-        getSurfaceCurvesV: {
-          args: [boundingCurvesValid, 1, 2],
-        },
-        getSurfaceCurves: {
-          args: [boundingCurvesValid, 1, 2],
-        },
+      getSurfaceIntersectionPoints: {
+        args: [boundingCurvesValid, 1, 2],
+      },
+      getSurfaceCurvesU: {
+        args: [boundingCurvesValid, 1, 2],
+      },
+      getSurfaceCurvesV: {
+        args: [boundingCurvesValid, 1, 2],
+      },
+      getSurfaceCurves: {
+        args: [boundingCurvesValid, 1, 2],
       },
     },
   },

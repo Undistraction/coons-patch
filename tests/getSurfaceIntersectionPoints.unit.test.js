@@ -35,7 +35,7 @@ describe(`getSurfaceIntersectionPoints`, () => {
       it(`returns the correct data`, () => {
         expect(
           getSurfaceIntersectionPoints(
-            ...input.api.getSurfaceIntersectionPoints.args
+            ...input.getSurfaceIntersectionPoints.args
           )
         ).toEqual(output.intersectionPoints)
       })

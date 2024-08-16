@@ -52,7 +52,7 @@ describe(`getSurfaceCurvesU`, () => {
       })
 
       it(`returns the correct data`, () => {
-        expect(getSurfaceCurvesU(...input.api.getSurfaceCurvesU.args)).toEqual(
+        expect(getSurfaceCurvesU(...input.getSurfaceCurvesU.args)).toEqual(
           output.curvesU
         )
       })
