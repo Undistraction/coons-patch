@@ -6,7 +6,7 @@ import {
   getSurfaceCurvesV,
   getSurfaceIntersectionPoints,
   getSurfacePoint,
-} from '../src/index.js'
+} from '../dist/index.js'
 import fixtures from './fixtures.js'
 import { __dirname, writeFileAsync } from './helpers.js'
 

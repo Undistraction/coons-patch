@@ -156,16 +156,32 @@ const allFixtures = [
         args: [boundingCurvesValid, 0.25, 0.5],
       },
       getSurfaceIntersectionPoints: {
-        args: [boundingCurvesValid, 1, 2],
+        args: [
+          boundingCurvesValid,
+          [{ value: 1 }, { value: 3 }, { value: 1 }],
+          [{ value: 1 }, { value: 1 }, { value: 2 }],
+        ],
       },
       getSurfaceCurvesU: {
-        args: [boundingCurvesValid, 1, 2],
+        args: [
+          boundingCurvesValid,
+          [{ value: 1 }, { value: 3 }, { value: 1 }],
+          [{ value: 1 }, { value: 1 }, { value: 2 }],
+        ],
       },
       getSurfaceCurvesV: {
-        args: [boundingCurvesValid, 1, 2],
+        args: [
+          boundingCurvesValid,
+          [{ value: 1 }, { value: 3 }, { value: 1 }],
+          [{ value: 1 }, { value: 1 }, { value: 2 }],
+        ],
       },
       getSurfaceCurves: {
-        args: [boundingCurvesValid, 1, 2],
+        args: [
+          boundingCurvesValid,
+          [{ value: 1 }, { value: 3 }, { value: 1 }],
+          [{ value: 1 }, { value: 1 }, { value: 2 }],
+        ],
       },
     },
   },
