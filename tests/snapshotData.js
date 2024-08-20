@@ -1,5 +1,7 @@
 import path from 'path'
 
+// We want to lint before building, so dist/ dir won't necessarily be present
+/* eslint-disable import/no-unresolved */
 import {
   getSurfaceCurves,
   getSurfaceCurvesU,
@@ -7,6 +9,7 @@ import {
   getSurfaceIntersectionPoints,
   getSurfacePoint,
 } from '../dist/index.js'
+/* eslint-enable import/no-unresolved */
 import fixtures from './fixtures.js'
 import { __dirname, writeFileAsync } from './helpers.js'
 
