@@ -88,8 +88,7 @@
     "vitest": "^2.0.5"
   },
   "dependencies": {
-    "fast-memoize": "^2.5.2",
-    "matrix-js": "^1.7.1"
+    "fast-memoize": "^2.5.2"
   },
   "pnpm": {
     "overrides": {

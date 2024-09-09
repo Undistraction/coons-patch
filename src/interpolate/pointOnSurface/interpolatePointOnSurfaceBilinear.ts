@@ -35,11 +35,12 @@ const clampT = (t: number): number => Math.min(Math.max(t, 0), 1)
 // Exports
 // -----------------------------------------------------------------------------
 
-export const interpolatePointOnSurface = (
+const interpolatePointOnSurfaceBilinear = (
   { top, bottom, left, right }: BoundingCurves,
   u: number,
   v: number,
-  interpolatePointOnCurve: InterpolatePointOnCurve
+  interpolatePointOnCurveU: InterpolatePointOnCurve,
+  interpolatePointOnCurveV: InterpolatePointOnCurve
 ): Point => {
   // Due to potential minute rounding errors we clamp these values to avoid
   // issues with the interpolators which expect a range of 0–1.
@@ -47,10 +48,10 @@ export const interpolatePointOnSurface = (
   const vResolved = clampT(v)
 
   const boundaryPoints = {
-    top: interpolatePointOnCurve(uResolved, top),
-    bottom: interpolatePointOnCurve(uResolved, bottom),
-    left: interpolatePointOnCurve(vResolved, left),
-    right: interpolatePointOnCurve(vResolved, right),
+    top: interpolatePointOnCurveU(uResolved, top),
+    bottom: interpolatePointOnCurveU(uResolved, bottom),
+    left: interpolatePointOnCurveV(vResolved, left),
+    right: interpolatePointOnCurveV(vResolved, right),
   }
 
   const cornerPoints = {
@@ -77,3 +78,5 @@ export const interpolatePointOnSurface = (
     }),
   }
 }
+
+export default interpolatePointOnSurfaceBilinear

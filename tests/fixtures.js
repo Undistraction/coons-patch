@@ -1,3 +1,5 @@
+import { interpolatePointOnCurveLinear } from '../dist/index.js'
+
 // -----------------------------------------------------------------------------
 // Const
 // -----------------------------------------------------------------------------
@@ -35,158 +37,53 @@ export const boundingCurvesValid = {
 
 // Define different sets of params to test
 // Save the results to JSON files to import into tests
-// Set 'skipSnapshot' falsetrue' for each item to skip the snapshot
-const allFixtures = [
+// Set 'skipSnapshot: false' for each item to skip the snapshot
+const fixtures = [
   {
-    name: `1x1 grid`,
+    name: `Arbitrary point`,
     skipSnapshot: true,
     skipTest: false,
     input: {
-      getSurfacePoint: {
+      coonsPatch: {
         args: [boundingCurvesValid, 0.25, 0.5],
-      },
-      getSurfaceIntersectionPoints: {
-        args: [boundingCurvesValid, 0, 0],
-      },
-      getSurfaceCurvesU: {
-        args: [boundingCurvesValid, 0, 0],
-      },
-      getSurfaceCurvesV: {
-        args: [boundingCurvesValid, 0, 0],
-      },
-      getSurfaceCurves: {
-        args: [boundingCurvesValid, 0, 0],
       },
     },
   },
   {
-    name: `3x3 grid`,
+    name: `Arbitrary point with linear interpolatePointOnCurve`,
     skipSnapshot: true,
     skipTest: false,
     input: {
-      getSurfacePoint: {
-        args: [boundingCurvesValid, 0.25, 0.5],
-      },
-      getSurfaceIntersectionPoints: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesU: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesV: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurves: {
-        args: [boundingCurvesValid, 4, 3],
+      coonsPatch: {
+        args: [
+          boundingCurvesValid,
+          0.25,
+          0.5,
+          {
+            interpolatePointOnCurveU: interpolatePointOnCurveLinear(),
+            interpolatePointOnCurveV: interpolatePointOnCurveLinear(),
+          },
+        ],
       },
     },
   },
   {
-    name: `3x3 grid with linear interpolationStrategy`,
-    skipSnapshot: true,
-    skipTest: false,
-    input: {
-      getSurfacePoint: {
-        args: [boundingCurvesValid, 0.25, 0.5],
-      },
-      getSurfaceIntersectionPoints: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesU: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesV: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurves: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-    },
-  },
-  {
-    name: `3x3 grid with curves lineStrategy`,
-    skipSnapshot: true,
-    skipTest: false,
-    input: {
-      getSurfacePoint: {
-        args: [boundingCurvesValid, 0.25, 0.5],
-      },
-      getSurfaceIntersectionPoints: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesU: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesV: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurves: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-    },
-  },
-  {
-    name: `Grid with custom columns and rows via array of numbers`,
-    skipSnapshot: true,
-    skipTest: false,
-    input: {
-      getSurfacePoint: {
-        args: [boundingCurvesValid, 0.25, 0.5],
-      },
-      getSurfaceIntersectionPoints: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesU: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurvesV: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-      getSurfaceCurves: {
-        args: [boundingCurvesValid, 4, 3],
-      },
-    },
-  },
-  {
-    name: `Grid with custom columns and rows via array of objects`,
+    name: `Arbitrary point with different interpolations for each axis`,
     skipSnapshot: false,
     skipTest: false,
     input: {
-      getSurfacePoint: {
-        args: [boundingCurvesValid, 0.25, 0.5],
-      },
-      getSurfaceIntersectionPoints: {
+      coonsPatch: {
         args: [
           boundingCurvesValid,
-          [{ value: 1 }, { value: 3 }, { value: 1 }],
-          [{ value: 1 }, { value: 1 }, { value: 2 }],
-        ],
-      },
-      getSurfaceCurvesU: {
-        args: [
-          boundingCurvesValid,
-          [{ value: 1 }, { value: 3 }, { value: 1 }],
-          [{ value: 1 }, { value: 1 }, { value: 2 }],
-        ],
-      },
-      getSurfaceCurvesV: {
-        args: [
-          boundingCurvesValid,
-          [{ value: 1 }, { value: 3 }, { value: 1 }],
-          [{ value: 1 }, { value: 1 }, { value: 2 }],
-        ],
-      },
-      getSurfaceCurves: {
-        args: [
-          boundingCurvesValid,
-          [{ value: 1 }, { value: 3 }, { value: 1 }],
-          [{ value: 1 }, { value: 1 }, { value: 2 }],
+          0.25,
+          0.5,
+          {
+            interpolatePointOnCurveU: interpolatePointOnCurveLinear(),
+          },
         ],
       },
     },
   },
-]
-
-const fixtures = allFixtures.filter(({ skipTest }) => skipTest !== true)
+].filter(({ skipTest }) => skipTest !== true)
 
 export default fixtures

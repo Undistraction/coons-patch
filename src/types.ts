@@ -75,8 +75,9 @@ export interface GetCoordinateOnSurfaceConfig {
 // Interfaces: API-specic
 // -----------------------------------------------------------------------------
 
-export interface GetSurfacePointConfig {
-  interpolatePointOnCurve?: InterpolatePointOnCurve
+export interface CoonsPatchConfig {
+  interpolatePointOnCurveU?: InterpolatePointOnCurve
+  interpolatePointOnCurveV?: InterpolatePointOnCurve
 }
 
 export interface GetSurfaceIntersectionPointsConfig {
@@ -123,6 +124,10 @@ export type ObjectWithStringKeys = { [key: string]: any }
 // -----------------------------------------------------------------------------
 
 export type InterpolatePointOnCurve = (t: number, curve: Curve) => Point
+
+export type InterpolatePointOnCurveFactory = (config?: {
+  precision?: number
+}) => InterpolatePointOnCurve
 
 export type InterpolateLineU = (
   boundingCurves: BoundingCurves,
