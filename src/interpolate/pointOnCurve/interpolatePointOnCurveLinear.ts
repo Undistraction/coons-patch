@@ -47,17 +47,18 @@ const interpolate = (
  *
  * @group Interpolation
  */
-export const interpolatePointOnCurveLinear = (
-  t: number,
-  curve: Curve
-): Point => {
-  // Round the ratio to 10 decimal places to avoid rounding issues where the
-  // number is fractionally over 1 or below 0
-  const tRounded = roundTo10(t)
-  validateT(tRounded)
+const interpolatePointOnCurveLinear =
+  () =>
+  (t: number, curve: Curve): Point => {
+    // Round the ratio to 10 decimal places to avoid rounding issues where the
+    // number is fractionally over 1 or below 0
+    const tRounded = roundTo10(t)
+    validateT(tRounded)
 
-  return {
-    ...interpolate(t, curve),
-    t,
+    return {
+      ...interpolate(t, curve),
+      t,
+    }
   }
-}
+
+export default interpolatePointOnCurveLinear

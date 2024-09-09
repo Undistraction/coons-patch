@@ -1,8 +1,10 @@
 # README
 
-A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a kind of four-sided surface defined by four straight or curved edges, and this package provides a small API for getting information about the surface: points on the surface and lines running across the surface.
+A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a kind of four-sided surface defined by four straight or curved edges, and this package provides a small API for creating a coons-patch and finding a point on that surface.
 
-This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) which supplies an extended API build on-top of this package for creating warped grids, and provides an API for modeling complex grids. To visualise and play with a coons patch, please see its interactive demo [here](https://warp-grid-editor.undistraction.com/).
+This package is used by [warp-grid](https://github.com/Undistraction/warp-grid) which supplies a greatly extended API build on-top of this package for modeling complex warped grids.
+
+To visualise and play with a coons patch as used in the warp-grid, please see its interactive demo [here](https://warp-grid-editor.undistraction.com/).
 
 [Documenation](https://coons-patch-docs.undistraction.com).
 
@@ -20,17 +22,8 @@ pnpm add coons-patch
 
 ## Quick-start
 
-```javaScript
-import {
-  getSurfacePoint,
-  getSurface,
-  getSurfaceCurvesU,
-  getSurfaceCurvesV,
-  getSurfaceCurves,
-  interpolatePointOnCurveLinear,
-  interpolateCurveU,
-  interpolateCurveV
-} from 'coons-patch'
+```typeScript
+import coonsPatch from 'coons-patch'
 
 // Define bounding curves for the patch
 const boundingCurves = {
@@ -60,38 +53,30 @@ const boundingCurves = {
   },
 }
 
-const point = getSurfacePath(boundingCurves, 0.1. 0.6)
-const points = getSurfaceIntersectionPoints(boundingCurves, 6, 4)
-const curvesU = getSurfaceCurvesU(boundingCurves, 6, 4)
-const curvesV = getSurfaceCurvesU(boundingCurves, 6, 4)
-const curves = getSurfaceCurvesU(boundingCurves, 6, 4)
-
-// To change the way that points are interpolated on lines to a linear strategy:
-const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
-  interpolatePointOnCurve: interpolatePointOnCurveLinear
-})
-
-// To change the way that lines are interpolated to use curves
-const point = getSurfacePath(boundingCurves, 0.1. 0.6, {
-  interpolateLineU: interpolateCurveU
-})
-
-
+const point = coonsPatch(boundingCurves, 0.1, 0.6)
 ```
 
-This package only models a coons-patch and provides data about its model, however it does so in such a way that it can be easily rendered to the screen using SVG, canvas, or anything else you like.
+To generate a patch you must provide a set of four **bounding curves** (`top`, `left`, `bottom` and `right`) in the form of four cubic Bezier curves. A cubic Bezier curve describes a straight-line or curve using a start point (`startPoint`), an end point (`endPoint`) and two other control points(`controlPoint1` and `controlPoint2`). Each point has an `x` and `y` coordinate.
 
-To use any of the API you must provide a set of four **bounding curves** (`top`, `left`, `bottom` and `right`) in the form of four cubic Bezier curves. A cubic Bezier curve describes a line or curve using a start point (`startPoint`), an end point (`endPoint`) and two other control points(`controlPoint1` and `controlPoint2`). Each point has an `x` and `y` coordinate.
+At minimum you must supply start and end points for each curve. If you do not supply `controlPoint1` it will be set to the same cooridinates as the start point, and if you do not supply `controlPoint2` it will be set to the same coordindates as the end point. Setting both control points to the same values as the start and end point will result in a straight line.
 
-At minimum you must supply start and end points for each curves. If you do not supply `controlPoint1` it will be set to the same cooridinates as the start point, and if you do not supply `controlPoint2` it will be set to the same coordindates as the end point. If both control points are set to the same values as the start and end point, this will result in a straight line.
+You also need to ensure that the four curves meet at the corners. You will probably be expecting the end of each curve to be the start of the next, however in keeping with the math involved in generating a coons-patch this is not the case. The `top` and `bottom` curves run left to right, and `left` and `right` curves run top to bottom, so the `startPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `left` curve, the `endPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `right` curve, the `startPoint` of the `bottom` curve must share the same cooridinates with the end point of the `left` curve, and the `endPoint` of the `bottom` curve must share the same coordinates with the `endPoint` of the `right` curve.
 
-You also need to ensure that the four curves meet at the corners. The `top` and `bottom` curves run left to right, and `left` and `right` curves run top to bottom, so the `startPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `left` curve, the `endPoint` of the `top` curve must share the same coordinates with the `startPoint` of the `right` curve, the `startPoint` of the `bottom` curve must share the same cooridinates with the end point of the `left` curve, and the `endPoint` of the `bottom` curve must share the same coordinates with the `endPoint` of the `right` curve.
+```
+         top
+     |-------->|
+left |         | right
+     V-------->V
+       bottom
+```
 
-There are a large number of validations that run on all the data you input and will throw Errors with useful messages if any of the data you supply is not valid.
+All arguments are carefully validated and you will receive useful errors if any of the arguments are not valid.
+
+## Primatives
 
 Points look like this:
 
-```javaScript
+```typeScript
 {
   x: 34,
   y: 44
@@ -100,7 +85,7 @@ Points look like this:
 
 Curves look like this:
 
-```javaScript
+```typeScript
 {
   startPoint: { x: 0, y: 0},
   controlPoint1: { x: 0, y: 33},
@@ -111,7 +96,7 @@ Curves look like this:
 
 Bounding curves look like this, where each item is curve.
 
-```javaScript
+```typeScript
 {
   top,
   bottom,
@@ -124,57 +109,54 @@ Bounding curves look like this, where each item is curve.
 
 Because a coons-patch is not bounded to x and y coordinates, the parameters `u` and `v` are used in algebraic descriptions to represent to two axes of the patch. Similarly `t` is used to for a single axes. The naming of the API reflects this so keep closer to the underlying math. In all cases, these parameters (`u`, `v` and `t`) are only valid in the range 0–1, where 0 represents the beginning of a surface along that axis, and 1 represents the end. In this respect, the values can be thought about as ratios representing a position along a path from start to end. So a `u` value of 0 and `v` value of 0 would represnt the top-left corner and a `u` value of 1 and `v` value of 1 would represent the bottom-right corner.
 
-## API
-
-The API can be broken into functions that return points and functions that return curves.
-
-### Functions that return points
-
-- `getSurfacePoint(boundingCurves, u, v)` Computes a point on a surface defined by four bounding curves at parameters u and v.
-- `getSurfaceIntersectionPoints(boundingCurves, columns, rows)` Returns and array of oints on the surface where the provided rows and columns intersect.
-
-### Functions that return curves
-
-- `getSurfaceCurvesU(boundingCurves, columns, rows)` Returns a 2D array of surface curves along U-axis based on the provided bounding curves and columns.
-- `getSurfaceCurvesV(boundingCurves, columns, rows)` Returns a 2D array of surface curves along V-axis based on the provided bounding curves and rows.
-- `getSurfaceCurves(boundingCurves, columns, rows)` Returns a two 2D arrays of surface curves, one for each axis, based on the provided bounding curves, columns and rows.
-
-When curves are calculated, they are calculated based on the the grid size, with a separate curve returned for each step of the column or row. This means that a single curve from top to bottom or left to right is made up of multiple sub-curves, running between column and row intersections. This ensures a much greater accuracy and allows new patches to be created for individual cells because each cell is itself surrounded by four bounding curves.
-
 ## Interpolation functions
 
-When interpolating points and curves, the package uses a set of functions which can be swapped in and out for different effects. These function are exported alongside the API. You can also write and supply your own functions.
+A large part of the work done by this package involves interpolation. To locate a point on the surface, it performs linear interpolation along each axis, followed by bilinear interpolation. This package supplies two different types of interpolation that you can configure, and you can provide your own interpolations if you need. These interplation functions are exported alongside the API. `coonsPatch` accepts a different interpolation function for each axis.
 
-### `interpolatePointOnCurve`
+The two types of interpolation that can be supplied to `interpolatePointOnCurve` are:
 
-All function take an additonal argument for `interpolatePointOnCurve` which is used to find points on the four curves when interpolating the position of surface point.
+`interplolatePointOnCurveEvenlySpaced` (default) This is provides the most visually pleasing interplolation at a cost of performance. It uses a look-up table to perform interplation and results in a more even distribution of points. This function can be configured using a `precision` value. This improves tha accuracy of the interplation at the cost of performance. It defaults to `20`.
 
-- `interpolatePointOnCurveEven` is the default strategy, and is designed to work around problems with `interpolationPointOnCurveLinear`. It provides much more accurate interpolation by generating a Look up Table (LuT) for each curve. Its accuracy can be adjusted using an additional `precison` parameter that can be passed to the function to increase or decrease its accuracy.The default is `20`. Its increased accuracy comes with a performance penalty, though this is minimised by using memoization.
-- `interpolatePointOnCurveLinear` is a simpler and more performant strategy, however it results in uneven distribution of points along the curve. It can be an interesting effect, but is probably not what you want.
+```typeScript
+import coonsPatch, { interpolatePointOnCurveEvenlySpaced } from 'coons-patch'
 
-### `interpolateLineU` and `interpolateLineV`
+const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
+  precision: 25,
+})
 
-These functions dictate how the lines/curves are interpolated. The curves that are returned will always be cubic Bezier curves, but the methods of interpolation result have very different results.
+coonsPatch(boundingCurves, 0.25, 0.9, {
+  interpolatePointOnCurveU: interpolatePointOnCurve,
+  interpolatePointOnCurveV: interpolatePointOnCurve
+})
+```
 
-- `interpolateStraightLineU` and `interpolateStraightLineV` will make all lines along the their respective axes straight lines. It does this by collapsing the control points to the end points. This is significantly more performant than the alternative. This is the default.
-- `interpolateCurveU` and `interpolateCurveV` will make all lines along the their respective axes curves. This is signifcantly more memory intensive.
+`interpolatePointOnCurveLinear` This is a much simpler type of interplolation, and results distribution of points being affected by the curvature of the bounds.
 
-# Some notes on the implementation
+```typeScript
+import coonsPatch, { interpolatePointOnCurveLinear } from 'coons-patch'
 
-Calulating the curves that make up the grid (and therefore the grid cell bounds) is not a perfect process, and involves transforming a parametised into a cubic Bezier curve. Because there is no guarantee that the interpolated curve can be represented by a cubic Bezier, the Bezier has to fitted to the parametised curve. In some cases this means the edges will deviate from the bounds. In cases of a 1x1 grid, I cheat and just return the bounds of the grid, however with low numbers of columns and rows, and when curves are tighter at the corners, the curves will sometimes deviate from the bounds. This isn't a problem with higher numbers of rows/columns as each curve is made up of a different curve for each cell which gives more accurate results. Whilst it would certainly be possible to compose each grid-cell's bounds of multiple curves for increased accuracy, this would prevent one of the most useful bits of functionality - recursion, meaning you can use the bounds of any grid cell as the bounds for another nested grid.
+// Note that it doesn't accept a config object like
+// `interplolatePointOnCurveEvenlySpaced`, but this keeps the API
+// consistent.
+const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced()
+
+coonsPatch(boundingCurves, 0.25, 0.9, {
+  interpolatePointOnCurveU: interpolatePointOnCurve,
+  interpolatePointOnCurveV: interpolatePointOnCurve
+})
+```
+
+Write your own interpolation function with this signature:
+
+```typeScript
+(config: {precision: number}) => (t: number, curve: Curve): Point
+```
 
 ### Dependencies
 
-This project has two dependencies:
+This project has a single dependency: [fast-memoize](https://www.npmjs.com/package/fast-memoize) which is used for memoization of expensive calculations.
 
-- [fast-memoize](https://www.npmjs.com/package/fast-memoize) for memoization
-- [matrix-js](https://www.npmjs.com/package/matrix-js) for matrix math
-
-### Thanks
-
-Thanks to pomax for his help (and code) for curve fitting (which is much more complex than it might seem). His [A Primer on Bézier Curves](https://pomax.github.io/bezierinfo/) is a thing of wonder.
-
-## Project
+## Maintainance
 
 ### Install
 
@@ -212,13 +194,13 @@ pnpm run test # Run tests once
 pnpm run test-watch # Run tests and watch for changes
 ```
 
-Due to the volume and complexity of the data returned from the API, the tests use snapshots of the data as test fixtures. These snapshots ar generated using:
+The tests use snapshots of the data as test fixtures. These snapshots are generated using:
 
 ```bash
 pnpm run test-snapshot
 ```
 
-This will generate data for all of the fixure definitions in `./tests/fixtures.js`. This command should only be run when absolutely necessary as the current snapshots capture the verified working state of the data. To add new fixtures add new definitions to `./tests/fixtures.js`.
+This will generate data for all of the fixure definitions in `./tests/fixtures.js`. This command should only be run when absolutely necessary as the current snapshots capture the verified working state of the data. To add new fixtures, add new definitions to `./tests/fixtures.js`.
 
 ### Lint
 
@@ -229,4 +211,4 @@ pnpm run lint-eslint
 
 ### Release
 
-Releases are via semantic-release and executed on CI via Github actions. Docs are deployed to Vercel.
+Releases are via semantic-release and executed on CI via Github actions. Docs are built and deployed to Vercel when changes on `main` are pushed to origin.

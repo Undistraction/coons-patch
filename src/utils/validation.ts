@@ -1,15 +1,8 @@
-import {
-  BoundingCurves,
-  Curve,
-  InterpolateLineU,
-  InterpolateLineV,
-  InterpolatePointOnCurve,
-  Point,
-  UnprocessedSteps,
-} from '../types'
+import { BoundingCurves, Curve, InterpolatePointOnCurve, Point } from '../types'
 import { mapObj } from './functional'
-import { isArray, isFunction, isInt, isNumber, isPlainObj } from './is'
+import { isFunction, isNumber, isPlainObj } from './is'
 import { roundTo5 } from './math'
+
 // -----------------------------------------------------------------------------
 // Utils
 // -----------------------------------------------------------------------------
@@ -51,16 +44,6 @@ const validateStartAndEndPoints = (
   }
   if (!isValidPoint(endPoint)) {
     throw new Error(`Bounding curve '${name}' endPoint must be a valid point`)
-  }
-}
-
-// -----------------------------------------------------------------------------
-// Exports
-// -----------------------------------------------------------------------------
-
-export const validateT = (t: number): void => {
-  if (t < 0 || t > 1) {
-    throw new Error(`t value must be between 0 and 1, but was '${t}'`)
   }
 }
 
@@ -145,43 +128,6 @@ const validateUV = (u: number, v: number): void => {
   }
 }
 
-const validateColumnsAndRows = (
-  columns: UnprocessedSteps,
-  rows: UnprocessedSteps
-): void => {
-  if (!isInt(columns)) {
-    if (isArray(columns)) {
-      columns.map((column) => {
-        if (!isInt(column) && !isPlainObj(column)) {
-          throw new Error(
-            `A column must be an integer or an object, but it was '${column}'`
-          )
-        }
-      }, columns)
-    } else {
-      throw new Error(
-        `columns must be an integer or an array, but it was '${columns}'`
-      )
-    }
-  }
-
-  if (!isInt(rows)) {
-    if (isArray(rows)) {
-      rows.map((row) => {
-        if (!isInt(row) && !isPlainObj(row)) {
-          throw new Error(
-            `A row must be an integer or an object, but it was '${row}'`
-          )
-        }
-      }, rows)
-    } else {
-      throw new Error(
-        `rows must be an integer or an array, but it was '${rows}'`
-      )
-    }
-  }
-}
-
 // eslint-disable-next-line @typescript-eslint/ban-types
 const validateFunction = (func: Function, name: string): void => {
   if (!isFunction(func)) {
@@ -190,68 +136,24 @@ const validateFunction = (func: Function, name: string): void => {
 }
 
 // -----------------------------------------------------------------------------
-// Arguments
+// Exports
 // -----------------------------------------------------------------------------
 
-export const validateGetSurfacePointArguments = (
+export const validateT = (t: number): void => {
+  if (t < 0 || t > 1) {
+    throw new Error(`t value must be between 0 and 1, but was '${t}'`)
+  }
+}
+
+export const validateCoonsPatchArguments = (
   boundingCurves: BoundingCurves,
   u: number,
   v: number,
-  interpolatePointOnCurve: InterpolatePointOnCurve
+  interpolatePointOnCurveU: InterpolatePointOnCurve,
+  interpolatePointOnCurveV: InterpolatePointOnCurve
 ): void => {
   validateBoundingCurves(boundingCurves)
   validateUV(u, v)
-  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
-}
-
-export const validateGetSurfaceIntersectionPointsArguments = (
-  boundingCurves: BoundingCurves,
-  columns: UnprocessedSteps,
-  rows: UnprocessedSteps,
-  interpolatePointOnCurve: InterpolatePointOnCurve
-): void => {
-  validateBoundingCurves(boundingCurves)
-  validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
-}
-
-export const validateGetSurfaceCurvesArguments = (
-  boundingCurves: BoundingCurves,
-  columns: UnprocessedSteps,
-  rows: UnprocessedSteps,
-  interpolatePointOnCurve: InterpolatePointOnCurve,
-  interpolateLineU: InterpolateLineU,
-  interpolateLineV: InterpolateLineV
-): void => {
-  validateBoundingCurves(boundingCurves)
-  validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
-  validateFunction(interpolateLineU, `interpolateLineU`)
-  validateFunction(interpolateLineV, `interpolateLineV`)
-}
-
-export const validategetSurfaceCurvesUArguments = (
-  boundingCurves: BoundingCurves,
-  columns: UnprocessedSteps,
-  rows: UnprocessedSteps,
-  interpolatePointOnCurve: InterpolatePointOnCurve,
-  interpolateLineU: InterpolateLineU
-): void => {
-  validateBoundingCurves(boundingCurves)
-  validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
-  validateFunction(interpolateLineU, `interpolateLineU`)
-}
-
-export const validategetSurfaceCurvesVArguments = (
-  boundingCurves: BoundingCurves,
-  columns: UnprocessedSteps,
-  rows: UnprocessedSteps,
-  interpolatePointOnCurve: InterpolatePointOnCurve,
-  interpolateLineV: InterpolateLineV
-): void => {
-  validateBoundingCurves(boundingCurves)
-  validateColumnsAndRows(columns, rows)
-  validateFunction(interpolatePointOnCurve, `interpolatePointOnCurve`)
-  validateFunction(interpolateLineV, `interpolateLineV`)
+  validateFunction(interpolatePointOnCurveU, `interpolatePointOnCurveU`)
+  validateFunction(interpolatePointOnCurveV, `interpolatePointOnCurveV`)
 }

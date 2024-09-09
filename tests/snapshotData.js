@@ -2,13 +2,7 @@ import path from 'path'
 
 // We want to lint before building, so dist/ dir won't necessarily be present
 /* eslint-disable import/no-unresolved */
-import {
-  getSurfaceCurves,
-  getSurfaceCurvesU,
-  getSurfaceCurvesV,
-  getSurfaceIntersectionPoints,
-  getSurfacePoint,
-} from '../dist/index.js'
+import coonsPatch from '../dist/index.js'
 /* eslint-enable import/no-unresolved */
 import fixtures from './fixtures.js'
 import { __dirname, writeFileAsync } from './helpers.js'
@@ -30,46 +24,15 @@ fixtures.forEach(async ({ name, input, skipSnapshot }) => {
   }
 
   console.log(`-----------------------------`)
-  console.log(`getSurfacePoint`, input.getSurfacePoint.args)
+  console.log(`coonsPatch`, input.coonsPatch.args)
   console.log(`-----------------------------`)
-  const point = getSurfacePoint(...input.getSurfacePoint.args)
+  const point = coonsPatch(...input.coonsPatch.args)
 
   print(point)
-
-  console.log(`-----------------------------`)
-  console.log(`getSurfaceIntersectionPoints`)
-  console.log(`-----------------------------`)
-  const intersectionPoints = getSurfaceIntersectionPoints(
-    ...input.getSurfaceIntersectionPoints.args
-  )
-
-  print(intersectionPoints)
-
-  console.log(`-----------------------------`)
-  console.log(`getSurfaceCurvesU`)
-  console.log(`-----------------------------`)
-  const curvesU = getSurfaceCurvesU(...input.getSurfaceCurvesU.args)
-  print(curvesU)
-
-  console.log(`-----------------------------`)
-  console.log(`getSurfaceCurvesV`)
-  console.log(`-----------------------------`)
-  const curvesV = getSurfaceCurvesV(...input.getSurfaceCurvesV.args)
-  print(curvesV)
-
-  console.log(`-----------------------------`)
-  console.log(`getSurfaceCurves`)
-  console.log(`-----------------------------`)
-  const curves = getSurfaceCurves(...input.getSurfaceCurves.args)
-  print(curves)
 
   const snapshot = JSON.stringify(
     {
       point,
-      intersectionPoints,
-      curvesU,
-      curvesV,
-      curves,
     },
     null,
     2
