@@ -171,6 +171,7 @@ pnpm install
 ```bash
 pnpm run build # Build once
 pnpm run build-watch # Build and watch for changes
+pnpm run test-coverage # Run tests and output a coverage report
 ```
 
 ### Preview build

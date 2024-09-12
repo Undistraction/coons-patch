@@ -5,7 +5,6 @@ import { times, timesReduce } from '../../utils/functional'
 import { getDistanceBetweenPoints, roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'
 import interpolatePointOnCurveLinear from './interpolatePointOnCurveLinear'
-
 // -----------------------------------------------------------------------------
 // Const
 // -----------------------------------------------------------------------------
