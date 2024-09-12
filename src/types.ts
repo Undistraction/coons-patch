@@ -125,8 +125,8 @@ export type ObjectWithStringKeys = { [key: string]: any }
 
 export type InterpolatePointOnCurve = (t: number, curve: Curve) => Point
 
-export type InterpolatePointOnCurveFactory = (config?: {
-  precision?: number
+export type InterpolatePointOnCurveFactory = (config: {
+  precision: number
 }) => InterpolatePointOnCurve
 
 export type InterpolateLineU = (

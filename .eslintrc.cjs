@@ -36,7 +36,12 @@ module.exports = {
     `plugin:prettier/recommended`,
   ],
 
-  plugins: [`simple-import-sort`, `import`, `@typescript-eslint`],
+  plugins: [
+    `unused-imports`,
+    `simple-import-sort`,
+    `import`,
+    `@typescript-eslint`,
+  ],
 
   ignorePatterns: [
     // Packages
@@ -51,6 +56,22 @@ module.exports = {
   ],
 
   rules: {
+    // -------------------------------------------------------------------------
+    // Unused imports
+    // -------------------------------------------------------------------------
+
+    '@typescript-eslint/no-unused-vars': `off`,
+    'unused-imports/no-unused-imports': `error`,
+    'unused-imports/no-unused-vars': [
+      `warn`,
+      {
+        vars: `all`,
+        varsIgnorePattern: `^_`,
+        args: `after-used`,
+        argsIgnorePattern: `^_`,
+      },
+    ],
+
     // -------------------------------------------------------------------------
     // Generic
     // -------------------------------------------------------------------------
