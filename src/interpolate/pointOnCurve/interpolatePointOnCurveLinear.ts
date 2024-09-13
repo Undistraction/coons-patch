@@ -38,17 +38,28 @@ const interpolate = (
 // -----------------------------------------------------------------------------
 
 /**
- * Interpolates a point on a curve using linear interpolation. Note that this
- * will not result in the points being evenly spaced.
+ * Interpolates a point on a curve such that the points are evenly spaced.
  *
- * @param {number} t - The parameter along the curve, typically between 0 and 1.
- * @param {Curve} curve - The curve on which to interpolate the point.
- * @returns {Point} The interpolated point on the curve.
+ * @param {Object} config - Configuration options.
+ * @param {number} config.precision - The number of points used to approximate
+ * the curve. Increasing this number improves accuracy at the cost of
+ * performance.
+ * @returns {InterpolatePointOnCurve} A function that takes a parameter `t` and
+ * a `curve`, and returns an interpolated point on the curve.
  *
  * @group Interpolation
  */
 const interpolatePointOnCurveLinear =
   () =>
+  /**
+   * Interpolates a point on the given curve at the specified parameter `t`,
+   * where `t` is a value between 0 and 1 inclusive.
+   *
+   * @param {number} t - The parameter along the curve, typically between 0 and
+   * 1.
+   * @param {Curve} curve - The curve on which to interpolate the point.
+   * @returns {Point} The interpolated point on the curve.
+   */
   (t: number, curve: Curve): Point => {
     // Round the ratio to 10 decimal places to avoid rounding issues where the
     // number is fractionally over 1 or below 0
