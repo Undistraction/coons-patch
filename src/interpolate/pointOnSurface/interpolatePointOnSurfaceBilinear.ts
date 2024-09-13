@@ -35,6 +35,16 @@ const clampT = (t: number): number => Math.min(Math.max(t, 0), 1)
 // Exports
 // -----------------------------------------------------------------------------
 
+/**
+ * Interpolates a point on a surface using bilinear interpolation.
+ *
+ * @param {BoundingCurves} boundingCurves - The bounding curves of the surface.
+ * @param {number} u - The u-coordinate of the point on the surface.
+ * @param {number} v - The v-coordinate of the point on the surface.
+ * @param {InterpolatePointOnCurve} interpolatePointOnCurveU - The function to interpolate a point on the u-axis.
+ * @param {InterpolatePointOnCurve} interpolatePointOnCurveV - The function to interpolate a point on the v-axis.
+ * @returns {Point} - The interpolated point on the surface.
+ */
 const interpolatePointOnSurfaceBilinear = (
   { top, bottom, left, right }: BoundingCurves,
   u: number,

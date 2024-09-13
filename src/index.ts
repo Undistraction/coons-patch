@@ -1,7 +1,3 @@
-// -----------------------------------------------------------------------------
-// Re-export Types
-// -----------------------------------------------------------------------------
-
 import interpolatePointOnCurveEvenlySpaced from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpaced'
 import interpolatePointOnSurfaceBilinear from './interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
 import { BoundingCurves, CoonsPatchConfig } from './types'
