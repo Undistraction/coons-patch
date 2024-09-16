@@ -4,14 +4,16 @@ import { Curve, InterpolatePointOnCurve, Point, Points } from '../../types'
 import { times, timesReduce } from '../../utils/functional'
 import { getDistanceBetweenPoints, roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'
-import interpolatePointOnCurveLinear from './interpolatePointOnCurveLinear'
+import interpolatePointOnCurveLinearFactory from './interpolatePointOnCurveLinearFactory'
 // -----------------------------------------------------------------------------
 // Const
 // -----------------------------------------------------------------------------
 
 // The interpolation doesn't accept any config, but to keep its API consistent
 // it requires a call that returns the function we want.
-const interpolatePointOnCurveLinearWithConfig = interpolatePointOnCurveLinear()
+const interpolatePointOnCurveLinear = interpolatePointOnCurveLinearFactory()
+
+const PRECISION_DEFAULT = 20
 
 // -----------------------------------------------------------------------------
 // Utils
@@ -20,7 +22,7 @@ const interpolatePointOnCurveLinearWithConfig = interpolatePointOnCurveLinear()
 const getApproximatePointsOnCurve = (curve: Curve, precision: number) => {
   return times((idx) => {
     const ratio = idx / precision
-    return interpolatePointOnCurveLinearWithConfig(ratio, curve)
+    return interpolatePointOnCurveLinear(ratio, curve)
   }, precision + 1)
 }
 
@@ -53,7 +55,7 @@ const findClosestPointOnCurve = (
       const t =
         (previousIdx + (targetLength - lastPoint) / (point - lastPoint)) /
         precision
-      return interpolatePointOnCurveLinearWithConfig(t, curve)
+      return interpolatePointOnCurveLinear(t, curve)
     }
   }
   throw new Error(`Could not find point on curve`)
@@ -70,35 +72,36 @@ const getLutForCurve = memoize((curve, precision) => {
 // -----------------------------------------------------------------------------
 
 /**
- * Interpolates a point on a curve such that the points are evenly spaced.
+ * Factory function that receives a config object and returns a function for
+ * interpolating a point on a curve using an an algorithm that results in more
+ * evenly distributed points than the default implementation.
  *
  * @param {Object} config - Configuration options.
- * @param {number} config.precision - The number of points used to approximate
- * the curve. Increasing this number improves accuracy at the cost of
- * performance.
+ * @param {number} config.precision - The precision of the calculation used in determining the distribution of points. Increasing this number improves the
+ * accuracy at the cost of performance.
  * @returns {InterpolatePointOnCurve} A function that takes a parameter `t` and
  * a `curve`, and returns an interpolated point on the curve.
  *
  * @group Interpolation
  */
-const interpolatePointOnCurveEvenlySpaced =
-  (
-    // Get an approximation using an arbitrary number of points. Increase for
-    // more accuracy at cost of performance
-    config: { precision: number }
-  ): InterpolatePointOnCurve =>
+const interpolatePointOnCurveEvenlySpacedFactory = (
+  // Get an approximation using an arbitrary number of points. Increase for
+  // more accuracy at cost of performance
+  { precision }: { precision: number } = { precision: PRECISION_DEFAULT }
+): InterpolatePointOnCurve => {
   /**
    * Interpolates a point on the given curve at the specified parameter `t`,
-   * where `t` is a value between 0 and 1 inclusive.
+   * where `t` is a value between 0 and 1 inclusive using an an algorithm that * results in more evenly distributed points than the default implementation.
    *
    * @param {number} t - The parameter along the curve, typically between 0 and
    * 1.
    * @param {Curve} curve - The curve on which to interpolate the point.
    * @returns {Point} The interpolated point on the curve.
    */
-  (t: number, curve: Curve): Point => {
-    const { precision } = config
-
+  const interpolatePointOnCurveEvenlySpaced = (
+    t: number,
+    curve: Curve
+  ): Point => {
     // Round the ratio to 10 decimal places to avoid rounding issues where the
     // number is fractionally over 1 or below 0
     const tRounded = roundTo10(t)
@@ -113,4 +116,7 @@ const interpolatePointOnCurveEvenlySpaced =
     return findClosestPointOnCurve(lut, curve, targetLength, precision)
   }
 
-export default interpolatePointOnCurveEvenlySpaced
+  return interpolatePointOnCurveEvenlySpaced
+}
+
+export default interpolatePointOnCurveEvenlySpacedFactory

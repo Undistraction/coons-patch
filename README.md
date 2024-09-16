@@ -118,9 +118,9 @@ The two types of interpolation that can be supplied to `interpolatePointOnCurve`
 `interplolatePointOnCurveEvenlySpaced` (default) This is provides the most visually pleasing interplolation at a cost of performance. It uses a look-up table to perform interplation and results in a more even distribution of points. This function can be configured using a `precision` value. This improves tha accuracy of the interplation at the cost of performance. It defaults to `20`.
 
 ```typeScript
-import coonsPatch, { interpolatePointOnCurveEvenlySpaced } from 'coons-patch'
+import coonsPatch, { interpolatePointOnCurveEvenlySpacedFactory } from 'coons-patch'
 
-const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced({
+const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpacedFactory({
   precision: 25,
 })
 
@@ -133,12 +133,9 @@ coonsPatch(boundingCurves, 0.25, 0.9, {
 `interpolatePointOnCurveLinear` This is a much simpler type of interplolation, and results distribution of points being affected by the curvature of the bounds.
 
 ```typeScript
-import coonsPatch, { interpolatePointOnCurveLinear } from 'coons-patch'
+import coonsPatch, { interpolatePointOnCurveLinearFactory } from 'coons-patch'
 
-// Note that it doesn't accept a config object like
-// `interplolatePointOnCurveEvenlySpaced`, but this keeps the API
-// consistent.
-const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpaced()
+const interpolatePointOnCurve = interpolatePointOnCurveLinearFactory()
 
 coonsPatch(boundingCurves, 0.25, 0.9, {
   interpolatePointOnCurveU: interpolatePointOnCurve,
