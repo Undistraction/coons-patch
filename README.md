@@ -146,7 +146,7 @@ coonsPatch(boundingCurves, 0.25, 0.9, {
 Write your own interpolation function with this signature:
 
 ```typeScript
-(config: {precision: number}) => (t: number, curve: Curve): Point
+(t: number, curve: Curve): Point
 ```
 
 ### Dependencies

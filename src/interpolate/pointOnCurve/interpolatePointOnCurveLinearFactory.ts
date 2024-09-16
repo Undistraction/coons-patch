@@ -62,10 +62,7 @@ const interpolatePointOnCurveLinearFactory = () => {
     const tRounded = roundTo10(t)
     validateT(tRounded)
 
-    return {
-      ...interpolate(t, curve),
-      t,
-    }
+    return interpolate(t, curve)
   }
 
   return interpolatePointOnCurveLinear
