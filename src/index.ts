@@ -1,4 +1,4 @@
-import interpolatePointOnCurveEvenlySpaced from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpaced'
+import interpolatePointOnCurveEvenlySpacedFactory from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpacedFactory'
 import interpolatePointOnSurfaceBilinear from './interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
 import { BoundingCurves, CoonsPatchConfig } from './types'
 import { validateCoonsPatchArguments } from './utils/validation'
@@ -22,19 +22,16 @@ export * from './types'
 // Re-export Interpolation functions
 // -----------------------------------------------------------------------------
 
-export { default as interpolatePointOnCurveEvenlySpaced } from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpaced'
-export { default as interpolatePointOnCurveLinear } from './interpolate/pointOnCurve/interpolatePointOnCurveLinear'
+export { default as interpolatePointOnCurveEvenlySpacedFactory } from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpacedFactory'
+export { default as interpolatePointOnCurveLinearFactory } from './interpolate/pointOnCurve/interpolatePointOnCurveLinearFactory'
 export { default as interpolatePointOnSurfaceBilinear } from './interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
 
 // -----------------------------------------------------------------------------
 // Const
 // -----------------------------------------------------------------------------
 
-const PRECISION_DEFAULT = 20
-
-const interpolatePointOnCurveDefault = interpolatePointOnCurveEvenlySpaced({
-  precision: PRECISION_DEFAULT,
-})
+const interpolatePointOnCurveDefault =
+  interpolatePointOnCurveEvenlySpacedFactory()
 
 // -----------------------------------------------------------------------------
 // Exports
