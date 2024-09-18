@@ -2,16 +2,16 @@
 
 ### ⚠ BREAKING CHANGES
 
-* CHANGE
-* CHANGE
+- CHANGE
+- CHANGE
 
 ### Bug Fixes
 
-* Switch ts module type for single-file type export ([e48c928](https://github.com/undistraction/coons-patch/commit/e48c9288d4ca5efb83534fd011182df5e0ed76a7))
+- Switch ts module type for single-file type export ([e48c928](https://github.com/undistraction/coons-patch/commit/e48c9288d4ca5efb83534fd011182df5e0ed76a7))
 
 ### Miscellaneous Chores
 
-* Externalisation of modules ([80f4c26](https://github.com/undistraction/coons-patch/commit/80f4c26b3c0988b25b5f8076bb7a1315c87fbe13))
+- Externalisation of modules ([80f4c26](https://github.com/undistraction/coons-patch/commit/80f4c26b3c0988b25b5f8076bb7a1315c87fbe13))
 
 ## [1.8.2](https://github.com/undistraction/coons-patch/compare/v1.8.1...v1.8.2) (2024-08-01)
 

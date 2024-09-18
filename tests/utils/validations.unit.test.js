@@ -1,4 +1,4 @@
-import { interpolatePointOnCurveLinearFactory } from '../../dist'
+import { interpolatePointOnCurveLinearFactory } from '../../src'
 import {
   validateCoonsPatchArguments,
   validateT,

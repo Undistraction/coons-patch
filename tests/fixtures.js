@@ -1,4 +1,4 @@
-import { interpolatePointOnCurveLinearFactory } from '../dist/index.js'
+import { interpolatePointOnCurveLinearFactory } from '../src'
 
 // -----------------------------------------------------------------------------
 // Const
