@@ -16,7 +16,14 @@ import { validateCoonsPatchArguments } from './utils/validation'
 // Re-export types
 // -----------------------------------------------------------------------------
 
-export * from './types'
+export type {
+  BoundingCurves,
+  CoonsPatchConfig,
+  Curve,
+  InterpolatePointOnCurve,
+  InterpolatePointOnCurveFactory,
+  Point,
+} from './types'
 
 // -----------------------------------------------------------------------------
 // Re-export Interpolation functions
@@ -24,7 +31,6 @@ export * from './types'
 
 export { default as interpolatePointOnCurveEvenlySpacedFactory } from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpacedFactory'
 export { default as interpolatePointOnCurveLinearFactory } from './interpolate/pointOnCurve/interpolatePointOnCurveLinearFactory'
-export { default as interpolatePointOnSurfaceBilinear } from './interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
 
 // -----------------------------------------------------------------------------
 // Const

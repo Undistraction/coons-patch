@@ -1,4 +1,4 @@
-import { interpolatePointOnCurveLinear } from '../../dist'
+import { interpolatePointOnCurveLinearFactory } from '../../dist'
 import {
   validateCoonsPatchArguments,
   validateT,
@@ -37,8 +37,8 @@ describe(`validations`, () => {
           boundingCurvesValid,
           0.5,
           1,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).not.toThrow()
     })
@@ -49,8 +49,8 @@ describe(`validations`, () => {
           `abc`,
           0.5,
           1.1,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`boundingCurves must be an object, but it was 'abc'`)
     })
@@ -61,8 +61,8 @@ describe(`validations`, () => {
           boundingCurvesValid,
           `abc`,
           1,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`u value must be a number, but was 'abc'`)
     })
@@ -73,8 +73,8 @@ describe(`validations`, () => {
           boundingCurvesValid,
           1,
           `abc`,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`v value must be a number, but was 'abc'`)
     })
@@ -85,8 +85,8 @@ describe(`validations`, () => {
           boundingCurvesValid,
           -0.1,
           0.5,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`u value must be between 0 and 1, but was '-0.1'`)
     })
@@ -97,8 +97,8 @@ describe(`validations`, () => {
           boundingCurvesValid,
           1.1,
           0.5,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`u value must be between 0 and 1, but was '1.1'`)
     })
@@ -109,8 +109,8 @@ describe(`validations`, () => {
           boundingCurvesValid,
           0.5,
           -0.1,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`v value must be between 0 and 1, but was '-0.1'`)
     })
@@ -121,8 +121,8 @@ describe(`validations`, () => {
           boundingCurvesValid,
           0.5,
           1.1,
-          interpolatePointOnCurveLinear(),
-          interpolatePointOnCurveLinear(0)
+          interpolatePointOnCurveLinearFactory(),
+          interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`v value must be between 0 and 1, but was '1.1'`)
     })
