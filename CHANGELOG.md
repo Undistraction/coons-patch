@@ -2,17 +2,17 @@
 
 ### ⚠ BREAKING CHANGES
 
-* Major changes to the API
+- Major changes to the API
 
 ### Miscellaneous Chores
 
-* Force major version bump ([004e313](https://github.com/undistraction/coons-patch/commit/004e313c72042054876e3afa6781d61437339bcb))
+- Force major version bump ([004e313](https://github.com/undistraction/coons-patch/commit/004e313c72042054876e3afa6781d61437339bcb))
 
 ## [1.9.0](https://github.com/undistraction/coons-patch/compare/v1.8.3...v1.9.0) (2024-09-18)
 
 ### ⚠ BREAKING CHANGES
 
-- CHANGE
+- Major API changes
 
 ### Features
 
@@ -51,10 +51,6 @@
 
 ## [1.8.0](https://github.com/undistraction/coons-patch/compare/v1.7.1...v1.8.0) (2024-08-01)
 
-### ⚠ BREAKING CHANGES
-
-- CHANGE
-
 ### Features
 
 - Force package deploy ([69cab51](https://github.com/undistraction/coons-patch/commit/69cab51747200c6cf607a00cd4840f8a5fd00c3a))
@@ -73,10 +69,6 @@
 
 ## [1.6.0](https://github.com/undistraction/coons-patch/compare/v1.5.0...v1.6.0) (2024-08-01)
 
-### ⚠ BREAKING CHANGES
-
-- CHANGE
-
 ### Features
 
 - API changes ([7ef5251](https://github.com/undistraction/coons-patch/commit/7ef52511b1bf83efdf1b5e9ccc13be8ac9e0c4ea))
@@ -87,10 +79,6 @@
 - Matrix-js typings ([cbe5eb7](https://github.com/undistraction/coons-patch/commit/cbe5eb7c4703d0b62f87f654b7f6d3ece1cf9a6f))
 
 ## [1.5.0](https://github.com/undistraction/coons-patch/compare/v1.4.0...v1.5.0) (2024-07-30)
-
-### ⚠ BREAKING CHANGES
-
-- CHANGE
 
 ### Features
 
