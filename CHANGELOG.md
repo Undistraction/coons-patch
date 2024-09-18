@@ -1,3 +1,17 @@
+## [1.9.0](https://github.com/undistraction/coons-patch/compare/v1.8.3...v1.9.0) (2024-09-18)
+
+### ⚠ BREAKING CHANGES
+
+* CHANGE
+
+### Features
+
+* Reduce API in favour of warp-grid ([d86cfb6](https://github.com/undistraction/coons-patch/commit/d86cfb68a6202894d7c76697bc420b364468d9df))
+
+### Bug Fixes
+
+* Bad imports in tests ([da0ba46](https://github.com/undistraction/coons-patch/commit/da0ba46da19e72cad0d24319db93e4d479012716))
+
 ## [1.8.3](https://github.com/undistraction/coons-patch/compare/v1.8.2...v1.8.3) (2024-08-05)
 
 ### ⚠ BREAKING CHANGES
