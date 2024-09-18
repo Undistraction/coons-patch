@@ -23,6 +23,7 @@ export type {
   InterpolatePointOnCurve,
   InterpolatePointOnCurveFactory,
   Point,
+  Points,
 } from './types'
 
 // -----------------------------------------------------------------------------
