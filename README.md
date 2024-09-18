@@ -214,7 +214,7 @@ pnpm run docs
 
 ### View the generated docs
 
-```
+```bash
 pnpm run docs-view
 ```
 
