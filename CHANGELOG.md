@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/undistraction/coons-patch/compare/v2.0.0...v2.0.1) (2024-09-18)
+
+### Bug Fixes
+
+* Add back missing export ([b1bc912](https://github.com/undistraction/coons-patch/commit/b1bc912f62271857f5f6116836b2eb0d3c949312))
+
 ## [2.0.0](https://github.com/undistraction/coons-patch/compare/v1.9.0...v2.0.0) (2024-09-18)
 
 ### ⚠ BREAKING CHANGES
