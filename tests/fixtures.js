@@ -1,4 +1,4 @@
-import { interpolatePointOnCurveLinear } from '../dist/index.js'
+import { interpolatePointOnCurveLinearFactory } from '../dist/index.js'
 
 // -----------------------------------------------------------------------------
 // Const
@@ -60,8 +60,8 @@ const fixtures = [
           0.25,
           0.5,
           {
-            interpolatePointOnCurveU: interpolatePointOnCurveLinear(),
-            interpolatePointOnCurveV: interpolatePointOnCurveLinear(),
+            interpolatePointOnCurveU: interpolatePointOnCurveLinearFactory(),
+            interpolatePointOnCurveV: interpolatePointOnCurveLinearFactory(),
           },
         ],
       },
@@ -78,7 +78,7 @@ const fixtures = [
           0.25,
           0.5,
           {
-            interpolatePointOnCurveU: interpolatePointOnCurveLinear(),
+            interpolatePointOnCurveU: interpolatePointOnCurveLinearFactory(),
           },
         ],
       },
