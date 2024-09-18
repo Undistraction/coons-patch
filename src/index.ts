@@ -31,6 +31,7 @@ export type {
 
 export { default as interpolatePointOnCurveEvenlySpacedFactory } from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpacedFactory'
 export { default as interpolatePointOnCurveLinearFactory } from './interpolate/pointOnCurve/interpolatePointOnCurveLinearFactory'
+export { default as interpolatePointOnSurfaceBilinear } from './interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
 
 // -----------------------------------------------------------------------------
 // Const
