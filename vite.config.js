@@ -3,6 +3,8 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
+import packageJson from './package.json'
+
 // -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
@@ -29,7 +31,8 @@ export default defineConfig(() => {
         },
       },
       rollupOptions: {
-        external: [`fast-memoize`, `matrix-js`],
+        // Pull a list of externals from package.json's dependencies
+        external: Object.keys(packageJson.dependencies),
       },
     },
     plugins: [
