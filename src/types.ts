@@ -24,15 +24,24 @@ export interface Curve {
 }
 
 export interface BoundingCurves {
-  [key: string]: Curve
+  top: Curve
+  bottom: Curve
+  left: Curve
+  right: Curve
 }
 
 export interface BoundaryPoints {
-  [key: string]: Point
+  top: Point
+  bottom: Point
+  left: Point
+  right: Point
 }
 
 export interface CornerPoints {
-  [key: string]: Point
+  topLeft: Point
+  topRight: Point
+  bottomLeft: Point
+  bottomRight: Point
 }
 
 // -----------------------------------------------------------------------------
