@@ -1,8 +1,14 @@
+## [2.0.4](https://github.com/undistraction/coons-patch/compare/v2.0.3...v2.0.4) (2024-09-19)
+
+### Bug Fixes
+
+* Tighten typings ([a27cea1](https://github.com/undistraction/coons-patch/commit/a27cea1720f328894a755e42a052dded39e18e63))
+
 ## [2.0.3](https://github.com/undistraction/coons-patch/compare/v2.0.2...v2.0.3) (2024-09-19)
 
 ### Bug Fixes
 
-* Publish typings changes from previous commit ([9381577](https://github.com/undistraction/coons-patch/commit/938157781f9b355b60effdd0720bae8b13f77a0b))
+- Publish typings changes from previous commit ([9381577](https://github.com/undistraction/coons-patch/commit/938157781f9b355b60effdd0720bae8b13f77a0b))
 
 ## [2.0.2](https://github.com/undistraction/coons-patch/compare/v2.0.1...v2.0.2) (2024-09-18)
 
