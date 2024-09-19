@@ -1,8 +1,14 @@
+## [2.0.3](https://github.com/undistraction/coons-patch/compare/v2.0.2...v2.0.3) (2024-09-19)
+
+### Bug Fixes
+
+* Publish typings changes from previous commit ([9381577](https://github.com/undistraction/coons-patch/commit/938157781f9b355b60effdd0720bae8b13f77a0b))
+
 ## [2.0.2](https://github.com/undistraction/coons-patch/compare/v2.0.1...v2.0.2) (2024-09-18)
 
 ### Bug Fixes
 
-* Add missing Points type export ([65909f2](https://github.com/undistraction/coons-patch/commit/65909f294449fc08118de67e65f30e255f3c80d6))
+- Add missing Points type export ([65909f2](https://github.com/undistraction/coons-patch/commit/65909f294449fc08118de67e65f30e255f3c80d6))
 
 ## [2.0.1](https://github.com/undistraction/coons-patch/compare/v2.0.0...v2.0.1) (2024-09-18)
 
