@@ -53,13 +53,7 @@ const interpolatePointOnCurveDefault =
  * define the surface boundaries.
  * @param {number} u - The parameter along the first dimension (0–1).
  * @param {number} v - The parameter along the second dimension (0–1).
- * @param {Object} [config] - Configuration object.
- * @param {Function}
- * [config.interpolatePointOnCurveU=interpolatePointOnCurveDefault] - A function
- * to interpolate points along the U axis.
- * @param {Function}
- * [config.interpolatePointOnCurveV=interpolatePointOnCurveDefault] - A function
- * to interpolate points along the V axis.
+ * @param {CoonsPatchConfig} [config] - Configuration object.
  * @returns {Point} The interpolated point on the surface.
  * @throws {Error} If the arguments are invalid.
  *

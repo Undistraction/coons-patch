@@ -14,7 +14,6 @@ export enum Coordinate {
 export interface Point {
   x: number
   y: number
-  t?: number
 }
 
 export interface Curve {
@@ -25,24 +24,15 @@ export interface Curve {
 }
 
 export interface BoundingCurves {
-  top: Curve
-  bottom: Curve
-  left: Curve
-  right: Curve
+  [key: string]: Curve
 }
 
 export interface BoundaryPoints {
-  top: Point
-  bottom: Point
-  left: Point
-  right: Point
+  [key: string]: Point
 }
 
 export interface CornerPoints {
-  topLeft: Point
-  topRight: Point
-  bottomLeft: Point
-  bottomRight: Point
+  [key: string]: Point
 }
 
 // -----------------------------------------------------------------------------
