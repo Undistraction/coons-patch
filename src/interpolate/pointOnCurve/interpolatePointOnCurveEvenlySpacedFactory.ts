@@ -1,6 +1,6 @@
 import memoize from 'fast-memoize'
 
-import { Curve, InterpolatePointOnCurve, Point, Points } from '../../types'
+import type { Curve, InterpolatePointOnCurve, Point, Points } from '../../types'
 import { times, timesReduce } from '../../utils/functional'
 import { getDistanceBetweenPoints, roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'

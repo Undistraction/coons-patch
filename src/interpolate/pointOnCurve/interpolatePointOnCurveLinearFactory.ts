@@ -1,4 +1,4 @@
-import { Curve, Point } from '../../types'
+import type { Curve, Point } from '../../types'
 import { roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'
 

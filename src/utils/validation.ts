@@ -1,4 +1,9 @@
-import { BoundingCurves, Curve, InterpolatePointOnCurve, Point } from '../types'
+import type {
+  BoundingCurves,
+  Curve,
+  InterpolatePointOnCurve,
+  Point,
+} from '../types'
 import { mapObj } from './functional'
 import { isFunction, isNumber, isPlainObj } from './is'
 import { roundTo5 } from './math'

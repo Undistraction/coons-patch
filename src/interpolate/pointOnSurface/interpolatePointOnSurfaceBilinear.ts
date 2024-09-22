@@ -1,10 +1,10 @@
-import {
+import type {
   BoundingCurves,
-  Coordinate,
   GetCoordinateOnSurfaceConfig,
   InterpolatePointOnCurve,
   Point,
 } from '../../types'
+import { Coordinate } from '../../types'
 
 // -----------------------------------------------------------------------------
 // Utils

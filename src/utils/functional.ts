@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // These are very general-purpose functions, so any is appropriate here.
 
-import { ObjectWithStringKeys } from '../types'
+import type { ObjectWithStringKeys } from '../types'
 
 // -----------------------------------------------------------------------------
 // Exports
