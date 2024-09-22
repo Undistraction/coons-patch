@@ -6,6 +6,7 @@
 <p align="center">
 
 ![NPM Version](https://img.shields.io/npm/v/coons-patch)
+![License](https://img.shields.io/badge/license-MIT-blue)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/undistraction/coons-patch/release.yml)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
