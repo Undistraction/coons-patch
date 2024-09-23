@@ -5,65 +5,75 @@
 module.exports = {
   env: {
     browser: true,
-    node: true,
     es6: true,
-    'vitest/env': true,
+    node: true,
+  },
+  // Use the TypeScript parser
+  parser: `@typescript-eslint/parser`,
+  parserOptions: {
+    // Allow up to ES2020 syntax (see 'target' in tsconfig.json)
+    ecmaVersion: 2020,
+    // Imports will be ESModule imports
+    sourcetype: `module`,
   },
 
   settings: {
+    // We have some .js config files so include them
+    files: [`*.ts`, `*.tsx`, `*.js`],
+    // Tell the import plugin's parser which imports to parse
     'import/parsers': {
-      '@typescript-eslint/parser': [`.ts`, `.tsx`],
+      '@typescript-eslint/parser': [`.ts`, `.tsx`, `.js`],
     },
+    // Configure the import plugin's TypeScript resolver
     'import/resolver': {
-      node: true,
       typescript: {
+        // Try to resolve typescript files from @types directory
         alwaysTryTypes: true,
       },
     },
   },
 
-  parser: `@typescript-eslint/parser`,
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourcetype: `module`,
-  },
-
   extends: [
     `eslint:recommended`,
+    `plugin:@typescript-eslint/eslint-recommended`,
     `plugin:@typescript-eslint/recommended`,
     `plugin:import/recommended`,
-    `plugin:import/typescript`,
-    `plugin:prettier/recommended`,
   ],
 
   plugins: [
-    `unused-imports`,
     `simple-import-sort`,
     `import`,
     `@typescript-eslint`,
+    `unused-imports`,
+    `ramda`,
   ],
 
-  ignorePatterns: [
-    // Packages
-    `/node_modules/*`,
-    `**pnpm-lock.yaml`,
-    // Build artifacts
-    `/dist/`,
-    `/docs/`,
-    `**CHANGELOG.md`,
-    // Test artifacts
-    `**/coverage/*`,
-  ],
+  // Ignore these files and dirs
+  ignorePatterns: [`coverage/`, `node_modules/`, `dist/`, `docs`],
 
   rules: {
     // -------------------------------------------------------------------------
-    // Unused imports
+    // Generic
     // -------------------------------------------------------------------------
+
+    quotes: [
+      `error`,
+      `backtick`,
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
+
+    // Recommended to disable on TypeScript projects. See:
+    // https://typescript-eslint.io/troubleshooting/faqs/eslint/#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+    'no-undef': [`off`],
+
+    // ---------------------------------------------------------------------
+    // Unused imports
+    // ---------------------------------------------------------------------
 
     '@typescript-eslint/no-unused-vars': `off`,
     'unused-imports/no-unused-imports': `error`,
     'unused-imports/no-unused-vars': [
-      `warn`,
+      `error`,
       {
         vars: `all`,
         varsIgnorePattern: `^_`,
@@ -73,25 +83,23 @@ module.exports = {
     ],
 
     // -------------------------------------------------------------------------
-    // Generic
-    // -------------------------------------------------------------------------
-    quotes: [
-      `error`,
-      `backtick`,
-      { avoidEscape: true, allowTemplateLiterals: true },
-    ],
-
-    // -------------------------------------------------------------------------
     // Imports
     // -------------------------------------------------------------------------
+
     'simple-import-sort/imports': `error`,
     'simple-import-sort/exports': `error`,
   },
 
+  // Use vitest when running on files in the tests directory
   overrides: [
-    // Use vitest when running on files in the tests directory
+    // -------------------------------------------------------------------------
+    // Run these rules only in unit tests
+    // -------------------------------------------------------------------------
     {
-      files: [`tests/**/*.js`],
+      env: {
+        'vitest/env': true,
+      },
+      files: [`tests/unit/**/*.unit.test.js`, `tests/unit/setup.js`],
       plugins: [`vitest`],
       rules: {
         'vitest/consistent-test-filename': [
@@ -107,10 +115,10 @@ module.exports = {
           },
         ],
         'vitest/expect-expect': `error`,
-        'vitest/no-commented-out-tests': `error`,
-        'vitest/no-disabled-tests': `error`,
+        'vitest/no-commented-out-tests': `warn`,
+        'vitest/no-disabled-tests': `warn`,
         'vitest/no-duplicate-hooks': `error`,
-        'vitest/no-focused-tests': `error`,
+        'vitest/no-focused-tests': `warn`,
         'vitest/no-identical-title': `error`,
         'vitest/no-standalone-expect': `error`,
         'vitest/no-test-return-statement': `error`,

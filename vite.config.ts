@@ -6,6 +6,24 @@ import dts from 'vite-plugin-dts'
 import packageJson from './package.json'
 
 // -----------------------------------------------------------------------------
+// Const
+// -----------------------------------------------------------------------------
+
+enum FileExtension {
+  ES = `es`,
+  CJS = `cjs`,
+}
+
+const entry = resolve(__dirname, `src/index.ts`)
+
+if (!entry) {
+  throw new Error(`Entry file not found`)
+}
+
+// Pull a list of externals from package.json's dependencies
+const external = Object.keys(packageJson.dependencies)
+
+// -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
 
@@ -17,22 +35,22 @@ export default defineConfig(() => {
       minify: false,
       sourcemap: true,
       lib: {
-        entry: resolve(__dirname, `src/index.ts`),
+        entry,
         name: `Coons Patch`,
-        formats: [`es`, `cjs`],
+        formats: [FileExtension.ES, FileExtension.CJS],
         // Choose names for build artifacts
         fileName: (format) => {
-          if (format === `es`) {
+          if (format === FileExtension.ES) {
             return `index.js`
           }
-          if (format === `cjs`) {
+          if (format === FileExtension.CJS) {
             return `index.cjs`
           }
+          throw new Error(`Unknown format: '${format}'`)
         },
       },
       rollupOptions: {
-        // Pull a list of externals from package.json's dependencies
-        external: Object.keys(packageJson.dependencies),
+        external,
       },
     },
     plugins: [

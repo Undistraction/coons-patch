@@ -1,3 +1,7 @@
+// -----------------------------------------------------------------------------
+// Exports
+// -----------------------------------------------------------------------------
+
 export default {
   // config-conventional is based on Conventional Commit:
   // https://conventionalcommits.org/

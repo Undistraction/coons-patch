@@ -1,5 +1,9 @@
 import { defineConfig } from 'vitest/config'
 
+// -----------------------------------------------------------------------------
+// Exports
+// -----------------------------------------------------------------------------
+
 export default defineConfig({
   test: {
     globals: true,
