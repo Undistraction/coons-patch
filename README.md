@@ -1,8 +1,8 @@
+![graphic representation of a coons-patch](readme/coons-patch-title-image.png)
+
 <h1 align="center">
  Coons Patch
 </h1>
-
-![graphic representation of a coons-patch](readme/title-image.png)
 
 <p align="center">
 
@@ -13,7 +13,7 @@
 
 </p>
 
-A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a kind of four-sided surface defined by four straight or curved edges, and this package provides a small API for creating a coons-patch and locating points on that surface.
+A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a four-sided surface defined by four straight or curved edges. This package provides a small API for creating a coons-patch and locating points on that surface.
 
 Another package: [warp-grid](https://github.com/Undistraction/warp-grid) which supplies a greatly extended API build on-top of this package for modeling complex grids and might be more useful depending on your usecase.
 
