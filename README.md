@@ -1,8 +1,9 @@
-# README
-
 <h1 align="center">
  Coons Patch
 </h1>
+
+![graphic representation of a coons-patch](readme/title-image.png)
+
 <p align="center">
 
 ![NPM Version](https://img.shields.io/npm/v/coons-patch)
