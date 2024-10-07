@@ -1,4 +1,5 @@
 name: Shared setup
+
 on: [workflow_call]
 
 jobs:
