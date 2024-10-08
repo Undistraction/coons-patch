@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
       - uses: pnpm/action-setup@v4
       - run: pnpm install
       - name: Lint
@@ -23,6 +25,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
       - uses: pnpm/action-setup@v4
       - run: pnpm install
       - name: Test
@@ -34,6 +38,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
       - uses: pnpm/action-setup@v4
       - run: pnpm install
       - name: Build
@@ -46,6 +52,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
       - uses: pnpm/action-setup@v4
       - run: pnpm install
       - name: Release
