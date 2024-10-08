@@ -7,15 +7,29 @@ permissions:
   pull-requests: write
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
   lint:
     runs-on: ubuntu-latest
+    needs: [setup]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
-      - run: pnpm install
+          cache: 'pnpm'
       - name: Lint
         run: pnpm run lint
 
@@ -27,8 +41,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
-      - run: pnpm install
+          cache: 'pnpm'
       - name: Test
         run: pnpm run test
 
@@ -40,8 +53,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
-      - run: pnpm install
+          cache: 'pnpm'
       - name: Build
         run: pnpm run build
 
@@ -54,8 +66,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - uses: pnpm/action-setup@v4
-      - run: pnpm install
+          cache: 'pnpm'
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
