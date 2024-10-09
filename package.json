@@ -85,7 +85,7 @@
     "prop-types": "^15.8.1",
     "semantic-release": "^24.0.0",
     "typedoc": "^0.26.5",
-    "typescript": "5.6.2",
+    "typescript": "5.6.3",
     "vite": "^5.3.3",
     "vite-plugin-dts": "3.9.1",
     "vitest": "^2.0.5"
