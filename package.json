@@ -44,7 +44,8 @@
     "docs": "typedoc",
     "docs-open": "open ./docs/index.html",
     "release-preview": "semantic-release --no-ci --dry-run --debug",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "audit-npm-packages": "audit-ci --config ./audit-ci.jsonc"
   },
   "keywords": [
     "coons patch",
@@ -65,6 +66,7 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitest/coverage-v8": "^2.0.5",
+    "audit-ci": "^7.1.0",
     "commitlint": "^19.3.0",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
@@ -92,10 +94,5 @@
   },
   "dependencies": {
     "fast-memoize": "^2.5.2"
-  },
-  "pnpm": {
-    "overrides": {
-      "conventional-changelog-conventionalcommits": ">= 8.0.0"
-    }
   }
 }
