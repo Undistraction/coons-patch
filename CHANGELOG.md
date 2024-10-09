@@ -1,3 +1,9 @@
+## [2.0.5](https://github.com/undistraction/coons-patch/compare/v2.0.4...v2.0.5) (2024-10-09)
+
+### Bug Fixes
+
+* Missing checkout step in audit job ([aebcf14](https://github.com/undistraction/coons-patch/commit/aebcf14c2665d08efc586a53213605b85d1b6b33))
+
 ## [2.0.4](https://github.com/undistraction/coons-patch/compare/v2.0.3...v2.0.4) (2024-09-19)
 
 ### Bug Fixes
