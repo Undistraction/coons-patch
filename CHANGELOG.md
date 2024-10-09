@@ -2,7 +2,7 @@
 
 ### Bug Fixes
 
-* Tighten typings ([a27cea1](https://github.com/undistraction/coons-patch/commit/a27cea1720f328894a755e42a052dded39e18e63))
+- Tighten typings ([a27cea1](https://github.com/undistraction/coons-patch/commit/a27cea1720f328894a755e42a052dded39e18e63))
 
 ## [2.0.3](https://github.com/undistraction/coons-patch/compare/v2.0.2...v2.0.3) (2024-09-19)
 
