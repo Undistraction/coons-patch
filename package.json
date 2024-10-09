@@ -74,7 +74,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-ramda": "^2.5.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-unused-imports": "3.2.0",
+    "eslint-plugin-unused-imports": "4.1.4",
     "eslint-plugin-vitest": "^0.4.1",
     "globals": "^15.8.0",
     "husky": "^9.0.11",
