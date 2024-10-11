@@ -241,6 +241,7 @@ Unit tests use vitest.
 pnpm run test # Run tests once
 pnpm run test-watch # Run tests and watch for changes
 pnpm run test-coverage # Run tests and output a coverage report
+pnpm run test-snapshot # Regenerate snapshots
 ```
 
 ### Lint

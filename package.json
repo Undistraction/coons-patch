@@ -35,6 +35,7 @@
     "test": "vitest run",
     "test-watch": "vitest",
     "test-coverage": "vitest run --coverage",
+    "test-snapshot": "vitest run -u",
     "lint": "pnpm run lint-prettier && pnpm run lint-eslint",
     "lint-prettier": "prettier . --write",
     "lint-eslint": "eslint './**/*.{ts,js,cjs}' --fix",
