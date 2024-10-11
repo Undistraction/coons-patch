@@ -41,8 +41,6 @@ export const boundingCurvesValid = {
 const fixtures = [
   {
     name: `Arbitrary point`,
-    skipSnapshot: true,
-    skipTest: false,
     input: {
       coonsPatch: {
         args: [boundingCurvesValid, 0.25, 0.5],
@@ -51,8 +49,6 @@ const fixtures = [
   },
   {
     name: `Arbitrary point with linear interpolatePointOnCurve`,
-    skipSnapshot: true,
-    skipTest: false,
     input: {
       coonsPatch: {
         args: [
@@ -69,8 +65,6 @@ const fixtures = [
   },
   {
     name: `Arbitrary point with different interpolations for each axis`,
-    skipSnapshot: false,
-    skipTest: false,
     input: {
       coonsPatch: {
         args: [

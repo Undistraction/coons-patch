@@ -243,16 +243,6 @@ pnpm run test-watch # Run tests and watch for changes
 pnpm run test-coverage # Run tests and output a coverage report
 ```
 
-The tests use snapshots of the data as test fixtures. These snapshots are generated using:
-
-```bash
-pnpm run test-snapshot
-```
-
-This will generate data for all of the fixure definitions that are defined in `./tests/fixtures.js`. This command should only be run when absolutely necessary as the current snapshots capture the verified working state of the data.
-
-To add new fixtures, add new definitions to `./tests/fixtures.js`.
-
 ### Lint
 
 ```bash

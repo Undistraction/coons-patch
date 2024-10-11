@@ -1,6 +1,5 @@
 import coonsPatch from '../src'
 import fixtures, { boundingCurvesValid } from './fixtures'
-import { loadFixtureData } from './helpers'
 import testValidationOfBoundingCurveArgs from './shared/testValidationOfBoundingCurveArgs'
 
 // -----------------------------------------------------------------------------
@@ -99,15 +98,9 @@ describe(`coonsPatch`, () => {
       })
     })
 
-    describe.each(fixtures)(`fixture: '$name'`, ({ name, input }) => {
-      let output
-
-      beforeAll(async () => {
-        output = await loadFixtureData(name)
-      })
-
+    describe.each(fixtures)(`fixture: '$name'`, ({ input }) => {
       it(`returns the correct data`, () => {
-        expect(coonsPatch(...input.coonsPatch.args)).toEqual(output.point)
+        expect(coonsPatch(...input.coonsPatch.args)).toMatchSnapshot()
       })
     })
   })
