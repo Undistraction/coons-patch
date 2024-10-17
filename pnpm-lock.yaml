@@ -112,8 +112,8 @@ importers:
         specifier: ^5.3.3
         version: 5.4.8(@types/node@20.16.12)
       vite-plugin-dts:
-        specifier: 4.2.3
-        version: 4.2.3(@types/node@20.16.12)(rollup@4.24.0)(typescript@5.6.3)(vite@5.4.8(@types/node@20.16.12))
+        specifier: 4.2.4
+        version: 4.2.4(@types/node@20.16.12)(rollup@4.24.0)(typescript@5.6.3)(vite@5.4.8(@types/node@20.16.12))
       vitest:
         specifier: ^2.0.5
         version: 2.1.2(@types/node@20.16.12)(jsdom@20.0.3)
@@ -4152,8 +4152,8 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
-  vite-plugin-dts@4.2.3:
-    resolution: {integrity: sha512-O5NalzHANQRwVw1xj8KQun3Bv8OSDAlNJXrnqoAz10BOuW8FVvY5g4ygj+DlJZL5mtSPuMu9vd3OfrdW5d4k6w==}
+  vite-plugin-dts@4.2.4:
+    resolution: {integrity: sha512-REcYoxO90Pi8c0P1J7XAa/nVwNVGkX2eYkBEIfFSfcKE4g1W8sB0R23a7SU3aLEMfdOdb0SVHq3JlJ+Qb6gjgA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       typescript: '*'
@@ -4466,7 +4466,6 @@ snapshots:
   '@babel/parser@7.25.8':
     dependencies:
       '@babel/types': 7.25.8
-    optional: true
 
   '@babel/plugin-syntax-async-generators@7.8.4(@babel/core@7.25.8)':
     dependencies:
@@ -4601,7 +4600,6 @@ snapshots:
       '@babel/helper-string-parser': 7.25.7
       '@babel/helper-validator-identifier': 7.25.7
       to-fast-properties: 2.0.0
-    optional: true
 
   '@bcoe/v8-coverage@0.2.3': {}
 
@@ -5636,7 +5634,7 @@ snapshots:
 
   '@vue/compiler-core@3.4.35':
     dependencies:
-      '@babel/parser': 7.25.7
+      '@babel/parser': 7.25.8
       '@vue/shared': 3.4.35
       entities: 4.5.0
       estree-walker: 2.0.2
@@ -5692,8 +5690,7 @@ snapshots:
 
   acorn@8.12.1: {}
 
-  acorn@8.13.0:
-    optional: true
+  acorn@8.13.0: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -8048,7 +8045,7 @@ snapshots:
 
   mlly@1.7.2:
     dependencies:
-      acorn: 8.12.1
+      acorn: 8.13.0
       pathe: 1.1.2
       pkg-types: 1.2.1
       ufo: 1.5.4
@@ -9134,7 +9131,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-dts@4.2.3(@types/node@20.16.12)(rollup@4.24.0)(typescript@5.6.3)(vite@5.4.8(@types/node@20.16.12)):
+  vite-plugin-dts@4.2.4(@types/node@20.16.12)(rollup@4.24.0)(typescript@5.6.3)(vite@5.4.8(@types/node@20.16.12)):
     dependencies:
       '@microsoft/api-extractor': 7.47.7(@types/node@20.16.12)
       '@rollup/pluginutils': 5.1.0(rollup@4.24.0)
