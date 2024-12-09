@@ -10,12 +10,12 @@
   },
   "packageRules": [
     {
-      "groupName": "devDependencies",
+      "groupName": "Dev Dependencies",
       "matchUpdateTypes": ["minor", "patch"],
       "depTypeList": ["devDependencies"]
     },
     {
-      "groupName": "dependencies",
+      "groupName": "Dependencies",
       "matchUpdateTypes": ["minor", "patch"],
       "depTypeList": ["dependencies"]
     }
