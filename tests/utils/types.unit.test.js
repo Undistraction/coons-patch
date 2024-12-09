@@ -10,6 +10,18 @@ import {
   isUndefined,
 } from '../../src/utils/is'
 
+// -----------------------------------------------------------------------------
+// Const
+// -----------------------------------------------------------------------------
+
+const func = () => {
+  // No op
+}
+
+// -----------------------------------------------------------------------------
+// Tests
+// -----------------------------------------------------------------------------
+
 describe(`types`, () => {
   describe(`isInt`, () => {
     it(`returns true if argument is an int`, () => {
@@ -33,7 +45,7 @@ describe(`types`, () => {
       expect(isInt(`abc`)).toBeFalse()
       expect(isInt(``)).toBeFalse()
       expect(isInt(/abc/)).toBeFalse()
-      expect(isInt(() => {})).toBeFalse()
+      expect(isInt(func)).toBeFalse()
     })
   })
 
@@ -59,7 +71,7 @@ describe(`types`, () => {
       expect(isNumber(`abc`)).toBeFalse()
       expect(isNumber(``)).toBeFalse()
       expect(isNumber(/abc/)).toBeFalse()
-      expect(isNumber(() => {})).toBeFalse()
+      expect(isNumber(func)).toBeFalse()
     })
   })
 
@@ -81,7 +93,7 @@ describe(`types`, () => {
       expect(isUndefined(1)).toBeFalse()
       expect(isUndefined([])).toBeFalse()
       expect(isUndefined({})).toBeFalse()
-      expect(isUndefined(() => {})).toBeFalse()
+      expect(isUndefined(func)).toBeFalse()
     })
   })
 
@@ -103,7 +115,7 @@ describe(`types`, () => {
       expect(isNull(/abc/)).toBeFalse()
       expect(isNull(0.1)).toBeFalse()
       expect(isNull(1)).toBeFalse()
-      expect(isNull(() => {})).toBeFalse()
+      expect(isNull(func)).toBeFalse()
     })
   })
 
@@ -125,7 +137,7 @@ describe(`types`, () => {
       expect(isNil(1)).toBeFalse()
       expect(isNil([])).toBeFalse()
       expect(isNil({})).toBeFalse()
-      expect(isNil(() => {})).toBeFalse()
+      expect(isNil(func)).toBeFalse()
     })
   })
 
@@ -148,7 +160,7 @@ describe(`types`, () => {
       expect(isString(1)).toBeFalse()
       expect(isString([])).toBeFalse()
       expect(isString({})).toBeFalse()
-      expect(isString(() => {})).toBeFalse()
+      expect(isString(func)).toBeFalse()
     })
   })
 
@@ -170,7 +182,7 @@ describe(`types`, () => {
       expect(isArray(123)).toBeFalse()
       expect(isArray(/abc/)).toBeFalse()
       expect(isArray({})).toBeFalse()
-      expect(isArray(() => {})).toBeFalse()
+      expect(isArray(func)).toBeFalse()
     })
   })
 
@@ -192,13 +204,13 @@ describe(`types`, () => {
       expect(isPlainObj(123)).toBeFalse()
       expect(isPlainObj([])).toBeFalse()
       expect(isPlainObj(/abc/)).toBeFalse()
-      expect(isPlainObj(() => {})).toBeFalse()
+      expect(isPlainObj(func)).toBeFalse()
     })
   })
 
   describe(`isFunction`, () => {
     it(`returns true if argument is a function`, () => {
-      expect(isFunction(() => {})).toBeTrue()
+      expect(isFunction(func)).toBeTrue()
     })
 
     it(`returns false if argument is not a function`, () => {

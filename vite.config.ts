@@ -1,5 +1,4 @@
 import { resolve } from 'path'
-// eslint-disable-next-line
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 

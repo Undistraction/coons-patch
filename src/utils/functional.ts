@@ -33,7 +33,7 @@ export const timesReduce = <T>(
 export const mapObj = <T>(
   f: (value: any, key: string, idx: number) => T,
   o: ObjectWithStringKeys
-): { [key: string]: T } => {
+): Record<string, T> => {
   return Object.keys(o).reduce((acc, key, idx) => {
     const value = o[key]
     return {

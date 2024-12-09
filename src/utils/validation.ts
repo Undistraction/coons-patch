@@ -133,7 +133,7 @@ const validateUV = (u: number, v: number): void => {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 const validateFunction = (func: Function, name: string): void => {
   if (!isFunction(func)) {
     throw new Error(`${name} must be a function`)
