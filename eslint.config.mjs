@@ -4,6 +4,7 @@ import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import globals from 'globals'
 import vitestPlugin from '@vitest/eslint-plugin'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 // -----------------------------------------------------------------------------
 // Exports
@@ -13,6 +14,7 @@ export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strict,
   tseslint.configs.stylistic,
+  eslintPluginPrettierRecommended,
   // Global ignores
   {
     ignores: [`coverage/*`, `node_modules/*`, `dist/*`, `docs/*`],

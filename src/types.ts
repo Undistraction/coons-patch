@@ -72,7 +72,7 @@ export interface CoonsPatchConfig {
 export type Points = Point[]
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export type ObjectWithStringKeys = Record<string, any>;
+export type ObjectWithStringKeys = Record<string, any>
 
 // -----------------------------------------------------------------------------
 // Types: Function signatures
