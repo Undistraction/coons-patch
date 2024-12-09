@@ -3,6 +3,7 @@
   "extends": ["config:recommended", ":semanticCommits"],
   "separateMinorPatch": true,
   "commitMessageAction": "Update",
+  "commitMessageLowerCase": "never",
   "labels": ["dependencies"],
   "lockFileMaintenance": {
     "enabled": true,
