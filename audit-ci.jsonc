@@ -5,6 +5,6 @@
   "allowlist": [
     // vite-plugin-dts needs to update a dependency. This is a dev dependency so
     // ignoring.
-    "GHSA-g3ch-rx76-35fx",
-  ],
+    "GHSA-g3ch-rx76-35fx"
+  ]
 }

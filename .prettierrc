@@ -4,5 +4,13 @@
   "semi": false,
   "singleQuote": true,
   "trailingComma": "es5",
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "overrides": [
+    {
+      "files": ["*.jsonc"],
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
 }
