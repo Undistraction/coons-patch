@@ -2,9 +2,8 @@
   // $schema provides code completion hints to IDEs.
   "$schema": "https://github.com/IBM/audit-ci/raw/main/docs/schema.json",
   "moderate": true,
+  // Add advisories to the allowlist to ignore them.
   "allowlist": [
-    // vite-plugin-dts needs to update a dependency. This is a dev dependency so
-    // ignoring.
-    "GHSA-g3ch-rx76-35fx"
+    // e.g  "GHSA-g3ch-rx76-35fx"
   ]
 }
