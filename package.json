@@ -97,7 +97,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@commitlint/config-conventional>conventional-changelog-conventionalcommits": "8.0.0"
+      "@commitlint/config-conventional>conventional-changelog-conventionalcommits": "^8.0.0",
+      "cross-spawn": "^7.0.5"
     }
   }
 }
