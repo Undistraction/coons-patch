@@ -12,12 +12,16 @@
     {
       "groupName": "Dev Dependencies",
       "matchUpdateTypes": ["minor", "patch"],
-      "depTypeList": ["devDependencies"]
+      "depTypeList": ["devDependencies"],
+      "matchDatasources": ["npm"],
+      "minimumReleaseAge": "5 days"
     },
     {
       "groupName": "Dependencies",
       "matchUpdateTypes": ["minor", "patch"],
-      "depTypeList": ["dependencies"]
+      "depTypeList": ["dependencies"],
+      "matchDatasources": ["npm"],
+      "minimumReleaseAge": "10 days"
     }
   ]
 }
