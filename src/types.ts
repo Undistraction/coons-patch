@@ -52,12 +52,18 @@ export interface GetCoordinateOnSurfaceConfig {
   coordinateName: Coordinate
   boundaryPoints: BoundaryPoints
   cornerPoints: CornerPoints
-  u: number
-  v: number
+  params: InterpolationParameters
+}
+
+export interface InterpolationParameters {
+  u: number // u parameter along top edge
+  uOpposite: number // u parameter along bottom edge
+  v: number // v parameter along left edge
+  vOpposite: number // v parameter along right edge
 }
 
 // -----------------------------------------------------------------------------
-// Interfaces: API-specic
+// Interfaces: API-specific
 // -----------------------------------------------------------------------------
 
 export interface CoonsPatchConfig {

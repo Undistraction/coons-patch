@@ -1,6 +1,10 @@
 import interpolatePointOnCurveEvenlySpacedFactory from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpacedFactory'
 import interpolatePointOnSurfaceBilinear from './interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
-import { BoundingCurves, CoonsPatchConfig } from './types'
+import {
+  BoundingCurves,
+  CoonsPatchConfig,
+  InterpolationParameters,
+} from './types'
 import { validateCoonsPatchArguments } from './utils/validation'
 
 /**
@@ -61,25 +65,28 @@ const interpolatePointOnCurveDefault =
  */
 const coonsPatch = (
   boundingCurves: BoundingCurves,
-  u: number,
-  v: number,
+  params: InterpolationParameters,
   {
     interpolatePointOnCurveU = interpolatePointOnCurveDefault,
     interpolatePointOnCurveV = interpolatePointOnCurveDefault,
   }: CoonsPatchConfig = {}
 ) => {
+  const paramsWithDefaults = {
+    u: params.u,
+    uOpposite: params.uOpposite || params.u,
+    v: params.v,
+    vOpposite: params.vOpposite || params.v,
+  }
   validateCoonsPatchArguments(
     boundingCurves,
-    u,
-    v,
+    paramsWithDefaults,
     interpolatePointOnCurveU,
     interpolatePointOnCurveV
   )
 
   return interpolatePointOnSurfaceBilinear(
     boundingCurves,
-    u,
-    v,
+    paramsWithDefaults,
     interpolatePointOnCurveU,
     interpolatePointOnCurveV
   )

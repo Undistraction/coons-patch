@@ -2,6 +2,7 @@ import type {
   BoundingCurves,
   Curve,
   InterpolatePointOnCurve,
+  InterpolationParameters,
   Point,
 } from '../types'
 import { mapObj } from './functional'
@@ -115,21 +116,49 @@ const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
   validateCornerPoints(boundingCurves)
 }
 
-const validateUV = (u: number, v: number): void => {
-  if (!isNumber(u)) {
-    throw new Error(`u value must be a number, but was '${u}'`)
+const validateParams = (params: InterpolationParameters): void => {
+  if (!isNumber(params.u)) {
+    throw new Error(`params.u value must be a number, but was '${params.u}'`)
   }
 
-  if (!isNumber(v)) {
-    throw new Error(`v value must be a number, but was '${v}'`)
+  if (!isNumber(params.v)) {
+    throw new Error(`params.v value must be a number, but was '${params.v}'`)
   }
 
-  if (u < 0 || u > 1) {
-    throw new Error(`u value must be between 0 and 1, but was '${u}'`)
+  if (!isNumber(params.uOpposite)) {
+    throw new Error(
+      `params.uOpposite value must be a number, but was '${params.uOpposite}'`
+    )
   }
 
-  if (v < 0 || v > 1) {
-    throw new Error(`v value must be between 0 and 1, but was '${v}'`)
+  if (!isNumber(params.vOpposite)) {
+    throw new Error(
+      `params.vOpposite value must be a number, but was '${params.vOpposite}'`
+    )
+  }
+
+  if (params.u < 0 || params.u > 1) {
+    throw new Error(
+      `params.u value must be between 0 and 1, but was '${params.u}'`
+    )
+  }
+
+  if (params.v < 0 || params.v > 1) {
+    throw new Error(
+      `params.v value must be between 0 and 1, but was '${params.v}'`
+    )
+  }
+
+  if (params.uOpposite < 0 || params.uOpposite > 1) {
+    throw new Error(
+      `params.uOpposite value must be between 0 and 1, but was '${params.uOpposite}'`
+    )
+  }
+
+  if (params.vOpposite < 0 || params.vOpposite > 1) {
+    throw new Error(
+      `params.vOpposite value must be between 0 and 1, but was '${params.vOpposite}'`
+    )
   }
 }
 
@@ -152,13 +181,12 @@ export const validateT = (t: number): void => {
 
 export const validateCoonsPatchArguments = (
   boundingCurves: BoundingCurves,
-  u: number,
-  v: number,
+  params: InterpolationParameters,
   interpolatePointOnCurveU: InterpolatePointOnCurve,
   interpolatePointOnCurveV: InterpolatePointOnCurve
 ): void => {
   validateBoundingCurves(boundingCurves)
-  validateUV(u, v)
+  validateParams(params)
   validateFunction(interpolatePointOnCurveU, `interpolatePointOnCurveU`)
   validateFunction(interpolatePointOnCurveV, `interpolatePointOnCurveV`)
 }

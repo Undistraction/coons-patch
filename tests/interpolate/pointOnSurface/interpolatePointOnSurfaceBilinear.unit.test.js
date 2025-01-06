@@ -2,23 +2,25 @@ import { interpolatePointOnCurveEvenlySpacedFactory } from '../../../src'
 import interpolatePointOnSurfaceBilinear from '../../../src/interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
 import { boundingCurvesValid } from '../../fixtures'
 
-console.log(`>>`, interpolatePointOnSurfaceBilinear)
-
 // -----------------------------------------------------------------------------
 // Tests
 // -----------------------------------------------------------------------------
 
 describe(`interpolatePointOnCurveBilinear`, () => {
-  const interplolatePointOnCurve = interpolatePointOnCurveEvenlySpacedFactory()
+  const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpacedFactory()
 
   it(`interpolates the correct point on a surface`, () => {
     expect(
       interpolatePointOnSurfaceBilinear(
         boundingCurvesValid,
-        0,
-        0,
-        interplolatePointOnCurve,
-        interplolatePointOnCurve
+        {
+          u: 0,
+          v: 0,
+          uOpposite: 0,
+          vOpposite: 0,
+        },
+        interpolatePointOnCurve,
+        interpolatePointOnCurve
       )
     ).toEqual({
       x: 0,
@@ -28,10 +30,14 @@ describe(`interpolatePointOnCurveBilinear`, () => {
     expect(
       interpolatePointOnSurfaceBilinear(
         boundingCurvesValid,
-        1,
-        1,
-        interplolatePointOnCurve,
-        interplolatePointOnCurve
+        {
+          u: 1,
+          v: 1,
+          uOpposite: 1,
+          vOpposite: 1,
+        },
+        interpolatePointOnCurve,
+        interpolatePointOnCurve
       )
     ).toEqual({
       x: 100,
@@ -41,10 +47,14 @@ describe(`interpolatePointOnCurveBilinear`, () => {
     expect(
       interpolatePointOnSurfaceBilinear(
         boundingCurvesValid,
-        0.25,
-        0.75,
-        interplolatePointOnCurve,
-        interplolatePointOnCurve
+        {
+          u: 0.25,
+          v: 0.75,
+          uOpposite: 0.25,
+          vOpposite: 0.75,
+        },
+        interpolatePointOnCurve,
+        interpolatePointOnCurve
       )
     ).toEqual({
       x: 20.334068045517547,
@@ -54,10 +64,14 @@ describe(`interpolatePointOnCurveBilinear`, () => {
     expect(
       interpolatePointOnSurfaceBilinear(
         boundingCurvesValid,
-        0.75,
-        0.5,
-        interplolatePointOnCurve,
-        interplolatePointOnCurve
+        {
+          u: 0.75,
+          v: 0.5,
+          uOpposite: 0.75,
+          vOpposite: 0.5,
+        },
+        interpolatePointOnCurve,
+        interpolatePointOnCurve
       )
     ).toEqual({
       x: 79.82518426378292,
