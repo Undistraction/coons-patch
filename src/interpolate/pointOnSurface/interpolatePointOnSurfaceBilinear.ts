@@ -2,10 +2,12 @@ import type {
   BoundingCurves,
   GetCoordinateOnSurfaceConfig,
   InterpolatePointOnCurve,
+  InterpolationParameters,
   InterpolationParametersRequired,
   Point,
 } from '../../types'
 import { Coordinate } from '../../types'
+import { isNil } from '../../utils/is'
 
 // -----------------------------------------------------------------------------
 // Utils
@@ -43,25 +45,28 @@ const clampT = (t: number): number => Math.min(Math.max(t, 0), 1)
  * rounding errors.
  *
  * @param {BoundingCurves} boundingCurves - The bounding curves of the surface containing top, bottom, left and right curves.
- * @param {InterpolationParametersRequired} params - The interpolation parameters.
+ * @param {InterpolationParameters} params - The interpolation parameters.
  * @param {InterpolatePointOnCurve} interpolatePointOnCurveU - The function to interpolate a point on the u-axis curves.
  * @param {InterpolatePointOnCurve} interpolatePointOnCurveV - The function to interpolate a point on the v-axis curves.
  * @returns {Point} The interpolated 3D point on the surface {x, y, z}.
  */
 const interpolatePointOnSurfaceBilinear = (
   { top, bottom, left, right }: BoundingCurves,
-  params: InterpolationParametersRequired,
+  params: InterpolationParameters,
   interpolatePointOnCurveU: InterpolatePointOnCurve,
   interpolatePointOnCurveV: InterpolatePointOnCurve
 ): Point => {
+  const uOpposite = isNil(params.uOpposite) ? params.u : params.uOpposite
+  const vOpposite = isNil(params.vOpposite) ? params.v : params.vOpposite
+
   // Due to potential minute rounding errors we clamp these values to avoid
   // issues with the interpolators which expect a range of 0–1.
   const paramsClamped = {
     u: clampT(params.u),
-    uOpposite: clampT(params.uOpposite),
+    uOpposite: clampT(uOpposite),
     v: clampT(params.v),
-    vOpposite: clampT(params.vOpposite),
-  }
+    vOpposite: clampT(vOpposite),
+  } as InterpolationParametersRequired
 
   const boundaryPoints = {
     top: interpolatePointOnCurveU(paramsClamped.u, top),
