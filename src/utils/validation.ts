@@ -2,7 +2,7 @@ import type {
   BoundingCurves,
   Curve,
   InterpolatePointOnCurve,
-  InterpolationParameters,
+  InterpolationParametersRequired,
   Point,
 } from '../types'
 import { mapObj } from './functional'
@@ -116,7 +116,7 @@ const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
   validateCornerPoints(boundingCurves)
 }
 
-const validateParams = (params: InterpolationParameters): void => {
+const validateParams = (params: InterpolationParametersRequired): void => {
   if (!isNumber(params.u)) {
     throw new Error(`params.u value must be a number, but was '${params.u}'`)
   }
@@ -181,7 +181,7 @@ export const validateT = (t: number): void => {
 
 export const validateCoonsPatchArguments = (
   boundingCurves: BoundingCurves,
-  params: InterpolationParameters,
+  params: InterpolationParametersRequired,
   interpolatePointOnCurveU: InterpolatePointOnCurve,
   interpolatePointOnCurveV: InterpolatePointOnCurve
 ): void => {

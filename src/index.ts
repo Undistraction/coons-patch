@@ -4,6 +4,7 @@ import {
   BoundingCurves,
   CoonsPatchConfig,
   InterpolationParameters,
+  InterpolationParametersRequired,
 } from './types'
 import { validateCoonsPatchArguments } from './utils/validation'
 
@@ -29,6 +30,7 @@ export type {
   Point,
   Points,
   InterpolationParameters,
+  InterpolationParametersRequired,
 } from './types'
 
 // -----------------------------------------------------------------------------
@@ -72,7 +74,7 @@ const coonsPatch = (
     interpolatePointOnCurveV = interpolatePointOnCurveDefault,
   }: CoonsPatchConfig = {}
 ) => {
-  const paramsWithDefaults = {
+  const paramsWithDefaults: InterpolationParametersRequired = {
     u: params.u,
     uOpposite: params.uOpposite || params.u,
     v: params.v,

@@ -52,15 +52,17 @@ export interface GetCoordinateOnSurfaceConfig {
   coordinateName: Coordinate
   boundaryPoints: BoundaryPoints
   cornerPoints: CornerPoints
-  params: InterpolationParameters
+  params: InterpolationParametersRequired
 }
 
 export interface InterpolationParameters {
   u: number // u parameter along top edge
-  uOpposite: number // u parameter along bottom edge
+  uOpposite?: number // u parameter along bottom edge
   v: number // v parameter along left edge
-  vOpposite: number // v parameter along right edge
+  vOpposite?: number // v parameter along right edge
 }
+
+export type InterpolationParametersRequired = Required<InterpolationParameters>
 
 // -----------------------------------------------------------------------------
 // Interfaces: API-specific

@@ -2,7 +2,7 @@ import type {
   BoundingCurves,
   GetCoordinateOnSurfaceConfig,
   InterpolatePointOnCurve,
-  InterpolationParameters,
+  InterpolationParametersRequired,
   Point,
 } from '../../types'
 import { Coordinate } from '../../types'
@@ -43,14 +43,14 @@ const clampT = (t: number): number => Math.min(Math.max(t, 0), 1)
  * rounding errors.
  *
  * @param {BoundingCurves} boundingCurves - The bounding curves of the surface containing top, bottom, left and right curves.
- * @param {InterpolationParameters} params - The interpolation parameters.
+ * @param {InterpolationParametersRequired} params - The interpolation parameters.
  * @param {InterpolatePointOnCurve} interpolatePointOnCurveU - The function to interpolate a point on the u-axis curves.
  * @param {InterpolatePointOnCurve} interpolatePointOnCurveV - The function to interpolate a point on the v-axis curves.
  * @returns {Point} The interpolated 3D point on the surface {x, y, z}.
  */
 const interpolatePointOnSurfaceBilinear = (
   { top, bottom, left, right }: BoundingCurves,
-  params: InterpolationParameters,
+  params: InterpolationParametersRequired,
   interpolatePointOnCurveU: InterpolatePointOnCurve,
   interpolatePointOnCurveV: InterpolatePointOnCurve
 ): Point => {
