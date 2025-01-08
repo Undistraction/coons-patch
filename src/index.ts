@@ -28,6 +28,7 @@ export type {
   InterpolatePointOnCurveFactory,
   Point,
   Points,
+  InterpolationParameters,
 } from './types'
 
 // -----------------------------------------------------------------------------
@@ -50,16 +51,16 @@ const interpolatePointOnCurveDefault =
 // -----------------------------------------------------------------------------
 
 /**
- * Computes a point on a surface defined by bounding curves at parameters u and
- * v.
+ * Computes a point on a surface defined by bounding curves at parameters u, v,
+ * uOpposite, and vOpposite. If uOpposite and vOpposite are not provided, they
+ * default to u and v, respectively.
  *
- * @param {BoundingCurves} boundingCurves - An object containing curves that
- * define the surface boundaries.
- * @param {number} u - The parameter along the first dimension (0–1).
- * @param {number} v - The parameter along the second dimension (0–1).
+ * @param {BoundingCurves} boundingCurves - An object containing curves that define the surface boundaries.
+ * @param {InterpolationParameters} params - The interpolation parameters.
  * @param {CoonsPatchConfig} [config] - Configuration object.
  * @returns {Point} The interpolated point on the surface.
- * @throws {Error} If the arguments are invalid.
+ * @throws {Error} If boundingCurves is invalid or missing required curves.
+ * @throws {Error} If params contains values outside the valid range [0-1].
  *
  * @group API
  */

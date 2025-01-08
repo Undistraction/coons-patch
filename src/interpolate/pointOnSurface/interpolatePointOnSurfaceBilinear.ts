@@ -39,12 +39,14 @@ const clampT = (t: number): number => Math.min(Math.max(t, 0), 1)
 
 /**
  * Interpolates a point on a surface using bilinear interpolation.
+ * All interpolation parameters are clamped to the range 0–1 to avoid minor
+ * rounding errors.
  *
- * @param {BoundingCurves} boundingCurves - The bounding curves of the surface.
- * @param {InterpolationParameters} The u and v coordinates to interpolate the point at.
- * @param {InterpolatePointOnCurve} interpolatePointOnCurveU - The function to interpolate a point on the u-axis.
- * @param {InterpolatePointOnCurve} interpolatePointOnCurveV - The function to interpolate a point on the v-axis.
- * @returns {Point} - The interpolated point on the surface.
+ * @param {BoundingCurves} boundingCurves - The bounding curves of the surface containing top, bottom, left and right curves.
+ * @param {InterpolationParameters} params - The interpolation parameters.
+ * @param {InterpolatePointOnCurve} interpolatePointOnCurveU - The function to interpolate a point on the u-axis curves.
+ * @param {InterpolatePointOnCurve} interpolatePointOnCurveV - The function to interpolate a point on the v-axis curves.
+ * @returns {Point} The interpolated 3D point on the surface {x, y, z}.
  */
 const interpolatePointOnSurfaceBilinear = (
   { top, bottom, left, right }: BoundingCurves,
