@@ -1,3 +1,13 @@
+## [2.1.0-alpha.1](https://github.com/undistraction/coons-patch/compare/v2.0.5...v2.1.0-alpha.1) (2025-01-09)
+
+### Features
+
+* Add support for separate values for opposite sides of patch ([ca1a3c0](https://github.com/undistraction/coons-patch/commit/ca1a3c0283a6e461e2392099f05bd6ea812d73c6))
+
+### Bug Fixes
+
+* **release:** Update package for publish ([114c058](https://github.com/undistraction/coons-patch/commit/114c058496cdbc57cebbb365818287d418705ab9))
+
 ## [2.0.5](https://github.com/undistraction/coons-patch/compare/v2.0.4...v2.0.5) (2024-10-09)
 
 ### Bug Fixes
