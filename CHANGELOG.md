@@ -1,3 +1,13 @@
+## [3.0.0-next.2](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.1...v3.0.0-next.2) (2025-01-13)
+
+### ⚠ BREAKING CHANGES
+
+* This is a breaking change
+
+### Miscellaneous Chores
+
+* Force publish ([805a245](https://github.com/undistraction/coons-patch/commit/805a245bab815fc143d2fe2bb8b350257cf67ed7))
+
 ## [3.0.0-next.1](https://github.com/undistraction/coons-patch/compare/v2.0.5...v3.0.0-next.1) (2025-01-13)
 
 ### ⚠ BREAKING CHANGES
