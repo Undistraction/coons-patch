@@ -1,3 +1,13 @@
+## [3.0.0](https://github.com/undistraction/coons-patch/compare/v2.0.5...v3.0.0) (2025-01-13)
+
+### ⚠ BREAKING CHANGES
+
+* This will require a major version bump as there is a change in the types of the arguments.
+
+### Features
+
+* Support four parameters (u, v, uOpposite and vOpposite) ([#66](https://github.com/undistraction/coons-patch/issues/66)) ([45bc6e5](https://github.com/undistraction/coons-patch/commit/45bc6e5526c036bf723247dca338c9d8518f286b))
+
 ## [3.0.0-next.5](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.4...v3.0.0-next.5) (2025-01-13)
 
 ### ⚠ BREAKING CHANGES
