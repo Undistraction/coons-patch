@@ -1,3 +1,13 @@
+## [3.0.0-next.3](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.2...v3.0.0-next.3) (2025-01-13)
+
+### ⚠ BREAKING CHANGES
+
+* CHANGE
+
+### Bug Fixes
+
+* Force publish ([8deec37](https://github.com/undistraction/coons-patch/commit/8deec378737b40d11444013ca3215ea6a51dcc70))
+
 ## [3.0.0-next.2](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.1...v3.0.0-next.2) (2025-01-13)
 
 ### ⚠ BREAKING CHANGES
