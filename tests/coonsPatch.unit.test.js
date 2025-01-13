@@ -9,10 +9,14 @@ import testValidationOfBoundingCurveArgs from './shared/testValidationOfBounding
 describe(`coonsPatch`, () => {
   describe(`validations`, () => {
     testValidationOfBoundingCurveArgs((boundingCurves) =>
-      coonsPatch(boundingCurves, 0, 1)
+      coonsPatch(boundingCurves, paramsObjValid)
     )
 
     describe(`params object`, () => {
+      expect(() => coonsPatch(boundingCurvesValid, `abc`)).toThrow(
+        `params must be an object, but it was 'abc'`
+      )
+
       describe.each([
         {
           key: `u`,

@@ -1,3 +1,4 @@
+import { ValidationError } from './errors/ValidationError'
 import interpolatePointOnCurveEvenlySpacedFactory from './interpolate/pointOnCurve/interpolatePointOnCurveEvenlySpacedFactory'
 import interpolatePointOnSurfaceBilinear from './interpolate/pointOnSurface/interpolatePointOnSurfaceBilinear'
 import {
@@ -6,6 +7,7 @@ import {
   InterpolationParameters,
   InterpolationParametersRequired,
 } from './types'
+import { isPlainObj } from './utils/is'
 import { validateCoonsPatchArguments } from './utils/validation'
 
 /**
@@ -28,10 +30,10 @@ export type {
   InterpolatePointOnCurve,
   InterpolatePointOnCurveFactory,
   Point,
-  Points,
   InterpolationParameters,
-  InterpolationParametersRequired,
 } from './types'
+
+export { ValidationError } from './errors/ValidationError'
 
 // -----------------------------------------------------------------------------
 // Re-export Interpolation functions
@@ -56,11 +58,10 @@ const interpolatePointOnCurveDefault =
  * This interpolation method ensures a smooth transition between the boundary curves.
  *
  * @param {BoundingCurves} boundingCurves - An object containing the four curves that define the surface boundaries.
- * @param {InterpolationParameters} params - The u, v, uOpposite and vOpposite parameters for interpolation. All parameters should be in range [0-1].
+ * @param {InterpolationParameters} params - The `u`, `v`, `uOpposite` and `vOpposite` parameters for interpolation. All parameters should be in range [0-1]. `uOpposite` defaults to `u`, and `vOpposite` defaults to `v`.
  * @param {CoonsPatchConfig} [config] - Optional configuration object to customize curve interpolation methods.
  * @returns {Point} The interpolated 2D point on the surface.
- * @throws {Error} If boundingCurves is invalid or missing any of the required curves.
- * @throws {Error} If any interpolation parameter is outside the valid range [0-1].
+ * @throws {ValidationError} If bounding curves or params are invalid.
  *
  * @group API
  */
@@ -72,6 +73,12 @@ const coonsPatch = (
     interpolatePointOnCurveV = interpolatePointOnCurveDefault,
   }: CoonsPatchConfig = {}
 ) => {
+  if (!isPlainObj(params)) {
+    throw new ValidationError(
+      `params must be an object, but it was '${params}'`
+    )
+  }
+
   const paramsWithDefaults: InterpolationParametersRequired = {
     u: params.u,
     uOpposite: params.uOpposite || params.u,

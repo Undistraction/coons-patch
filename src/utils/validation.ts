@@ -120,7 +120,6 @@ const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
 const validateParams = (params: InterpolationParametersRequired): void => {
   mapObj<undefined, InterpolationParametersRequired>(
     (value: number, name: string) => {
-      console.log(`--------->)`, name, value)
       if (!isNumber(value)) {
         throw new ValidationError(
           `params.${name} value must be a number, but was '${value}'`
