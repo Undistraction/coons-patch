@@ -1,5 +1,7 @@
 import type {
+  BoundaryPoints,
   BoundingCurves,
+  CornerPoints,
   GetCoordinateOnSurfaceConfig,
   InterpolatePointOnCurve,
   InterpolationParameters,
@@ -19,19 +21,41 @@ const getCoordinateOnSurface = ({
   cornerPoints,
   params,
 }: GetCoordinateOnSurfaceConfig) => {
-  const { u, uOpposite, v, vOpposite } = params
+  const { u, v } = params
+
+  const { top, bottom, left, right } = boundaryPoints
+  const { topLeft, topRight, bottomLeft, bottomRight } = cornerPoints
 
   return (
-    (1 - v) * boundaryPoints.top[coordinateName] +
-    vOpposite * boundaryPoints.bottom[coordinateName] +
-    (1 - u) * boundaryPoints.left[coordinateName] +
-    uOpposite * boundaryPoints.right[coordinateName] -
-    (1 - u) * (1 - v) * cornerPoints.topLeft[coordinateName] -
-    uOpposite * (1 - vOpposite) * cornerPoints.topRight[coordinateName] -
-    (1 - u) * v * cornerPoints.bottomLeft[coordinateName] -
-    uOpposite * vOpposite * cornerPoints.bottomRight[coordinateName]
+    (1 - v) * top[coordinateName] +
+    v * bottom[coordinateName] +
+    (1 - u) * left[coordinateName] +
+    u * right[coordinateName] -
+    (1 - u) * (1 - v) * topLeft[coordinateName] -
+    u * (1 - v) * topRight[coordinateName] -
+    (1 - u) * v * bottomLeft[coordinateName] -
+    u * v * bottomRight[coordinateName]
   )
 }
+
+const getPointOnSurface = (
+  boundaryPoints: BoundaryPoints,
+  cornerPoints: CornerPoints,
+  params: InterpolationParametersRequired
+): Point => ({
+  x: getCoordinateOnSurface({
+    coordinateName: Coordinate.X,
+    boundaryPoints,
+    cornerPoints,
+    params,
+  }),
+  y: getCoordinateOnSurface({
+    coordinateName: Coordinate.Y,
+    boundaryPoints,
+    cornerPoints,
+    params,
+  }),
+})
 
 const clampT = (t: number): number => Math.min(Math.max(t, 0), 1)
 
@@ -82,20 +106,7 @@ const interpolatePointOnSurfaceBilinear = (
     topRight: top.endPoint,
   }
 
-  return {
-    x: getCoordinateOnSurface({
-      coordinateName: Coordinate.X,
-      boundaryPoints,
-      cornerPoints,
-      params: paramsClamped,
-    }),
-    y: getCoordinateOnSurface({
-      coordinateName: Coordinate.Y,
-      boundaryPoints,
-      cornerPoints,
-      params: paramsClamped,
-    }),
-  }
+  return getPointOnSurface(boundaryPoints, cornerPoints, paramsClamped)
 }
 
 export default interpolatePointOnSurfaceBilinear
