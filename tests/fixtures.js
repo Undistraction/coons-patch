@@ -31,6 +31,13 @@ export const boundingCurvesValid = {
   },
 }
 
+export const paramsObjValid = {
+  u: 0,
+  v: 1,
+  uOpposite: 0,
+  vOpposite: 1,
+}
+
 // -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
@@ -43,7 +50,7 @@ const fixtures = [
     name: `Arbitrary point`,
     input: {
       coonsPatch: {
-        args: [boundingCurvesValid, 0.25, 0.5],
+        args: [boundingCurvesValid, { u: 0.25, v: 0.5 }],
       },
     },
   },
@@ -53,8 +60,7 @@ const fixtures = [
       coonsPatch: {
         args: [
           boundingCurvesValid,
-          0.25,
-          0.5,
+          { u: 0.25, v: 0.5 },
           {
             interpolatePointOnCurveU: interpolatePointOnCurveLinearFactory(),
             interpolatePointOnCurveV: interpolatePointOnCurveLinearFactory(),
@@ -69,8 +75,7 @@ const fixtures = [
       coonsPatch: {
         args: [
           boundingCurvesValid,
-          0.25,
-          0.5,
+          { u: 0.25, v: 0.5 },
           {
             interpolatePointOnCurveU: interpolatePointOnCurveLinearFactory(),
           },

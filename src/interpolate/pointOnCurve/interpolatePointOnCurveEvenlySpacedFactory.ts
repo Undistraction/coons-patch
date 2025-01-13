@@ -1,10 +1,11 @@
 import memoize from 'fast-memoize'
 
-import type { Curve, InterpolatePointOnCurve, Point, Points } from '../../types'
+import type { Curve, InterpolatePointOnCurve, Point } from '../../types'
 import { times, timesReduce } from '../../utils/functional'
 import { getDistanceBetweenPoints, roundTo10 } from '../../utils/math'
 import { validateT } from '../../utils/validation'
 import interpolatePointOnCurveLinearFactory from './interpolatePointOnCurveLinearFactory'
+
 // -----------------------------------------------------------------------------
 // Const
 // -----------------------------------------------------------------------------
@@ -27,7 +28,7 @@ const getApproximatePointsOnCurve = (curve: Curve, precision: number) => {
 }
 
 // Generate a LUT (Look Up Table) of the cumulative arc length
-const getLut = (points: Points): number[] =>
+const getLut = (points: Point[]): number[] =>
   timesReduce(
     (acc, idx) => {
       const point = points[idx]

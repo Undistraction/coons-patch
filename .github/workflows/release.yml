@@ -57,6 +57,8 @@ jobs:
       - run: pnpm install
       - name: Build
         run: pnpm run build
+      - name: Docs
+        run: pnpm run docs
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

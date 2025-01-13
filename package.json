@@ -1,15 +1,15 @@
 {
   "name": "coons-patch",
-  "version": "2.0.5",
+  "version": "3.0.0-next.5",
   "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28",
   "description": "Create a Coons patch and access points and curves on its surface",
   "main": "./dist/index.common.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts",
-      "source": "./src/index.ts"
+      "source": "./src/index.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
     }
   },
   "files": [
@@ -92,7 +92,8 @@
   },
   "pnpm": {
     "overrides": {
-      "cross-spawn": "^7.0.5"
+      "cross-spawn": "^7.0.5",
+      "conventional-changelog-conventionalcommits": ">= 8.0.0"
     }
   }
 }

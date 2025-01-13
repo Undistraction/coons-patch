@@ -3,7 +3,7 @@ import {
   validateCoonsPatchArguments,
   validateT,
 } from '../../src/utils/validation'
-import { boundingCurvesValid } from '../fixtures'
+import { boundingCurvesValid, paramsObjValid } from '../fixtures'
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -35,8 +35,7 @@ describe(`validations`, () => {
       expect(() =>
         validateCoonsPatchArguments(
           boundingCurvesValid,
-          0.5,
-          1,
+          paramsObjValid,
           interpolatePointOnCurveLinearFactory(),
           interpolatePointOnCurveLinearFactory(0)
         )
@@ -47,84 +46,39 @@ describe(`validations`, () => {
       expect(() =>
         validateCoonsPatchArguments(
           `abc`,
-          0.5,
-          1.1,
+          paramsObjValid,
           interpolatePointOnCurveLinearFactory(),
           interpolatePointOnCurveLinearFactory(0)
         )
       ).toThrow(`boundingCurves must be an object, but it was 'abc'`)
     })
 
-    it(`should throw if u is not a number`, () => {
-      expect(() =>
-        validateCoonsPatchArguments(
-          boundingCurvesValid,
-          `abc`,
-          1,
-          interpolatePointOnCurveLinearFactory(),
-          interpolatePointOnCurveLinearFactory(0)
-        )
-      ).toThrow(`u value must be a number, but was 'abc'`)
-    })
-
-    it(`should throw if v is not a number`, () => {
-      expect(() =>
-        validateCoonsPatchArguments(
-          boundingCurvesValid,
-          1,
-          `abc`,
-          interpolatePointOnCurveLinearFactory(),
-          interpolatePointOnCurveLinearFactory(0)
-        )
-      ).toThrow(`v value must be a number, but was 'abc'`)
-    })
-
-    it(`should throw if u is less than zero`, () => {
-      expect(() =>
-        validateCoonsPatchArguments(
-          boundingCurvesValid,
-          -0.1,
-          0.5,
-          interpolatePointOnCurveLinearFactory(),
-          interpolatePointOnCurveLinearFactory(0)
-        )
-      ).toThrow(`u value must be between 0 and 1, but was '-0.1'`)
-    })
-
-    it(`should throw if u is greater than 1`, () => {
-      expect(() =>
-        validateCoonsPatchArguments(
-          boundingCurvesValid,
-          1.1,
-          0.5,
-          interpolatePointOnCurveLinearFactory(),
-          interpolatePointOnCurveLinearFactory(0)
-        )
-      ).toThrow(`u value must be between 0 and 1, but was '1.1'`)
-    })
-
-    it(`should throw if v is less than zero`, () => {
-      expect(() =>
-        validateCoonsPatchArguments(
-          boundingCurvesValid,
-          0.5,
-          -0.1,
-          interpolatePointOnCurveLinearFactory(),
-          interpolatePointOnCurveLinearFactory(0)
-        )
-      ).toThrow(`v value must be between 0 and 1, but was '-0.1'`)
-    })
-
-    it(`should throw if v is greater than 1`, () => {
-      expect(() =>
-        validateCoonsPatchArguments(
-          boundingCurvesValid,
-          0.5,
-          1.1,
-          interpolatePointOnCurveLinearFactory(),
-          interpolatePointOnCurveLinearFactory(0)
-        )
-      ).toThrow(`v value must be between 0 and 1, but was '1.1'`)
+    describe(`params object`, () => {
+      describe.each([
+        {
+          key: `u`,
+        },
+        {
+          key: `v`,
+        },
+        {
+          key: `uOpposite`,
+        },
+        {
+          key: `vOpposite`,
+        },
+      ])(`key: $key`, ({ key }) => {
+        it(`should throw if ${key} is not a number`, () => {
+          expect(() =>
+            validateCoonsPatchArguments(
+              boundingCurvesValid,
+              { ...paramsObjValid, [key]: `abc` },
+              interpolatePointOnCurveLinearFactory(),
+              interpolatePointOnCurveLinearFactory(0)
+            )
+          ).toThrow(`params.${key} value must be a number, but was 'abc'`)
+        })
+      })
     })
   })
 })

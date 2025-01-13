@@ -1,7 +1,9 @@
+import { ValidationError } from '../errors/ValidationError'
 import type {
   BoundingCurves,
   Curve,
   InterpolatePointOnCurve,
+  InterpolationParametersRequired,
   Point,
 } from '../types'
 import { mapObj } from './functional'
@@ -59,7 +61,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.left.startPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `top curve startPoint and left curve startPoint must have same coordinates`
     )
   }
@@ -70,7 +72,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.left.endPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `bottom curve startPoint and left curve endPoint must have the same coordinates`
     )
   }
@@ -81,7 +83,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.right.startPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `top curve endPoint and right curve startPoint must have the same coordinates`
     )
   }
@@ -91,7 +93,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.right.endPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `bottom curve endPoint and right curve endPoint must have the same coordinates`
     )
   }
@@ -106,7 +108,7 @@ const validateCurves = (boundingCurves: BoundingCurves): void => {
 
 const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
   if (!isPlainObj(boundingCurves)) {
-    throw new Error(
+    throw new ValidationError(
       `boundingCurves must be an object, but it was '${boundingCurves}'`
     )
   }
@@ -115,22 +117,23 @@ const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
   validateCornerPoints(boundingCurves)
 }
 
-const validateUV = (u: number, v: number): void => {
-  if (!isNumber(u)) {
-    throw new Error(`u value must be a number, but was '${u}'`)
-  }
+const validateParams = (params: InterpolationParametersRequired): void => {
+  mapObj<undefined, InterpolationParametersRequired>(
+    (value: number, name: string) => {
+      if (!isNumber(value)) {
+        throw new ValidationError(
+          `params.${name} value must be a number, but was '${value}'`
+        )
+      }
 
-  if (!isNumber(v)) {
-    throw new Error(`v value must be a number, but was '${v}'`)
-  }
-
-  if (u < 0 || u > 1) {
-    throw new Error(`u value must be between 0 and 1, but was '${u}'`)
-  }
-
-  if (v < 0 || v > 1) {
-    throw new Error(`v value must be between 0 and 1, but was '${v}'`)
-  }
+      if (value < 0 || value > 1) {
+        throw new ValidationError(
+          `params.${name} value must be between 0 and 1, but was '${value}'`
+        )
+      }
+    },
+    params
+  )
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
@@ -152,13 +155,12 @@ export const validateT = (t: number): void => {
 
 export const validateCoonsPatchArguments = (
   boundingCurves: BoundingCurves,
-  u: number,
-  v: number,
+  params: InterpolationParametersRequired,
   interpolatePointOnCurveU: InterpolatePointOnCurve,
   interpolatePointOnCurveV: InterpolatePointOnCurve
 ): void => {
   validateBoundingCurves(boundingCurves)
-  validateUV(u, v)
+  validateParams(params)
   validateFunction(interpolatePointOnCurveU, `interpolatePointOnCurveU`)
   validateFunction(interpolatePointOnCurveV, `interpolatePointOnCurveV`)
 }

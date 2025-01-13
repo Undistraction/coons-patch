@@ -29,16 +29,16 @@ export const timesReduce = <T>(
   return acc
 }
 
-// The values of each object key will be the same as the return vlaue of f (T)
-export const mapObj = <T>(
+// The values of each object key will be the same as the return value of f (T)
+export const mapObj = <T, R = Record<string, T>>(
   f: (value: any, key: string, idx: number) => T,
   o: ObjectWithStringKeys
-): Record<string, T> => {
+): R => {
   return Object.keys(o).reduce((acc, key, idx) => {
     const value = o[key]
     return {
       ...acc,
       [key]: f(value, key, idx),
     }
-  }, {})
+  }, {}) as R
 }
