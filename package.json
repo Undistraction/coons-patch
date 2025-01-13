@@ -45,9 +45,7 @@
     "docs-open": "open ./docs/index.html",
     "release-preview": "semantic-release --no-ci --dry-run --debug",
     "tsc": "tsc",
-    "audit-npm-packages": "audit-ci --config ./audit-ci.jsonc --skip-dev",
-    "link": "pnpm link .",
-    "unlink": "pnpm unlink ."
+    "audit-npm-packages": "audit-ci --config ./audit-ci.jsonc --skip-dev"
   },
   "keywords": [
     "coons patch",

@@ -4,12 +4,11 @@ import type {
   CornerPoints,
   GetCoordinateOnSurfaceConfig,
   InterpolatePointOnCurve,
-  InterpolationParameters,
   InterpolationParametersRequired,
   Point,
 } from '../../types'
 import { Coordinate } from '../../types'
-import { isNil } from '../../utils/is'
+import { mapObj } from '../../utils/functional'
 import { lerp } from '../pointOnCurve/interpolatePointOnCurveLinearFactory'
 
 // -----------------------------------------------------------------------------
@@ -91,21 +90,16 @@ const clampT = (t: number): number => Math.min(Math.max(t, 0), 1)
  */
 const interpolatePointOnSurfaceBilinear = (
   { top, bottom, left, right }: BoundingCurves,
-  params: InterpolationParameters,
+  params: InterpolationParametersRequired,
   interpolatePointOnCurveU: InterpolatePointOnCurve,
   interpolatePointOnCurveV: InterpolatePointOnCurve
 ): Point => {
-  const uOpposite = isNil(params.uOpposite) ? params.u : params.uOpposite
-  const vOpposite = isNil(params.vOpposite) ? params.v : params.vOpposite
-
   // Due to potential minute rounding errors we clamp these values to avoid
   // issues with the interpolators which expect a range of 0–1.
-  const paramsClamped = {
-    u: clampT(params.u),
-    uOpposite: clampT(uOpposite),
-    v: clampT(params.v),
-    vOpposite: clampT(vOpposite),
-  } as InterpolationParametersRequired
+  const paramsClamped = mapObj<number, InterpolationParametersRequired>(
+    clampT,
+    params
+  )
 
   const boundaryPoints = {
     top: interpolatePointOnCurveU(paramsClamped.u, top),

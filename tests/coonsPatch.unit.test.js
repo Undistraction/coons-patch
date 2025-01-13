@@ -6,7 +6,7 @@ import testValidationOfBoundingCurveArgs from './shared/testValidationOfBounding
 // Tests
 // -----------------------------------------------------------------------------
 
-describe.skip(`coonsPatch`, () => {
+describe(`coonsPatch`, () => {
   describe(`validations`, () => {
     testValidationOfBoundingCurveArgs((boundingCurves) =>
       coonsPatch(boundingCurves, 0, 1)
@@ -19,6 +19,12 @@ describe.skip(`coonsPatch`, () => {
         },
         {
           key: `v`,
+        },
+        {
+          key: `uOpposite`,
+        },
+        {
+          key: `vOpposite`,
         },
       ])(`key: $key`, ({ key }) => {
         it(`should throw if ${key} is not a number`, () => {

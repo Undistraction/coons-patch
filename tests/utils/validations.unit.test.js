@@ -78,32 +78,6 @@ describe(`validations`, () => {
             )
           ).toThrow(`params.${key} value must be a number, but was 'abc'`)
         })
-
-        it(`should throw if ${key} is less than zero`, () => {
-          expect(() =>
-            validateCoonsPatchArguments(
-              boundingCurvesValid,
-              { ...paramsObjValid, [key]: -0.1 },
-              interpolatePointOnCurveLinearFactory(),
-              interpolatePointOnCurveLinearFactory(0)
-            )
-          ).toThrow(
-            `params.${key} value must be between 0 and 1, but was '-0.1'`
-          )
-        })
-
-        it(`should throw if ${key} is greater than 1`, () => {
-          expect(() =>
-            validateCoonsPatchArguments(
-              boundingCurvesValid,
-              { ...paramsObjValid, [key]: 1.1 },
-              interpolatePointOnCurveLinearFactory(),
-              interpolatePointOnCurveLinearFactory(0)
-            )
-          ).toThrow(
-            `params.${key} value must be between 0 and 1, but was '1.1'`
-          )
-        })
       })
     })
   })

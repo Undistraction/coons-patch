@@ -1,3 +1,4 @@
+import { ValidationError } from '../errors/ValidationError'
 import type {
   BoundingCurves,
   Curve,
@@ -60,7 +61,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.left.startPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `top curve startPoint and left curve startPoint must have same coordinates`
     )
   }
@@ -71,7 +72,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.left.endPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `bottom curve startPoint and left curve endPoint must have the same coordinates`
     )
   }
@@ -82,7 +83,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.right.startPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `top curve endPoint and right curve startPoint must have the same coordinates`
     )
   }
@@ -92,7 +93,7 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       boundingCurves.right.endPoint
     )
   ) {
-    throw new Error(
+    throw new ValidationError(
       `bottom curve endPoint and right curve endPoint must have the same coordinates`
     )
   }
@@ -107,7 +108,7 @@ const validateCurves = (boundingCurves: BoundingCurves): void => {
 
 const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
   if (!isPlainObj(boundingCurves)) {
-    throw new Error(
+    throw new ValidationError(
       `boundingCurves must be an object, but it was '${boundingCurves}'`
     )
   }
@@ -117,49 +118,23 @@ const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
 }
 
 const validateParams = (params: InterpolationParametersRequired): void => {
-  if (!isNumber(params.u)) {
-    throw new Error(`params.u value must be a number, but was '${params.u}'`)
-  }
+  mapObj<undefined, InterpolationParametersRequired>(
+    (value: number, name: string) => {
+      console.log(`--------->)`, name, value)
+      if (!isNumber(value)) {
+        throw new ValidationError(
+          `params.${name} value must be a number, but was '${value}'`
+        )
+      }
 
-  if (!isNumber(params.v)) {
-    throw new Error(`params.v value must be a number, but was '${params.v}'`)
-  }
-
-  if (!isNumber(params.uOpposite)) {
-    throw new Error(
-      `params.uOpposite value must be a number, but was '${params.uOpposite}'`
-    )
-  }
-
-  if (!isNumber(params.vOpposite)) {
-    throw new Error(
-      `params.vOpposite value must be a number, but was '${params.vOpposite}'`
-    )
-  }
-
-  if (params.u < 0 || params.u > 1) {
-    throw new Error(
-      `params.u value must be between 0 and 1, but was '${params.u}'`
-    )
-  }
-
-  if (params.v < 0 || params.v > 1) {
-    throw new Error(
-      `params.v value must be between 0 and 1, but was '${params.v}'`
-    )
-  }
-
-  if (params.uOpposite < 0 || params.uOpposite > 1) {
-    throw new Error(
-      `params.uOpposite value must be between 0 and 1, but was '${params.uOpposite}'`
-    )
-  }
-
-  if (params.vOpposite < 0 || params.vOpposite > 1) {
-    throw new Error(
-      `params.vOpposite value must be between 0 and 1, but was '${params.vOpposite}'`
-    )
-  }
+      if (value < 0 || value > 1) {
+        throw new ValidationError(
+          `params.${name} value must be between 0 and 1, but was '${value}'`
+        )
+      }
+    },
+    params
+  )
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
