@@ -34,5 +34,6 @@ export default {
     // Subject should be sentence case.
     'subject-case': [2, `always`, `sentence-case`],
     'body-max-line-length': [0, `always`, `Infinity`],
+    'footer-max-line-length': [0, `always`, `Infinity`],
   },
 }
