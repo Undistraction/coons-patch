@@ -20,12 +20,6 @@ describe.skip(`coonsPatch`, () => {
         {
           key: `v`,
         },
-        // {
-        //   key: `uOpposite`,
-        // },
-        // {
-        //   key: `vOpposite`,
-        // },
       ])(`key: $key`, ({ key }) => {
         it(`should throw if ${key} is not a number`, () => {
           expect(() =>
