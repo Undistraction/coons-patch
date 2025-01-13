@@ -1,3 +1,29 @@
+## [3.0.0-next.5](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.4...v3.0.0-next.5) (2025-01-13)
+
+### ⚠ BREAKING CHANGES
+
+* This is braking
+* CHANGE
+* This is a breaking change
+* CHANGE
+
+### Features
+
+* Add ValidationError ([4b4d7db](https://github.com/undistraction/coons-patch/commit/4b4d7dbda38eb3db17fdaa87e49e28744d37cb23))
+
+### Bug Fixes
+
+* Force publish ([f0ee4cd](https://github.com/undistraction/coons-patch/commit/f0ee4cd95727d791ce7f969a9e72013f9ba14eac))
+
+### Documentation
+
+* Improvements to documentation ([7cde0b3](https://github.com/undistraction/coons-patch/commit/7cde0b364be517b7c2d07f58ddfcc388d283963e))
+
+### Miscellaneous Chores
+
+* Force publish ([ade0cd1](https://github.com/undistraction/coons-patch/commit/ade0cd14a5647eb4e5e6f3ffc3530defbdaf6813))
+* Force publish ([fba924b](https://github.com/undistraction/coons-patch/commit/fba924b12ece6014416a7090eaa9a629fca4a498))
+
 ## [3.0.0-next.4](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.3...v3.0.0-next.4) (2025-01-13)
 
 ### ⚠ BREAKING CHANGES
