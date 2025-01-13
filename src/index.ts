@@ -76,7 +76,9 @@ const coonsPatch = (
 ) => {
   const paramsWithDefaults: InterpolationParametersRequired = {
     u: params.u,
+    uOpposite: params.u,
     v: params.v,
+    vOpposite: params.v,
   }
   validateCoonsPatchArguments(
     boundingCurves,
