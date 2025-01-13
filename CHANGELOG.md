@@ -25,22 +25,22 @@
 
 ### Features
 
-* Add support for separate values for opposite sides of patch ([ca1a3c0](https://github.com/undistraction/coons-patch/commit/ca1a3c0283a6e461e2392099f05bd6ea812d73c6))
-* Update snapshots ([59b98c2](https://github.com/undistraction/coons-patch/commit/59b98c2a57218ae1705d12b91d16a03f3be1ddb5))
-* WIP ([0ccdd56](https://github.com/undistraction/coons-patch/commit/0ccdd568be969311caa36d7944793e722eed0728))
-* WIP ([8ecaa6c](https://github.com/undistraction/coons-patch/commit/8ecaa6c004cd4f10bb4667139f2cf4247396276f))
-* WIP ([e60298f](https://github.com/undistraction/coons-patch/commit/e60298ff9417e997b2717d0406a6cc3a0f60188d))
-* WIP ([aeca8c6](https://github.com/undistraction/coons-patch/commit/aeca8c6fe76bd86bc849f13f7be7614fc85d1d67))
+- Add support for separate values for opposite sides of patch ([ca1a3c0](https://github.com/undistraction/coons-patch/commit/ca1a3c0283a6e461e2392099f05bd6ea812d73c6))
+- Update snapshots ([59b98c2](https://github.com/undistraction/coons-patch/commit/59b98c2a57218ae1705d12b91d16a03f3be1ddb5))
+- WIP ([0ccdd56](https://github.com/undistraction/coons-patch/commit/0ccdd568be969311caa36d7944793e722eed0728))
+- WIP ([8ecaa6c](https://github.com/undistraction/coons-patch/commit/8ecaa6c004cd4f10bb4667139f2cf4247396276f))
+- WIP ([e60298f](https://github.com/undistraction/coons-patch/commit/e60298ff9417e997b2717d0406a6cc3a0f60188d))
+- WIP ([aeca8c6](https://github.com/undistraction/coons-patch/commit/aeca8c6fe76bd86bc849f13f7be7614fc85d1d67))
 
 ### Bug Fixes
 
-* **release:** Update package for publish ([114c058](https://github.com/undistraction/coons-patch/commit/114c058496cdbc57cebbb365818287d418705ab9))
+- **release:** Update package for publish ([114c058](https://github.com/undistraction/coons-patch/commit/114c058496cdbc57cebbb365818287d418705ab9))
 
 ## [2.0.5](https://github.com/undistraction/coons-patch/compare/v2.0.4...v2.0.5) (2024-10-09)
 
 ### Bug Fixes
 
-* Missing checkout step in audit job ([aebcf14](https://github.com/undistraction/coons-patch/commit/aebcf14c2665d08efc586a53213605b85d1b6b33))
+- Missing checkout step in audit job ([aebcf14](https://github.com/undistraction/coons-patch/commit/aebcf14c2665d08efc586a53213605b85d1b6b33))
 
 ## [2.0.4](https://github.com/undistraction/coons-patch/compare/v2.0.3...v2.0.4) (2024-09-19)
 
