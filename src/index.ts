@@ -3,8 +3,8 @@ import interpolatePointOnSurfaceBilinear from './interpolate/pointOnSurface/inte
 import {
   BoundingCurves,
   CoonsPatchConfig,
-  InterpolationParameters,
   InterpolationParametersRequired,
+  InterpolationParametersSimple,
 } from './types'
 import { validateCoonsPatchArguments } from './utils/validation'
 
@@ -68,12 +68,13 @@ const interpolatePointOnCurveDefault =
  */
 const coonsPatch = (
   boundingCurves: BoundingCurves,
-  params: InterpolationParameters,
+  params: InterpolationParametersSimple,
   {
     interpolatePointOnCurveU = interpolatePointOnCurveDefault,
     interpolatePointOnCurveV = interpolatePointOnCurveDefault,
   }: CoonsPatchConfig = {}
 ) => {
+  console.log(`Coons patch version with simple params`)
   const paramsWithDefaults: InterpolationParametersRequired = {
     u: params.u,
     uOpposite: params.u,

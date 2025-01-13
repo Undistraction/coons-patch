@@ -55,10 +55,13 @@ export interface GetCoordinateOnSurfaceConfig {
   params: InterpolationParametersRequired
 }
 
-export interface InterpolationParameters {
+export interface InterpolationParametersSimple {
   u: number // u parameter along top edge
-  uOpposite?: number // u parameter along bottom edge
   v: number // v parameter along left edge
+}
+
+export interface InterpolationParameters extends InterpolationParametersSimple {
+  uOpposite?: number // u parameter along bottom edge
   vOpposite?: number // v parameter along right edge
 }
 
