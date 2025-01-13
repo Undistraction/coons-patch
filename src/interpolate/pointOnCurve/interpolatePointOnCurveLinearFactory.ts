@@ -6,10 +6,6 @@ import { validateT } from '../../utils/validation'
 // Utils
 // -----------------------------------------------------------------------------
 
-const lerp = (value1: number, value2: number, t: number) => {
-  return (1 - t) * value1 + t * value2
-}
-
 const lerpPoint = (point1: Point, point2: Point, t: number): Point => {
   return { x: lerp(point1.x, point2.x, t), y: lerp(point1.y, point2.y, t) }
 }
@@ -36,6 +32,17 @@ const interpolate = (
 // -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
+
+/**
+ * Performs linear interpolation between two values.
+ * @param value1 - The first value to interpolate from
+ * @param value2 - The second value to interpolate to
+ * @param t - The interpolation parameter between 0 and 1
+ * @returns The interpolated value
+ */
+export const lerp = (value1: number, value2: number, t: number) => {
+  return (1 - t) * value1 + t * value2
+}
 
 /**
  * Factory function that returns a function for interpolating a point on a

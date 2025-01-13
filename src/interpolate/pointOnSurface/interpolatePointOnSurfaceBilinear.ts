@@ -10,31 +10,46 @@ import type {
 } from '../../types'
 import { Coordinate } from '../../types'
 import { isNil } from '../../utils/is'
+import { lerp } from '../pointOnCurve/interpolatePointOnCurveLinearFactory'
 
 // -----------------------------------------------------------------------------
 // Utils
 // -----------------------------------------------------------------------------
 
+// This is an implementation of a coons-patch, but it has a major difference.
+// Instead of accepting only a u and v value, it also accepts uOpposite and
+// vOpposite, allowing for much greater flexibility.
 const getCoordinateOnSurface = ({
   coordinateName,
   boundaryPoints,
   cornerPoints,
   params,
 }: GetCoordinateOnSurfaceConfig) => {
-  const { u, v } = params
-
   const { top, bottom, left, right } = boundaryPoints
   const { topLeft, topRight, bottomLeft, bottomRight } = cornerPoints
+  const { u, v, uOpposite, vOpposite } = params
+
+  // Blend opposing params
+  const uBlended = lerp(u, uOpposite, v)
+  const vBlended = lerp(v, vOpposite, u)
 
   return (
-    (1 - v) * top[coordinateName] +
-    v * bottom[coordinateName] +
-    (1 - u) * left[coordinateName] +
-    u * right[coordinateName] -
-    (1 - u) * (1 - v) * topLeft[coordinateName] -
-    u * (1 - v) * topRight[coordinateName] -
-    (1 - u) * v * bottomLeft[coordinateName] -
-    u * v * bottomRight[coordinateName]
+    // Bilinear interpolation for a point on a surface
+    // Top edge influence
+    (1 - vBlended) * top[coordinateName] +
+    // Bottom edge influence
+    vBlended * bottom[coordinateName] +
+    // Left edge influence
+    (1 - uBlended) * left[coordinateName] +
+    // Right edge influence
+    uBlended * right[coordinateName] -
+    // Corner correction
+    // The corner points are included in the boundary curves, so we need to
+    // remove them to avoid double counting.
+    (1 - uBlended) * (1 - vBlended) * topLeft[coordinateName] -
+    uBlended * (1 - vBlended) * topRight[coordinateName] -
+    (1 - uBlended) * vBlended * bottomLeft[coordinateName] -
+    uBlended * vBlended * bottomRight[coordinateName]
   )
 }
 
