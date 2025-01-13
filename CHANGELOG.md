@@ -1,3 +1,13 @@
+## [3.0.0-next.4](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.3...v3.0.0-next.4) (2025-01-13)
+
+### ⚠ BREAKING CHANGES
+
+* API change
+
+### Bug Fixes
+
+* Uneven API ([93f3233](https://github.com/undistraction/coons-patch/commit/93f323371ef7e8dc31fe95572722dd3889740713))
+
 ## [3.0.0-next.3](https://github.com/undistraction/coons-patch/compare/v3.0.0-next.2...v3.0.0-next.3) (2025-01-13)
 
 ### ⚠ BREAKING CHANGES
