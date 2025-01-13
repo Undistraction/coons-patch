@@ -90,6 +90,8 @@ export interface CoonsPatchConfig {
  * @param t - The interpolation parameter, between 0 and 1
  * @param curve - The curve to interpolate along
  * @returns A point on the curve at parameter t
+ *
+ * @group Interpolation
  */
 export type InterpolatePointOnCurve = (t: number, curve: Curve) => Point
 
@@ -100,6 +102,8 @@ export type InterpolatePointOnCurve = (t: number, curve: Curve) => Point
  * @param {number} config.precision - The precision level for the interpolation.
  * @returns {InterpolatePointOnCurve} A function that interpolates a point on a
  * curve.
+ *
+ * @group Interpolation
  */
 export type InterpolatePointOnCurveFactory = (config: {
   precision: number
