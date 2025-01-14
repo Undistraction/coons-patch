@@ -40,9 +40,8 @@ const interpolate = (
  * @param t - The interpolation parameter between 0 and 1
  * @returns The interpolated value
  */
-export const lerp = (value1: number, value2: number, t: number) => {
-  return (1 - t) * value1 + t * value2
-}
+export const lerp = (value1: number, value2: number, t: number) =>
+  (1 - t) * value1 + t * value2
 
 /**
  * Factory function that returns a function for interpolating a point on a
