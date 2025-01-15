@@ -19,7 +19,7 @@ Another package: [warp-grid](https://github.com/Undistraction/warp-grid) which s
 
 To visualise and play with a coons patch as used by warp-grid, use the [interactive editor](https://warp-grid-editor.undistraction.com/).
 
-[Package Documentation](https://coons-patch-docs.undistraction.com) (TSDoc generated).
+[Package Documentation](https://coons-patch-docs.undistraction.com) (Typedoc generated).
 
 This package is written in TypeScript and exports its types.
 
