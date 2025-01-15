@@ -11,6 +11,12 @@ import { isFunction, isNumber, isPlainObj } from './is'
 import { roundTo5 } from './math'
 
 // -----------------------------------------------------------------------------
+// Const
+// -----------------------------------------------------------------------------
+
+const CURVE_NAMES = [`top`, `right`, `bottom`, `left`]
+
+// -----------------------------------------------------------------------------
 // Utils
 // -----------------------------------------------------------------------------
 
@@ -52,6 +58,14 @@ const validateStartAndEndPoints = (
   if (!isValidPoint(endPoint)) {
     throw new Error(`Bounding curve '${name}' endPoint must be a valid point`)
   }
+}
+
+const validateCurves = (boundingCurves: BoundingCurves): void => {
+  CURVE_NAMES.map((name) => {
+    const curve = boundingCurves[name as keyof BoundingCurves]
+    validateCurve(curve, name)
+    validateStartAndEndPoints(curve, name)
+  })
 }
 
 const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
@@ -97,13 +111,6 @@ const validateCornerPoints = (boundingCurves: BoundingCurves): void => {
       `bottom curve endPoint and right curve endPoint must have the same coordinates`
     )
   }
-}
-
-const validateCurves = (boundingCurves: BoundingCurves): void => {
-  mapObj((curve, name) => {
-    validateCurve(curve, name)
-    validateStartAndEndPoints(curve, name)
-  }, boundingCurves)
 }
 
 const validateBoundingCurves = (boundingCurves: BoundingCurves): void => {
