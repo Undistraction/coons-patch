@@ -1,3 +1,9 @@
+## [3.0.1](https://github.com/undistraction/coons-patch/compare/v3.0.0...v3.0.1) (2025-01-15)
+
+### Bug Fixes
+
+* Loosen validation of bounding curves ([f38fb1b](https://github.com/undistraction/coons-patch/commit/f38fb1bbe23ab7e61d40c78b5cdc27ca0ec74f57))
+
 ## [3.0.0](https://github.com/undistraction/coons-patch/compare/v2.0.5...v3.0.0) (2025-01-13)
 
 ### ⚠ BREAKING CHANGES
