@@ -92,11 +92,5 @@
   },
   "dependencies": {
     "fast-memoize": "^2.5.2"
-  },
-  "pnpm": {
-    "overrides": {
-      "cross-spawn": "^7.0.5",
-      "conventional-changelog-conventionalcommits": ">= 8.0.0"
-    }
   }
 }
