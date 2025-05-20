@@ -55,6 +55,13 @@ export const paramsObjValid = {
 }
 
 // -----------------------------------------------------------------------------
+// Utils
+// -----------------------------------------------------------------------------
+
+const filterSkippedTests = ({ skipTest }: { skipTest: boolean }) =>
+  skipTest !== true
+
+// -----------------------------------------------------------------------------
 // Exports
 // -----------------------------------------------------------------------------
 
@@ -105,6 +112,6 @@ const fixtures: Fixture[] = [
       },
     },
   },
-].filter(({ skipTest }) => skipTest !== true)
+].filter(filterSkippedTests)
 
 export default fixtures
