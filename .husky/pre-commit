@@ -5,3 +5,6 @@ pnpm exec lint-staged
 
 # Run tests before every commit
 pnpm run test
+
+# Compile Typescript
+pnpm run tsc
