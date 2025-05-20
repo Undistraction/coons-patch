@@ -1,48 +1,10 @@
 {
+  "extends": "./tsconfig.base.json",
   // The files to include in the compilation
-  "include": ["src/**/*", "tests/**/*"],
-  // Files to exclude from the compilation
-  "exclude": ["node_modules/**/*"],
-  // Compiler options
+  "include": ["src/**/*"],
   "compilerOptions": {
-    "types": ["vitest/globals"],
-    // Dirs to look in for type definitions
-    "typeRoots": [
-      "./src/@types",
-      "./node_modules/@types",
-      "./@types",
-      "./node_modules/"
-    ],
-    // Enable all strict type-checking options
-    "strict": true,
-    // Choose the module system to use. Note that 'preserve' is not supported by
-    // vite-plugin-dts
-    "module": "ESNext",
-    // The module-resolution strategy to use. Using 'bundler' avoids issues with
-    // missing file-extensions in imported files.
-    "moduleResolution": "bundler",
-    // The version of ES that we will be writing code in.
-    "lib": ["ESNext"],
-    // The version of ES the code is compiled to. Note that no polyfills are
-    // added during compilation.
-    "target": "ES2020",
-    // Should a sourcemap be generated for the compiled code?
-    "sourceMap": true,
-    // Improve compatibility with ES module imports
-    "esModuleInterop": true,
-    // Ensure casings in import are consistent
-    "forceConsistentCasingInFileNames": true,
-    // Relax type-checking for third-party libraries
-    "skipLibCheck": true,
-    // Use 'unknown' for variables in catch clauses
-    "useUnknownInCatchVariables": false,
-    // Generate declaration files when compiling. Note that we use
-    // vite-plugin-dts to consolidate all declaration files to a single file
+    "outDir": "dist",
     "declaration": true,
-    // Throw if there is an error during build
-    "noEmitOnError": true,
-    // Don't emit files during build. Vite will override this but it means we
-    // can still run tsc for checking.
-    "noEmit": true
+    "types": []
   }
 }

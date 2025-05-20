@@ -10,6 +10,10 @@ export default defineConfig({
     include: [`**/*.test.{js,ts}`],
     exclude: [`**/node_modules/**`, `**/.dist/**`],
     setupFiles: [`./tests/setup.ts`],
+    // Use a test-specific tsconfig
+    typecheck: {
+      tsconfig: `./tsconfig.test.json`,
+    },
     coverage: {
       provider: `v8`,
       reporter: [`text`],
