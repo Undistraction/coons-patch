@@ -41,8 +41,8 @@ importers:
         specifier: ^22.0.0
         version: 22.10.10
       '@vitest/coverage-v8':
-        specifier: ^3.0.0
-        version: 3.0.6(vitest@3.1.4(@types/node@22.10.10)(jiti@2.4.2)(jsdom@20.0.3)(yaml@2.8.0))
+        specifier: ^3.1.4
+        version: 3.1.4(vitest@3.1.4(@types/node@22.10.10)(jiti@2.4.2)(jsdom@20.0.3)(yaml@2.8.0))
       '@vitest/eslint-plugin':
         specifier: ^1.2.0
         version: 1.2.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.1.4(@types/node@22.10.10)(jiti@2.4.2)(jsdom@20.0.3)(yaml@2.8.0))
@@ -71,14 +71,14 @@ importers:
         specifier: ^0.5.4
         version: 0.5.4(@typescript-eslint/eslint-plugin@8.32.1(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.1.4(@types/node@22.10.10)(jiti@2.4.2)(jsdom@20.0.3)(yaml@2.8.0))
       globals:
-        specifier: ^15.8.0
-        version: 15.15.0
+        specifier: ^16.1.0
+        version: 16.1.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
       jest-extended:
-        specifier: ^4.0.2
-        version: 4.0.2(jest@29.7.0(@types/node@22.10.10))
+        specifier: ^5.0.2
+        version: 5.0.2(jest@29.7.0(@types/node@22.10.10))
       lint-staged:
         specifier: ^16.0.0
         version: 16.0.0
@@ -1133,11 +1133,11 @@ packages:
     resolution: {integrity: sha512-ar0tjQfObzhSaW3C3QNmTc5ofj0hDoNQ5XWrCy6zDyabdr0TWhCkClp+rywGNj/odAFBVzzJrK4tEq5M4Hmu4w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@vitest/coverage-v8@3.0.6':
-    resolution: {integrity: sha512-JRTlR8Bw+4BcmVTICa7tJsxqphAktakiLsAmibVLAWbu1lauFddY/tXeM6sAyl1cgkPuXtpnUgaCPhTdz1Qapg==}
+  '@vitest/coverage-v8@3.1.4':
+    resolution: {integrity: sha512-G4p6OtioySL+hPV7Y6JHlhpsODbJzt1ndwHAFkyk6vVjpK03PFsKnauZIzcd0PrK4zAbc5lc+jeZ+eNGiMA+iw==}
     peerDependencies:
-      '@vitest/browser': 3.0.6
-      vitest: 3.0.6
+      '@vitest/browser': 3.1.4
+      vitest: 3.1.4
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -2152,8 +2152,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.15.0:
-    resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
+  globals@16.1.0:
+    resolution: {integrity: sha512-aibexHNbb/jiUSObBgpHLj+sIuUmJnYcgXBlrfsiDZ9rt4aF2TFRbyLgZ2iFQuVZ1K5Mx3FVkbKRSgKrbK3K2g==}
     engines: {node: '>=18'}
 
   globby@11.1.0:
@@ -2495,9 +2495,9 @@ packages:
     resolution: {integrity: sha512-DOSwCRqXirTOyheM+4d5YZOrWcdu0LNZ87ewUoywbcb2XR4wKgqiG8vNeYwhjFMbEkfju7wx2GYH0P2gevGvFw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  jest-extended@4.0.2:
-    resolution: {integrity: sha512-FH7aaPgtGYHc9mRjriS0ZEHYM5/W69tLrFTIdzm+yJgeoCmmrSB/luSfMSqWP9O29QWHPEmJ4qmU6EwsZideog==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+  jest-extended@5.0.2:
+    resolution: {integrity: sha512-0mpvbDuqgIZ2Se1SwiYJv6j4FsTu7shMqGICp9IGLtdCduJU/xrAk8HhpFmsGAWN+MopFQf8+2bHb46RHgaXTA==}
+    engines: {node: ^18.12.0 || ^20.9.0 || ^22.11.0 || >=23.0.0}
     peerDependencies:
       jest: '>=27.2.5'
     peerDependenciesMeta:
@@ -3532,9 +3532,6 @@ packages:
 
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
-
-  std-env@3.8.0:
-    resolution: {integrity: sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==}
 
   std-env@3.9.0:
     resolution: {integrity: sha512-UGvjygr6F6tpH7o2qyqR6QYpwraIjKSdtzyBdyytFOHmPZY917kwdwLG0RbOjWOnKmnm3PeHjaoLLMie7kPLQw==}
@@ -5330,7 +5327,7 @@ snapshots:
       '@typescript-eslint/types': 8.32.1
       eslint-visitor-keys: 4.2.0
 
-  '@vitest/coverage-v8@3.0.6(vitest@3.1.4(@types/node@22.10.10)(jiti@2.4.2)(jsdom@20.0.3)(yaml@2.8.0))':
+  '@vitest/coverage-v8@3.1.4(vitest@3.1.4(@types/node@22.10.10)(jiti@2.4.2)(jsdom@20.0.3)(yaml@2.8.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 1.0.2
@@ -5341,7 +5338,7 @@ snapshots:
       istanbul-reports: 3.1.7
       magic-string: 0.30.17
       magicast: 0.3.5
-      std-env: 3.8.0
+      std-env: 3.9.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
       vitest: 3.1.4(@types/node@22.10.10)(jiti@2.4.2)(jsdom@20.0.3)(yaml@2.8.0)
@@ -6512,7 +6509,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.15.0: {}
+  globals@16.1.0: {}
 
   globby@11.1.0:
     dependencies:
@@ -6956,10 +6953,9 @@ snapshots:
       jest-util: 29.7.0
     optional: true
 
-  jest-extended@4.0.2(jest@29.7.0(@types/node@22.10.10)):
+  jest-extended@5.0.2(jest@29.7.0(@types/node@22.10.10)):
     dependencies:
       jest-diff: 29.7.0
-      jest-get-type: 29.6.3
     optionalDependencies:
       jest: 29.7.0(@types/node@22.10.10)
 
@@ -8087,8 +8083,6 @@ snapshots:
     optional: true
 
   stackback@0.0.2: {}
-
-  std-env@3.8.0: {}
 
   std-env@3.9.0: {}
 
