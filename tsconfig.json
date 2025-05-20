@@ -1,10 +1,18 @@
 {
   // The files to include in the compilation
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tests/**/*"],
   // Files to exclude from the compilation
   "exclude": ["node_modules/**/*"],
   // Compiler options
   "compilerOptions": {
+    "types": ["vitest/globals"],
+    // Dirs to look in for type definitions
+    "typeRoots": [
+      "./src/@types",
+      "./node_modules/@types",
+      "./@types",
+      "./node_modules/"
+    ],
     // Enable all strict type-checking options
     "strict": true,
     // Choose the module system to use. Note that 'preserve' is not supported by
@@ -15,12 +23,12 @@
     "moduleResolution": "bundler",
     // The version of ES that we will be writing code in.
     "lib": ["ESNext"],
-    // The version of ES the code is compiled to. Note that no pollyfills are
+    // The version of ES the code is compiled to. Note that no polyfills are
     // added during compilation.
     "target": "ES2020",
     // Should a sourcemap be generated for the compiled code?
     "sourceMap": true,
-    // Improve compatability with ES module imports
+    // Improve compatibility with ES module imports
     "esModuleInterop": true,
     // Ensure casings in import are consistent
     "forceConsistentCasingInFileNames": true,
@@ -28,8 +36,6 @@
     "skipLibCheck": true,
     // Use 'unknown' for variables in catch clauses
     "useUnknownInCatchVariables": false,
-    // Dirs to look in for type definitions
-    "typeRoots": ["./src/@types", "./node_modules/@types"],
     // Generate declaration files when compiling. Note that we use
     // vite-plugin-dts to consolidate all declaration files to a single file
     "declaration": true,

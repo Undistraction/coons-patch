@@ -39,7 +39,8 @@ export default tseslint.config(
       'unused-imports': unusedImportsPlugin,
     },
     rules: {
-      // Generic
+      // Recommended to disable on TypeScript projects. See:
+      // https://shorturl.at/7aewp
       'no-undef': `off`,
       quotes: [
         `error`,
@@ -47,8 +48,6 @@ export default tseslint.config(
         { avoidEscape: true, allowTemplateLiterals: true },
       ],
 
-      // Recommended to disable on TypeScript projects. See:
-      // https://typescript-eslint.io/troubleshooting/faqs/eslint/#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
       // Unused imports
       'unused-imports/no-unused-imports': `error`,
       'unused-imports/no-unused-vars': [
@@ -62,8 +61,12 @@ export default tseslint.config(
       ],
     },
   },
+
+  // ---------------------------------------------------------------------------
+  // Unit tests
+  // ---------------------------------------------------------------------------
   {
-    files: [`tests/unit/**/*.unit.test.js`, `tests/unit/setup.js`],
+    files: [`tests/unit/**/*.unit.test.{ts,js}`, `tests/unit/setup.{ts,js}`],
     languageOptions: {
       globals: {
         ...vitestPlugin.environments.env.globals,
