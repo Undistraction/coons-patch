@@ -77,8 +77,8 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       jest-extended:
-        specifier: ^4.0.2
-        version: 4.0.2(jest@29.7.0(@types/node@22.10.10))
+        specifier: ^5.0.0
+        version: 5.0.2(jest@29.7.0(@types/node@22.10.10))
       lint-staged:
         specifier: ^16.0.0
         version: 16.0.0
@@ -2495,9 +2495,9 @@ packages:
     resolution: {integrity: sha512-DOSwCRqXirTOyheM+4d5YZOrWcdu0LNZ87ewUoywbcb2XR4wKgqiG8vNeYwhjFMbEkfju7wx2GYH0P2gevGvFw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  jest-extended@4.0.2:
-    resolution: {integrity: sha512-FH7aaPgtGYHc9mRjriS0ZEHYM5/W69tLrFTIdzm+yJgeoCmmrSB/luSfMSqWP9O29QWHPEmJ4qmU6EwsZideog==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+  jest-extended@5.0.2:
+    resolution: {integrity: sha512-0mpvbDuqgIZ2Se1SwiYJv6j4FsTu7shMqGICp9IGLtdCduJU/xrAk8HhpFmsGAWN+MopFQf8+2bHb46RHgaXTA==}
+    engines: {node: ^18.12.0 || ^20.9.0 || ^22.11.0 || >=23.0.0}
     peerDependencies:
       jest: '>=27.2.5'
     peerDependenciesMeta:
@@ -6956,10 +6956,9 @@ snapshots:
       jest-util: 29.7.0
     optional: true
 
-  jest-extended@4.0.2(jest@29.7.0(@types/node@22.10.10)):
+  jest-extended@5.0.2(jest@29.7.0(@types/node@22.10.10)):
     dependencies:
       jest-diff: 29.7.0
-      jest-get-type: 29.6.3
     optionalDependencies:
       jest: 29.7.0(@types/node@22.10.10)
 
