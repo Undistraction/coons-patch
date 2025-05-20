@@ -5,6 +5,7 @@ export default {
       `@semantic-release/commit-analyzer`,
       {
         preset: `conventionalcommits`,
+        releaseRules: [{ type: `deps`, release: `patch` }],
       },
     ],
     [
