@@ -244,7 +244,7 @@ Docs are built and deployed to Vercel automatically when changes on `main` are p
 
 ### Run unit tests
 
-Unit tests use vitest.
+Unit tests use vitest. Note that some of the tests are written in JS instead of TS. Those tests are related to validation of types **at runtime**. Any validations that validate things that cannot be caught by TS are written in TS.
 
 ```bash
 pnpm run test # Run tests once
