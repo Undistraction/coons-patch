@@ -36,7 +36,7 @@ yarn add coons-patch
 ## Quick-start
 
 ```typeScript
-import coonsPatch from 'coons-patch'
+import { coonsPatch } from 'coons-patch'
 
 // Define bounding (cubic Bezier) curves for the patch
 const boundingCurves = {
@@ -162,7 +162,7 @@ Both interpolations provided by this package use a factory pattern. You pass in 
 This is the default and provides the most evenly distributed interpolation at a cost of performance. It uses a look-up table (LUT) to addresses issues with linear interpolation that avoids distribution being affected by curvature of bounds. This function can additionally be configured using a `precision` value. This improves tha accuracy of the interpolation at the cost of performance and defaults to `20` which is a good ballance between accuracy and performance.
 
 ```typeScript
-import coonsPatch, { interpolatePointOnCurveEvenlySpacedFactory } from 'coons-patch'
+import { coonsPatch }, { interpolatePointOnCurveEvenlySpacedFactory } from 'coons-patch'
 
 const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpacedFactory({
   precision: 25,
@@ -179,7 +179,7 @@ coonsPatch(boundingCurves, {u: 0.25, v: 0.9}, {
 This is a much simpler type of interpolation, and results in distribution of points being affected by the curvature of the bounds. It is significantly more performant that the `interpolatePointOnCurveEvenlySpacedFactory`.
 
 ```typeScript
-import coonsPatch, { interpolatePointOnCurveLinearFactory } from 'coons-patch'
+import { coonsPatch }, { interpolatePointOnCurveLinearFactory } from 'coons-patch'
 
 // Note that this factory function doesn't currently accept any config.
 const interpolatePointOnCurve = interpolatePointOnCurveLinearFactory()

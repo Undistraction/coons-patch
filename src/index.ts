@@ -65,7 +65,7 @@ const interpolatePointOnCurveDefault =
  *
  * @group API
  */
-const coonsPatch = (
+export const coonsPatch = (
   boundingCurves: BoundingCurves,
   params: InterpolationParameters,
   {
@@ -100,5 +100,3 @@ const coonsPatch = (
     interpolatePointOnCurveV
   )
 }
-
-export default coonsPatch

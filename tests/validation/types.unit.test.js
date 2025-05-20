@@ -1,4 +1,4 @@
-import coonsPatch from '../../src'
+import { coonsPatch } from '../../src'
 import { boundingCurvesValid, paramsObjValid } from '../fixtures'
 import { CURVES } from '../const'
 
