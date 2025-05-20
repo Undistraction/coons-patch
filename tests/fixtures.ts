@@ -1,4 +1,20 @@
 import { interpolatePointOnCurveLinearFactory } from '../src'
+import {
+  BoundingCurves,
+  CoonsPatchConfig,
+  InterpolationParameters,
+} from '../src/types'
+import { Fixture } from './types'
+
+// -----------------------------------------------------------------------------
+// Types
+// -----------------------------------------------------------------------------
+
+type CoonsPatchArgs = [
+  BoundingCurves,
+  InterpolationParameters,
+  CoonsPatchConfig?,
+]
 
 // -----------------------------------------------------------------------------
 // Const
@@ -45,17 +61,22 @@ export const paramsObjValid = {
 // Define different sets of params to test
 // Save the results to JSON files to import into tests
 // Set 'skipSnapshot: false' for each item to skip the snapshot
-const fixtures = [
+const fixtures: Fixture[] = [
   {
     name: `Arbitrary point`,
+    skipTest: false,
     input: {
       coonsPatch: {
-        args: [boundingCurvesValid, { u: 0.25, v: 0.5 }],
+        args: [boundingCurvesValid, { u: 0.25, v: 0.5 }] as [
+          BoundingCurves,
+          InterpolationParameters,
+        ],
       },
     },
   },
   {
     name: `Arbitrary point with linear interpolatePointOnCurve`,
+    skipTest: false,
     input: {
       coonsPatch: {
         args: [
@@ -65,12 +86,13 @@ const fixtures = [
             interpolatePointOnCurveU: interpolatePointOnCurveLinearFactory(),
             interpolatePointOnCurveV: interpolatePointOnCurveLinearFactory(),
           },
-        ],
+        ] as CoonsPatchArgs,
       },
     },
   },
   {
     name: `Arbitrary point with different interpolations for each axis`,
+    skipTest: false,
     input: {
       coonsPatch: {
         args: [
@@ -79,7 +101,7 @@ const fixtures = [
           {
             interpolatePointOnCurveU: interpolatePointOnCurveLinearFactory(),
           },
-        ],
+        ] as CoonsPatchArgs,
       },
     },
   },
