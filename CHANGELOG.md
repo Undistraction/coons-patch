@@ -1,3 +1,13 @@
+## 4.0.0 (2025-05-20)
+
+* feat: Switch to named export for coonsPatch ([3abc2c0](https://github.com/undistraction/coons-patch/commit/3abc2c0))
+* chore: Separate tsconfigs for test and build ([c7909f9](https://github.com/undistraction/coons-patch/commit/c7909f9))
+
+
+### BREAKING CHANGE
+
+* coonsPatch is now a named export instead of a default export.
+
 ## <small>3.0.2 (2025-05-20)</small>
 
 * deps: Bump doten ([06e0176](https://github.com/undistraction/coons-patch/commit/06e0176))
