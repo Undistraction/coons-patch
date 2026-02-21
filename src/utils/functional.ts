@@ -42,3 +42,17 @@ export const mapObj = <T, R = Record<string, T>>(
     }
   }, {}) as R
 }
+
+// Same as mapObj but uses mutation internally for performance.
+export const mapObjFast = <T, R = Record<string, T>>(
+  f: (value: any, key: string, idx: number) => T,
+  o: ObjectWithStringKeys
+): R => {
+  const result: Record<string, T> = {}
+  const keys = Object.keys(o)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    result[key] = f(o[key], key, i)
+  }
+  return result as R
+}
