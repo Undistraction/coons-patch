@@ -20,7 +20,9 @@
       "Bash(git checkout:*)",
       "WebFetch(domain:github.com)",
       "Bash(pnpm list:*)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(pnpm view:*)",
+      "Bash(python3:*)"
     ]
   }
 }
