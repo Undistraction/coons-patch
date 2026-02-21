@@ -37,24 +37,36 @@ const getLut = (points: Point[]): number[] => {
   return lut
 }
 
+// Binary search for the LUT segment containing targetLength, then linearly
+// interpolate within that segment to find t.
 const findClosestPointOnCurve = (
   lut: number[],
   curve: Curve,
   targetLength: number,
   precision: number
 ): Point => {
-  for (let i = 1; i < lut.length; i++) {
-    const point = lut[i]
-    if (point >= targetLength) {
-      const previousIdx = i - 1
-      const lastPoint = lut[previousIdx]
-      const t =
-        (previousIdx + (targetLength - lastPoint) / (point - lastPoint)) /
-        precision
-      return interpolatePointOnCurveLinear(t, curve)
+  let lo = 1
+  let hi = lut.length - 1
+
+  while (lo < hi) {
+    const mid = (lo + hi) >>> 1
+    if (lut[mid] < targetLength) {
+      lo = mid + 1
+    } else {
+      hi = mid
     }
   }
-  throw new Error(`Could not find point on curve`)
+
+  if (lut[lo] < targetLength) {
+    throw new Error(`Could not find point on curve`)
+  }
+
+  const previousIdx = lo - 1
+  const t =
+    (previousIdx +
+      (targetLength - lut[previousIdx]) / (lut[lo] - lut[previousIdx])) /
+    precision
+  return interpolatePointOnCurveLinear(t, curve)
 }
 
 // We only want to do this once per curve as it is very expensive so we memoize
