@@ -184,7 +184,7 @@ import { coonsPatch, interpolatePointOnCurveLinearFactory } from 'coons-patch'
 // Note that this factory function doesn't currently accept any config.
 const interpolatePointOnCurve = interpolatePointOnCurveLinearFactory()
 
-coonsPatch(boundingCurves, {u:  0.25, v: 0.9}, {
+coonsPatch(boundingCurves, {u: 0.25, v: 0.9}, {
   interpolatePointOnCurveU: interpolatePointOnCurve,
   interpolatePointOnCurveV: interpolatePointOnCurve
 })
@@ -207,10 +207,10 @@ Note that wherever possible calculations are memoized to reduce the need to repe
 
 Benchmarks are run using `vitest bench`. Results below are from a 100x100 grid (10,000 points):
 
-| Interpolation | ops/s | Time per grid |
-|---|---|---|
-| Linear | ~106 | ~9.4ms |
-| Evenly spaced (default) | ~25 | ~40ms |
+| Interpolation           | ops/s | Time per grid |
+| ----------------------- | ----- | ------------- |
+| Linear                  | ~106  | ~9.4ms        |
+| Evenly spaced (default) | ~25   | ~40ms         |
 
 Single point lookups run at ~212k ops/s (default) and ~970k ops/s (linear).
 
