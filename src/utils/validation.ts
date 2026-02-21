@@ -24,7 +24,7 @@ const roundPointCoordinates = (point: Point): Point => {
   return {
     ...point,
     x: roundTo5(point.x),
-    y: roundTo5(point.x),
+    y: roundTo5(point.y),
   }
 }
 
