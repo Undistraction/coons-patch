@@ -9,13 +9,13 @@
 ![NPM Version](https://img.shields.io/npm/v/coons-patch)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/undistraction/coons-patch/release.yml)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Undistraction/coons-patch/issues)
 
 </p>
 
 A [Coons patch](https://en.wikipedia.org/wiki/Coons_patch) is a four-sided surface defined by four straight or curved edges. This package provides a small API for creating a coons-patch and locating points on that surface. It enhances the standard Coons-patch by accepting an additional two parameters, allowing for interpolation along each boundary rather than across just u and v axes.
 
-Another package: [warp-grid](https://github.com/Undistraction/warp-grid) which supplies a greatly extended API build on-top of this package for modelling complex grids and might be more useful to you, depending on your use-case.
+Another package: [warp-grid](https://github.com/Undistraction/warp-grid) which supplies a greatly extended API built on top of this package for modelling complex grids might be more useful to you, depending on your use-case.
 
 To visualise and play with a coons patch as used by warp-grid, use the [interactive editor](https://warp-grid-editor.undistraction.com/).
 
@@ -72,13 +72,13 @@ const point = coonsPatch(boundingCurves, {u: 0.1, v: 0.6})
 
 ## A note on naming and the underlying math
 
-Because a coons-patch is not bounded to x and y coordinates, the parameters `u` and `v` are used in algebraic descriptions to represent the two axes of the patch. Similarly `t` is used to for a single axes. The naming of the API reflects this to keep closer to the underlying math. In all cases, these parameters (`u`, `v` and `t`) are only valid in the range 0–1 inclusive, where 0 represents the beginning of a surface along that axis, and 1 represents the end. In this respect, the values can be thought of as ratios representing a position along a path from start to end.
+Because a coons-patch is not bound to x and y coordinates, the parameters `u` and `v` are used in algebraic descriptions to represent the two axes of the patch. Similarly `t` is used to for a single axes. The naming of the API reflects this to keep closer to the underlying math. In all cases, these parameters (`u`, `v` and `t`) are only valid in the range 0–1 inclusive, where 0 represents the beginning of a surface along that axis, and 1 represents the end. In this respect, the values can be thought of as ratios representing a position along a path from start to end.
 
 ## Usage
 
 ### Primitives
 
-Points look like this, with coordinate values in pixels:
+Points look like this:
 
 ```typeScript
 const point = {
@@ -114,7 +114,7 @@ const curve = {
 
 To generate a patch you must provide a set of four **bounding curves** (`top`, `left`, `bottom` and `right`) in the form of four cubic Bezier curves. A cubic Bezier curve describes a straight-line or curve using a start point (`startPoint`), an end point (`endPoint`) and two other control points(`controlPoint1` and `controlPoint2`). Each point has an `x` and `y` coordinate.
 
-At minimum you must supply start and end points for each curve. If you do not supply `controlPoint1` it will be set to the same coordinates as the start point, and if you do not supply `controlPoint2` it will be set to the same coordinates as the end point. Setting both control points to the same values as the start and end point will result in a straight line. You also need to ensure that the four curves meet at the corner.
+Each curve requires a `startPoint`, `endPoint`, `controlPoint1` and `controlPoint2`. Setting both control points to the same values as the start and end points respectively will result in a straight line. You also need to ensure that the four curves meet at the corners.
 
 You will probably be expecting the end of each curve to be the start of the next, however in keeping with the math involved in generating a coons-patch this is not the case. The `top` and `bottom` curves run left to right, and `left` and `right` curves run top to bottom, so this means that:
 
@@ -159,10 +159,10 @@ Both interpolations provided by this package use a factory pattern. You pass in 
 
 #### `interpolatePointOnCurveEvenlySpacedFactory`
 
-This is the default and provides the most evenly distributed interpolation at a cost of performance. It uses a look-up table (LUT) to addresses issues with linear interpolation that avoids distribution being affected by curvature of bounds. This function can additionally be configured using a `precision` value. This improves tha accuracy of the interpolation at the cost of performance and defaults to `20` which is a good ballance between accuracy and performance.
+This is the default and provides the most evenly distributed interpolation at a cost of performance. It uses a look-up table (LUT) to addresses issues with linear interpolation that avoids distribution being affected by curvature of bounds. This function can additionally be configured using a `precision` value. This improves the accuracy of the interpolation at the cost of performance and defaults to `20` which is a good balance between accuracy and performance.
 
 ```typeScript
-import { coonsPatch }, { interpolatePointOnCurveEvenlySpacedFactory } from 'coons-patch'
+import { coonsPatch, interpolatePointOnCurveEvenlySpacedFactory } from 'coons-patch'
 
 const interpolatePointOnCurve = interpolatePointOnCurveEvenlySpacedFactory({
   precision: 25,
@@ -176,10 +176,10 @@ coonsPatch(boundingCurves, {u: 0.25, v: 0.9}, {
 
 #### `interpolatePointOnCurveLinearFactory`
 
-This is a much simpler type of interpolation, and results in distribution of points being affected by the curvature of the bounds. It is significantly more performant that the `interpolatePointOnCurveEvenlySpacedFactory`.
+This is a much simpler type of interpolation, and results in distribution of points being affected by the curvature of the bounds. It is significantly more performant than the `interpolatePointOnCurveEvenlySpacedFactory`.
 
 ```typeScript
-import { coonsPatch }, { interpolatePointOnCurveLinearFactory } from 'coons-patch'
+import { coonsPatch, interpolatePointOnCurveLinearFactory } from 'coons-patch'
 
 // Note that this factory function doesn't currently accept any config.
 const interpolatePointOnCurve = interpolatePointOnCurveLinearFactory()
@@ -203,6 +203,19 @@ Write your own interpolation function with this signature:
 
 Note that wherever possible calculations are memoized to reduce the need to repeat identical calculations.
 
+## Performance
+
+Benchmarks are run using `vitest bench`. Results below are from a 100x100 grid (10,000 points):
+
+| Interpolation | ops/s | Time per grid |
+|---|---|---|
+| Linear | ~106 | ~9.4ms |
+| Evenly spaced (default) | ~25 | ~40ms |
+
+Single point lookups run at ~212k ops/s (default) and ~970k ops/s (linear).
+
+Run benchmarks locally with `pnpm run bench`.
+
 ## Dependencies
 
 This project has a single dependency: [fast-memoize](https://www.npmjs.com/package/fast-memoize) which is used for memoization of expensive calculations.
@@ -222,12 +235,6 @@ pnpm run build # Build once
 pnpm run build-watch # Build and watch for changes
 ```
 
-### Preview build
-
-```bash
-pnpm run preview
-```
-
 ### Generate docs
 
 ```bash
@@ -237,20 +244,21 @@ pnpm run docs
 ### View the generated docs
 
 ```bash
-pnpm run docs-view
+pnpm run docs-open
 ```
 
 Docs are built and deployed to Vercel automatically when changes on `main` are pushed to origin.
 
 ### Run unit tests
 
-Unit tests use vitest. Note that some of the tests are written in JS instead of TS. Those tests are related to validation of types **at runtime**. Any validations that validate things that cannot be caught by TS are written in TS.
+Unit tests use vitest. Note that some tests are written in JS instead of TS. These tests validate runtime type-checking (e.g. passing invalid types to the API). They are written in JS because TypeScript would catch these errors at compile time, preventing the runtime validation paths from being tested.
 
 ```bash
 pnpm run test # Run tests once
 pnpm run test-watch # Run tests and watch for changes
 pnpm run test-coverage # Run tests and output a coverage report
 pnpm run test-snapshot # Regenerate snapshots
+pnpm run bench # Run benchmarks
 ```
 
 ### Lint
