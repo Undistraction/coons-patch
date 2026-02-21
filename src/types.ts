@@ -81,10 +81,6 @@ export type InterpolatePointOnCurveFactory = (config: {
 // -----------------------------------------------------------------------------
 // Internal
 // -----------------------------------------------------------------------------
-export enum Coordinate {
-  X = `x`,
-  Y = `y`,
-}
 export interface BoundaryPoints {
   top: Point
   bottom: Point
@@ -101,12 +97,6 @@ export interface CornerPoints {
 
 export type InterpolationParametersRequired = Required<InterpolationParameters>
 
-export interface GetCoordinateOnSurfaceConfig {
-  coordinateName: Coordinate
-  boundaryPoints: BoundaryPoints
-  cornerPoints: CornerPoints
-  params: InterpolationParametersRequired
-}
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export type ObjectWithStringKeys = Record<string, any>

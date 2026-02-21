@@ -6,7 +6,6 @@ import type {
   InterpolationParametersRequired,
   Point,
 } from '../../types'
-import { mapObjFast } from '../../utils/functional'
 import { lerp } from '../pointOnCurve/interpolatePointOnCurveLinearFactory'
 
 // -----------------------------------------------------------------------------
@@ -119,10 +118,12 @@ const interpolatePointOnSurfaceBilinear = (
 ): Point => {
   // Due to potential minute rounding errors we clamp these values to avoid
   // issues with the interpolators which expect a range of 0–1.
-  const paramsClamped = mapObjFast<number, InterpolationParametersRequired>(
-    clampT,
-    params
-  )
+  const paramsClamped: InterpolationParametersRequired = {
+    u: clampT(params.u),
+    uOpposite: clampT(params.uOpposite),
+    v: clampT(params.v),
+    vOpposite: clampT(params.vOpposite),
+  }
 
   const boundaryPoints: BoundaryPoints = {
     top: interpolatePointOnCurveU(paramsClamped.u, top),
