@@ -20,7 +20,7 @@
   "homepage": "https://coons-patch.undistraction.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/undistraction/coons-patch.git"
+    "url": "git+https://github.com/Undistraction/coons-patch.git"
   },
   "bugs": {
     "url": "https://github.com/undistraction/coons-patch/issues"
