@@ -26,7 +26,7 @@ export default {
         changelogFile: `CHANGELOG.md`,
       },
     ],
-    `@semantic-release/npm`,
+    [`@semantic-release/npm`, { provenance: true }],
     [
       `@semantic-release/git`,
       {
