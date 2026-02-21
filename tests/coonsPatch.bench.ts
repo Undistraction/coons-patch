@@ -66,21 +66,6 @@ describe(`coonsPatch - ${GRID_SIZE + 1}x${GRID_SIZE + 1} grid`, () => {
       }
     }
   })
-
-  bench(`high precision`, () => {
-    for (let i = 0; i <= GRID_SIZE; i++) {
-      for (let j = 0; j <= GRID_SIZE; j++) {
-        coonsPatch(
-          boundingCurvesValid,
-          { u: i / GRID_SIZE, v: j / GRID_SIZE },
-          {
-            interpolatePointOnCurveU: interpolateHighPrecision,
-            interpolatePointOnCurveV: interpolateHighPrecision,
-          }
-        )
-      }
-    }
-  })
 })
 
 describe(`interpolatePointOnCurve`, () => {
