@@ -81,9 +81,9 @@ export const coonsPatch = (
 
   const paramsWithDefaults: InterpolationParametersRequired = {
     u: params.u,
-    uOpposite: params.uOpposite || params.u,
+    uOpposite: params.uOpposite ?? params.u,
     v: params.v,
-    vOpposite: params.vOpposite || params.v,
+    vOpposite: params.vOpposite ?? params.v,
   }
 
   validateCoonsPatchArguments(
