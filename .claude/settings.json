@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm run audit-npm-packages:*)",
+      "Bash(pnpm run lint:*)",
+      "Bash(pnpm run tsc:*)",
+      "Bash(pnpm run build:*)",
+      "Bash(pnpm run docs:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(pnpm run test-watch:*)",
+      "Bash(pnpm run test-coverage:*)",
+      "Bash(pnpm run test-snapshot:*)",
+      "Bash(npx tsx:*)",
+      "Bash(rm *.ts:*)"
+    ]
+  }
+}
