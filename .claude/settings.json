@@ -14,7 +14,10 @@
       "Bash(pnpm run bench)",
       "Bash(npx tsx:*)",
       "Bash(rm *.ts:*)",
-      "Bash(pnpm run bench:*)"
+      "Bash(pnpm run bench:*)",
+      "Bash(pnpm run test:run:*)",
+      "Bash(git stash:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }
