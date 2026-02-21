@@ -11,8 +11,10 @@
       "Bash(pnpm run test-watch:*)",
       "Bash(pnpm run test-coverage:*)",
       "Bash(pnpm run test-snapshot:*)",
+      "Bash(pnpm run bench)",
       "Bash(npx tsx:*)",
-      "Bash(rm *.ts:*)"
+      "Bash(rm *.ts:*)",
+      "Bash(pnpm run bench:*)"
     ]
   }
 }
