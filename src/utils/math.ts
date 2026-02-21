@@ -4,7 +4,10 @@ import type { Point } from '../types'
 // Utils
 // -----------------------------------------------------------------------------
 
-const roundToN = (n: number, value: number): number => Number(value.toFixed(n))
+const roundToN = (n: number, value: number): number => {
+  const factor = 10 ** n
+  return Math.round(value * factor) / factor
+}
 
 // -----------------------------------------------------------------------------
 // Exports
