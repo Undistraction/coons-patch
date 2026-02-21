@@ -21,6 +21,35 @@ describe(`coonsPatch`, () => {
       ).not.toThrow()
     })
 
+    // Handles a regression where 0 was being treated as falsy and ignored
+    describe(`uOpposite and vOpposite`, () => {
+      it(`respects uOpposite: 0`, () => {
+        const result = coonsPatch(boundingCurvesValid, {
+          u: 0.5,
+          v: 0.5,
+          uOpposite: 0,
+        })
+        const resultWithoutUOpposite = coonsPatch(boundingCurvesValid, {
+          u: 0.5,
+          v: 0.5,
+        })
+        expect(result).not.toEqual(resultWithoutUOpposite)
+      })
+
+      it(`respects vOpposite: 0`, () => {
+        const result = coonsPatch(boundingCurvesValid, {
+          u: 0.5,
+          v: 0.5,
+          vOpposite: 0,
+        })
+        const resultWithoutVOpposite = coonsPatch(boundingCurvesValid, {
+          u: 0.5,
+          v: 0.5,
+        })
+        expect(result).not.toEqual(resultWithoutVOpposite)
+      })
+    })
+
     describe(`corner points`, () => {
       it(`returns 0/0 for top-left corner`, () => {
         expect(coonsPatch(boundingCurvesValid, { u: 0, v: 0 })).toEqual({

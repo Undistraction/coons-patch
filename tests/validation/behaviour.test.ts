@@ -7,7 +7,7 @@ import { boundingCurvesValid, paramsObjValid } from '../fixtures'
 
 describe(`validation`, () => {
   describe(`behaviour`, () => {
-    it(`should throw if the coordinates of top.startPoint and left.startPoint are not the same`, () => {
+    it(`should throw if top.startPoint and left.startPoint differ in x`, () => {
       const bounds = {
         ...boundingCurvesValid,
         top: {
@@ -20,7 +20,20 @@ describe(`validation`, () => {
       )
     })
 
-    it(`should throw if the coordinates of top.endPoint and right.startPoint are not the same`, () => {
+    it(`should throw if top.startPoint and left.startPoint differ in y`, () => {
+      const bounds = {
+        ...boundingCurvesValid,
+        top: {
+          ...boundingCurvesValid.top,
+          startPoint: { x: 0, y: 1 },
+        },
+      }
+      expect(() => coonsPatch(bounds, paramsObjValid)).toThrow(
+        `top curve startPoint and left curve startPoint must have same coordinates`
+      )
+    })
+
+    it(`should throw if top.endPoint and right.startPoint differ in x`, () => {
       const bounds = {
         ...boundingCurvesValid,
         top: {
@@ -33,7 +46,7 @@ describe(`validation`, () => {
       )
     })
 
-    it(`should throw if the coordinates of bottom.startPoint and left.endPoint are not the same`, () => {
+    it(`should throw if bottom.startPoint and left.endPoint differ in x`, () => {
       const bounds = {
         ...boundingCurvesValid,
         bottom: {
@@ -46,7 +59,7 @@ describe(`validation`, () => {
       )
     })
 
-    it(`should throw if the coordinates of bottom.endPoint and right.endPoint are not the same`, () => {
+    it(`should throw if bottom.endPoint and right.endPoint differ in x`, () => {
       const bounds = {
         ...boundingCurvesValid,
         bottom: {
