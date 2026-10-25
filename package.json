@@ -1,7 +1,7 @@
 {
   "name": "coons-patch",
   "version": "4.1.0",
-  "packageManager": "pnpm@10.5.1+sha512.c424c076bd25c1a5b188c37bb1ca56cc1e136fbf530d98bcb3289982a08fd25527b8c9c4ec113be5e3393c39af04521dd647bcf1d0801eaf8ac6a7b14da313af",
+  "packageManager": "pnpm@10.34.9+sha512.f49b5a8ea0fdedb44bb3c0c1d6575092a53c2950d95b7ad15df11f17974877a2de3a01c07e934e9b28ce716e51c09a94962c7306d09be2e1e4b18a8c8762fd32",
   "description": "Create a Coons patch and access points and curves on its surface",
   "main": "./dist/index.common.js",
   "exports": {
